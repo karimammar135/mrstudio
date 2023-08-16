@@ -1,26 +1,38 @@
 import React from "react";
 import './navbar.css';
+import NavContent from "./navcontent.js";
 
 // Navbar
 export default function Navbar(){
-    const[widthdemension, setWidthdemension] = React.useState(0);
+    const[widthdemension, setWidthdemension] = React.useState(window.innerWidth);
 
-    // if window size is less than 710px plug a 
-    
+    // Debounce functions
+    function debounce(fn, delay) {
+        let timer;
+        return (() => {
+          clearTimeout(timer);
+          timer = setTimeout(() => fn(), delay);
+        })();
+        
+    };
 
+    // Reset width
+    function resetWidth(){
+        setWidthdemension(window.innerWidth)
+    };
+
+    // on window resize reset the width demension
+    window.addEventListener('resize', () => debounce(resetWidth, 1000));
+
+    // Return navbar
     return (
         <div className="navbar">
             <a href="#" className="title">MRstudio</a>
             <div className="nav-body">
-                <div className="nav-items">
-                    <a href="#">Home</a>
-                    <a href="#">About</a>
-                    <a href="#">Type of house</a>
-                    <a href="#">Contact</a>
-                </div>
-                <button>Login</button>
+                <NavContent widthdemension={widthdemension} />
             </div>
         </div>
     );
+
 }
 
