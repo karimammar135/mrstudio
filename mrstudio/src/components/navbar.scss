@@ -9,6 +9,9 @@
     @media (max-width: 900px){
         padding: 25px 35px 25px 35px;
     }
+    @media(max-width: 710px){
+        padding: 25px 10px 25px 10px;
+    }
 
     .title {
         font-size: 24px;
@@ -72,7 +75,7 @@
 }
 
 /* Dropdown button on hover & focus */
-.dropbtn:hover, .dropbtn:focus {
+.dropbtn-focus {
     color:#4ca35f;
 }
 

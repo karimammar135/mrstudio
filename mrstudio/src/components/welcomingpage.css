@@ -1,0 +1,412 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
+.welcoming-page {
+  /* size */
+  max-width: 100%;
+  flex-grow: 1;
+  padding: 0 45px 25px 45px;
+}
+@media (max-width: 900px) {
+  .welcoming-page {
+    padding: 0 35px 25px 35px;
+  }
+}
+@media (max-width: 710px) {
+  .welcoming-page {
+    padding: 0 10px 25px 10px;
+  }
+}
+
+.image {
+  height: 100%;
+  max-height: 700px;
+  width: 100%;
+  background: url("./welcoming.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 10px;
+  position: relative;
+}
+
+.green-overlay {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #A3F1B4 0%, rgba(124, 227, 215, 0.9) 30%, rgba(217, 217, 217, 0) 60%);
+}
+@media (max-width: 1100px) {
+  .green-overlay {
+    background: linear-gradient(90deg, #A3F1B4 0%, rgba(124, 227, 215, 0.9) 45%, rgba(217, 217, 217, 0) 75%);
+  }
+}
+@media (max-width: 565px) {
+  .green-overlay {
+    background: linear-gradient(90deg, #A3F1B4 0%, rgba(124, 227, 215, 0.9) 50%, rgba(217, 217, 217, 0) 100%);
+  }
+}
+
+/* Informative Table */
+.informative-table {
+  height: -moz-fit-content;
+  height: fit-content;
+  width: 85%;
+  max-width: 1110px;
+  background-color: #ffffff;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -90px);
+  border-radius: 10px;
+  border: 1px solid rgba(153, 153, 153, 0.7);
+  filter: drop-shadow(0px 50px 50px rgba(135, 135, 135, 0.25));
+  /* flexbox */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 0 20px 0 20px;
+}
+@media (max-width: 1150px) {
+  .informative-table {
+    padding: 0 30px 0 30px;
+  }
+}
+
+.extra-space {
+  margin-top: 800px;
+}
+
+/* Facilities */
+.facilities {
+  height: 180px;
+  width: 260px;
+  /* flexbox */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 0 0 0 0;
+}
+.facilities .head {
+  /* flexbox */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.facilities .head span {
+  color: #000000;
+  font-size: 24px;
+  font-weight: 600;
+  font-family: "Inter", sans-serif;
+}
+.facilities .head a {
+  color: #F90;
+  font-size: 10px;
+  font-weight: 600;
+  font-family: "Inter", sans-serif;
+  text-decoration: none;
+}
+.facilities .facilities-options {
+  /* flexbox */
+  display: flex;
+  justify-content: space-between;
+}
+.facilities .facilities-options div {
+  /* flexbox */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 63px;
+  /* span */
+}
+.facilities .facilities-options div div {
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  border: 1.5px solid #BBB;
+  /* flexbox */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.facilities .facilities-options div span {
+  font-size: 13px;
+  color: #000000;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  margin-top: 5px;
+}
+.facilities .swimming img {
+  width: 20px;
+}
+.facilities .wifi img {
+  width: 19px;
+}
+.facilities .ac img {
+  width: 24px;
+}
+.facilities .dinner img {
+  width: 16px;
+}
+
+/* End of facilities */
+/* Hotels1 */
+.hotels1 {
+  /* flexbox */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 140px;
+  margin: 0 40px 0 40px;
+}
+.hotels1 .title {
+  color: #000000;
+  font-size: 20px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+}
+.hotels1 .duration {
+  font-size: 13px;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  color: #8F8F8F;
+}
+.hotels1 .price {
+  /* flexbox */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 5px;
+  border: 1px solid #B8B8B8;
+  height: 35px;
+}
+.hotels1 .price i {
+  color: #001AFF;
+}
+.hotels1 .price span {
+  font-size: 12px;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  color: #000000;
+  padding-right: 5px;
+}
+
+/* End of hotels1 */
+/* Hotels2 */
+.hotels2 {
+  /* flexbox */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin: 40px 0 40px 0;
+}
+.hotels2 .head {
+  /* flexbox */
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.hotels2 .head span {
+  color: #8F8F8F;
+  font-size: 16px;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+}
+.hotels2 .head .actions {
+  /* flexbox */
+  display: flex;
+  justify-content: space-between;
+}
+.hotels2 .head .actions .pen {
+  font-size: 22px;
+  color: #B7B7B7;
+}
+.hotels2 .head .actions .search {
+  font-size: 22px;
+  color: #327FF2;
+  margin-left: 40px;
+}
+.hotels2 .elipses {
+  /* flexbox */
+  display: flex;
+}
+.hotels2 .elipses div {
+  height: 40px;
+  width: 40px;
+  border-radius: 40px;
+  background-color: #8F8F8F;
+  margin-right: 30px;
+  margin-top: 30px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.hotels2 .elipses .elipse1 {
+  background-image: url("./1-hotel.jpg");
+}
+.hotels2 .elipses .elipse2 {
+  background-image: url("./2-hotel.jpg");
+}
+.hotels2 .elipses .elipse3 {
+  background-image: url("./3-hotel.jpg");
+}
+.hotels2 .elipses .elipse4 {
+  background-image: url("./4-hotel.jpg");
+}
+.hotels2 .elipses .elipse5 {
+  background-image: url("./5-hotel.jpg");
+}
+
+/* End of hotels2 */
+/* screen sizes' modifications */
+@media (max-width: 1061px) {
+  .informative-table {
+    justify-content: center;
+    width: 540px;
+    max-width: 80%;
+  }
+  .informative-table .hotels1 {
+    margin-right: 0;
+  }
+}
+@media (max-width: 565px) {
+  .informative-table {
+    justify-content: flex-start;
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+  .informative-table .facilities-options, .informative-table .elipses {
+    flex-wrap: wrap;
+  }
+  .informative-table .hotels1 {
+    margin: 0;
+  }
+}
+@media (max-width: 360px) {
+  .informative-table {
+    padding: 0 20px 0 20px;
+  }
+}
+@media (max-width: 335px) {
+  .informative-table .facilities {
+    height: -moz-fit-content;
+    height: fit-content;
+  }
+  .informative-table .facilities .head {
+    margin-top: 20px;
+  }
+  .informative-table .facilities .facilities-options div {
+    margin-top: 10px;
+  }
+  .informative-table .hotels1 {
+    margin-top: 20px;
+  }
+  .informative-table .hotels2 .elipse3 {
+    margin-right: 20px;
+  }
+}
+/* INFO */
+.info {
+  /* flexbox */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 80px 0 0 80px;
+}
+.info .title {
+  font-size: 50px;
+  color: #000000;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  font-family: "Inter", sans-serif;
+}
+.info .loerm {
+  color: #323232;
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  margin: 20px 0 20px 0;
+}
+.info .warwick {
+  /* flexbox */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+.info .warwick .secure {
+  /* flexbox */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 48px;
+  border: 2px solid #ffffff;
+}
+.info .warwick .secure span {
+  color: #117326;
+  font-size: 9px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  margin-top: 3px;
+}
+.info .warwick .text {
+  color: rgba(17, 115, 38, 0.9882352941);
+  font-size: 16px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  margin-left: 10px;
+}
+
+@media (max-width: 1061px) {
+  .info .title {
+    font-size: 40px;
+  }
+  .info .loerm {
+    font-size: 13px;
+  }
+}
+@media (max-width: 830px) {
+  .info {
+    padding: 80px 0 0 45px;
+  }
+}
+@media (max-width: 565px) {
+  .info {
+    padding: 80px 0 0 40px;
+  }
+  .info .title {
+    font-size: 33px;
+  }
+  .info .loerm {
+    font-size: 13px;
+    width: 250px;
+  }
+}
+@media (max-width: 375px) {
+  .info {
+    padding: 80px 0 0 20px;
+  }
+}
+@media (max-width: 310px) {
+  .info .title {
+    font-size: 25px;
+  }
+  .info .loerm {
+    font-size: 12px;
+    width: 220px;
+  }
+}
+@media (min-width: 1750px) {
+  .info .title {
+    font-size: 57px;
+  }
+  .info .loerm {
+    font-size: 15px;
+  }
+}
+/* End of info *//*# sourceMappingURL=welcomingpage.css.map */

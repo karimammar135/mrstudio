@@ -11,6 +11,11 @@
     padding: 25px 35px 25px 35px;
   }
 }
+@media (max-width: 710px) {
+  .navbar {
+    padding: 25px 10px 25px 10px;
+  }
+}
 .navbar .title {
   font-size: 24px;
   font-weight: 700;
@@ -70,7 +75,7 @@
 }
 
 /* Dropdown button on hover & focus */
-.dropbtn:hover, .dropbtn:focus {
+.dropbtn-focus {
   color: #4ca35f;
 }
 

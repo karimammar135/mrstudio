@@ -22,7 +22,7 @@ export default function Navbar(){
     };
 
     // on window resize reset the width demension
-    window.addEventListener('resize', () => debounce(resetWidth, 1000));
+    window.addEventListener('resize', () => debounce(resetWidth, 600));
 
     // Return navbar
     return (

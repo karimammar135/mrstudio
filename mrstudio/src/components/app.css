@@ -1,0 +1,10 @@
+.intro {
+    height: 100vh;
+    min-height: 600px;
+    overflow-y: visible;
+
+    /* flexbox */
+    display: flex;
+    flex-direction: column;
+    
+}
