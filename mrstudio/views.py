@@ -9,5 +9,8 @@ def index(request):
 
 # Authentication
 def authentication(request):
-    
     return JsonResponse({"authenticated": request.user.is_authenticated}, status=201)
+
+# Grid test
+def grid(request):
+    return render(request, "mrstudio/grid.html")

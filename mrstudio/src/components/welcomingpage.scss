@@ -15,9 +15,21 @@
     }
 }
 
+.extra-space {
+    margin-top: 66px;
+    @media (max-width: 1061px) {
+        margin-top: 240px;
+    }
+    @media (max-width: 565px){
+        margin-top: 448px;
+    }
+    @media (max-width: 334px) {
+        margin-top: 503px;
+    }
+}
+
 .image {
     height: 100%;
-    max-height: 700px;
     width: 100%;
     background: url('./welcoming.jpg');
     background-position: center;
@@ -64,10 +76,6 @@
     @media (max-width: 1150px){
         padding: 0 30px 0 30px;
     }
-}
-
-.extra-space {
-    margin-top: 800px;
 }
 
 /* Facilities */
@@ -302,7 +310,7 @@
         padding: 0 20px 0 20px;
     }
 }
-@media(max-width: 335px){
+@media(max-width: 334px){
     .informative-table {
         .facilities {
             height: fit-content;
@@ -325,7 +333,7 @@
 }
 
 /* INFO */
-.info {
+.image .green-overlay .info {
     /* flexbox */
     display: flex;
     flex-direction: column;
@@ -355,27 +363,6 @@
         justify-content: center;
         align-items: center;
         margin-top: 10px;
-
-        .secure {
-            /* flexbox */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-
-            width: 48px;
-            height: 48px;
-            border-radius: 48px;
-            border: 2px solid #ffffff;
-
-            span {
-                color: #117326;
-                font-size: 9px;
-                font-family: 'Inter', sans-serif;
-                font-weight: 600;
-                margin-top: 3px;
-            }
-        }
         .text {
             color: #117326fc;
             font-size: 16px;
@@ -387,7 +374,7 @@
 }
 
 @media (max-width: 1061px){
-    .info {
+    .image .green-overlay .info {
         .title {
             font-size: 40px;
         }
@@ -397,12 +384,12 @@
     }
 }
 @media (max-width: 830px){
-    .info {
+    .image .green-overlay .info {
         padding: 80px 0 0 45px;
     }
 }
 @media (max-width: 565px){
-    .info {
+    .image .green-overlay .info {
         padding: 80px 0 0 40px;
         .title {
             font-size: 33px;
@@ -414,12 +401,12 @@
     }
 }
 @media (max-width: 375px) {
-    .info {
+    .image .green-overlay .info {
         padding: 80px 0 0 20px;
     }
 }
 @media (max-width: 310px) {
-    .info {
+    .image .green-overlay .info {
         
         .title {
             font-size: 25px;
@@ -432,7 +419,7 @@
 }
 
 @media (min-width: 1750px) {
-    .info {
+    .image .green-overlay .info {
         .title {
             font-size: 57px;
         }
@@ -442,3 +429,26 @@
     }
 }
 /* End of info */
+
+
+/* secure logo */
+.secure-logo {
+    /* flexbox */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 48px;
+    height: 48px;
+    border-radius: 48px;
+    border: 2px solid #ffffff;
+
+    span {
+        color: #117326;
+        font-size: 9px;
+        font-family: 'Inter', sans-serif;
+        font-weight: 600;
+        margin-top: 3px;
+    }
+}

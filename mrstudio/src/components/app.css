@@ -1,6 +1,7 @@
 .intro {
     height: 100vh;
     min-height: 600px;
+    max-height: 800px;
     overflow-y: visible;
 
     /* flexbox */

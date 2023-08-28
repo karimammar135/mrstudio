@@ -16,9 +16,27 @@
   }
 }
 
+.extra-space {
+  margin-top: 66px;
+}
+@media (max-width: 1061px) {
+  .extra-space {
+    margin-top: 240px;
+  }
+}
+@media (max-width: 565px) {
+  .extra-space {
+    margin-top: 448px;
+  }
+}
+@media (max-width: 334px) {
+  .extra-space {
+    margin-top: 503px;
+  }
+}
+
 .image {
   height: 100%;
-  max-height: 700px;
   width: 100%;
   background: url("./welcoming.jpg");
   background-position: center;
@@ -70,10 +88,6 @@
   .informative-table {
     padding: 0 30px 0 30px;
   }
-}
-
-.extra-space {
-  margin-top: 800px;
 }
 
 /* Facilities */
@@ -288,7 +302,7 @@
     padding: 0 20px 0 20px;
   }
 }
-@media (max-width: 335px) {
+@media (max-width: 334px) {
   .informative-table .facilities {
     height: -moz-fit-content;
     height: fit-content;
@@ -307,14 +321,14 @@
   }
 }
 /* INFO */
-.info {
+.image .green-overlay .info {
   /* flexbox */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 80px 0 0 80px;
 }
-.info .title {
+.image .green-overlay .info .title {
   font-size: 50px;
   color: #000000;
   font-style: normal;
@@ -322,39 +336,21 @@
   line-height: normal;
   font-family: "Inter", sans-serif;
 }
-.info .loerm {
+.image .green-overlay .info .loerm {
   color: #323232;
   font-size: 14px;
   font-family: "Inter", sans-serif;
   font-weight: 600;
   margin: 20px 0 20px 0;
 }
-.info .warwick {
+.image .green-overlay .info .warwick {
   /* flexbox */
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 10px;
 }
-.info .warwick .secure {
-  /* flexbox */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  border-radius: 48px;
-  border: 2px solid #ffffff;
-}
-.info .warwick .secure span {
-  color: #117326;
-  font-size: 9px;
-  font-family: "Inter", sans-serif;
-  font-weight: 600;
-  margin-top: 3px;
-}
-.info .warwick .text {
+.image .green-overlay .info .warwick .text {
   color: rgba(17, 115, 38, 0.9882352941);
   font-size: 16px;
   font-family: "Inter", sans-serif;
@@ -363,50 +359,69 @@
 }
 
 @media (max-width: 1061px) {
-  .info .title {
+  .image .green-overlay .info .title {
     font-size: 40px;
   }
-  .info .loerm {
+  .image .green-overlay .info .loerm {
     font-size: 13px;
   }
 }
 @media (max-width: 830px) {
-  .info {
+  .image .green-overlay .info {
     padding: 80px 0 0 45px;
   }
 }
 @media (max-width: 565px) {
-  .info {
+  .image .green-overlay .info {
     padding: 80px 0 0 40px;
   }
-  .info .title {
+  .image .green-overlay .info .title {
     font-size: 33px;
   }
-  .info .loerm {
+  .image .green-overlay .info .loerm {
     font-size: 13px;
     width: 250px;
   }
 }
 @media (max-width: 375px) {
-  .info {
+  .image .green-overlay .info {
     padding: 80px 0 0 20px;
   }
 }
 @media (max-width: 310px) {
-  .info .title {
+  .image .green-overlay .info .title {
     font-size: 25px;
   }
-  .info .loerm {
+  .image .green-overlay .info .loerm {
     font-size: 12px;
     width: 220px;
   }
 }
 @media (min-width: 1750px) {
-  .info .title {
+  .image .green-overlay .info .title {
     font-size: 57px;
   }
-  .info .loerm {
+  .image .green-overlay .info .loerm {
     font-size: 15px;
   }
 }
-/* End of info *//*# sourceMappingURL=welcomingpage.css.map */
+/* End of info */
+/* secure logo */
+.secure-logo {
+  /* flexbox */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 48px;
+  height: 48px;
+  border-radius: 48px;
+  border: 2px solid #ffffff;
+}
+.secure-logo span {
+  color: #117326;
+  font-size: 9px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  margin-top: 3px;
+}/*# sourceMappingURL=welcomingpage.css.map */

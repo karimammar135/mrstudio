@@ -14,7 +14,7 @@ export default function WelcomingPage(){
                         <span className="title">Enjoy Your <br></br> Dream Vacation</span>
                         <span className="loerm">Lorem ipsum dolor sit amet consectetur adipisicing elit.<br></br>Maxime mollitia, molestiae quas</span>
                         <div className="warwick">
-                            <div className="secure">
+                            <div className="secure-logo">
                                 <i className="fa-solid fa-house-lock"></i>
                                 <span>Secure</span>
                             </div>

@@ -4,6 +4,7 @@ import './app.css';
 
 import Navbar from './navbar';
 import WelcomingPage from './welcomingpage.js';
+import Resorts from './Resorts.js';
 
 export default function App(){
 
@@ -13,7 +14,8 @@ export default function App(){
         <Navbar />
         <WelcomingPage />
       </div>
-      <div className="extra-space">extra space</div>
+      <div className="extra-space"></div>
+      <Resorts />
     </>
   );
 }
