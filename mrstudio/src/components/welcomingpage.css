@@ -91,7 +91,7 @@
 }
 
 /* Facilities */
-.facilities {
+.informative-table .facilities {
   height: 180px;
   width: 260px;
   /* flexbox */
@@ -100,31 +100,31 @@
   justify-content: space-around;
   margin: 0 0 0 0;
 }
-.facilities .head {
+.informative-table .facilities .head {
   /* flexbox */
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.facilities .head span {
+.informative-table .facilities .head span {
   color: #000000;
   font-size: 24px;
   font-weight: 600;
   font-family: "Inter", sans-serif;
 }
-.facilities .head a {
+.informative-table .facilities .head a {
   color: #F90;
   font-size: 10px;
   font-weight: 600;
   font-family: "Inter", sans-serif;
   text-decoration: none;
 }
-.facilities .facilities-options {
+.informative-table .facilities .facilities-options {
   /* flexbox */
   display: flex;
   justify-content: space-between;
 }
-.facilities .facilities-options div {
+.informative-table .facilities .facilities-options div {
   /* flexbox */
   display: flex;
   flex-direction: column;
@@ -132,7 +132,7 @@
   width: 63px;
   /* span */
 }
-.facilities .facilities-options div div {
+.informative-table .facilities .facilities-options div div {
   width: 40px;
   height: 40px;
   border-radius: 5px;
@@ -142,23 +142,23 @@
   align-items: center;
   justify-content: center;
 }
-.facilities .facilities-options div span {
+.informative-table .facilities .facilities-options div span {
   font-size: 13px;
   color: #000000;
   font-family: "Inter", sans-serif;
   font-weight: 500;
   margin-top: 5px;
 }
-.facilities .swimming img {
+.informative-table .facilities .swimming img {
   width: 20px;
 }
-.facilities .wifi img {
+.informative-table .facilities .wifi img {
   width: 19px;
 }
-.facilities .ac img {
+.informative-table .facilities .ac img {
   width: 24px;
 }
-.facilities .dinner img {
+.informative-table .facilities .dinner img {
   width: 16px;
 }
 
