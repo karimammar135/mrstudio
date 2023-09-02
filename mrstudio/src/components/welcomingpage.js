@@ -5,7 +5,31 @@ import wifi from './wifi.png';
 import ac from './ac.png';
 import dinner from './dinner.png';
 
+function Hotels2Head(){
+    const[showSearchbar, setShowSearchBar] = React.useState(false);
+
+    if (!showSearchbar){
+        return (
+            <div className="head">
+                <span>150 Results</span>
+                <div className="actions">
+                    <i className="fa-solid fa-pen pen"></i>
+                    <i className="fa-solid fa-magnifying-glass search-btn" onClick={() => setShowSearchBar(true)}></i>
+                </div>
+            </div>
+        );
+    } else {
+        return (
+            <div className="head search_bar">
+                <input name="hotel_name" placeholder="Search for hotels" id="search_hotels"/>
+                <i className="fa-solid fa-xmark close-search" onClick={() => setShowSearchBar(false)}></i>
+            </div>
+        );
+    }
+}
+
 export default function WelcomingPage(){
+
     return (
         <div className="welcoming-page">
             <div className="image">
@@ -66,19 +90,13 @@ export default function WelcomingPage(){
                     </div>
 
                     <div className="hotels2">
-                        <div className="head">
-                            <span>150 Results</span>
-                            <div className="actions">
-                                <i className="fa-solid fa-pen pen"></i>
-                                <i className="fa-solid fa-magnifying-glass search"></i>
-                            </div>
-                        </div>
+                        <Hotels2Head />
                         <div className="elipses">
-                            <div className="elipse1"></div>
-                            <div className="elipse2"></div>
-                            <div className="elipse3"></div>
-                            <div className="elipse4"></div>
-                            <div className="elipse5"></div>
+                            <a href="#" className="elipse1"></a>
+                            <a href="#" className="elipse2"></a>
+                            <a href="#" className="elipse3"></a>
+                            <a href="#" className="elipse4"></a>
+                            <a href="#" className="elipse5"></a>
                         </div>
                     </div>
                 </div>

@@ -150,25 +150,25 @@
     margin-left: 15px;
   }
 }
-@media (max-width: 760px) and (max-width: 435px) {
+@media (max-width: 760px) and (max-width: 520px) {
   .images-scrollbar {
     margin-left: 0;
   }
 }
-@media (max-width: 760px) and (min-width: 436px) {
+@media (max-width: 760px) and (min-width: 521px) {
   .images-scrollbar {
     width: 415px;
     justify-content: space-between;
   }
 }
-@media (max-width: 760px) and (max-width: 435px) {
+@media (max-width: 760px) and (max-width: 520px) {
   .images-scrollbar {
-    justify-content: center;
+    justify-content: flex-start;
     flex-wrap: nowrap;
     overflow-x: scroll;
   }
 }
-@media (max-width: 760px) and (max-width: 435px) {
+@media (max-width: 760px) and (max-width: 520px) {
   .images-scrollbar .card-2 {
     margin-right: 20px;
     margin-left: 20px;
@@ -271,35 +271,60 @@
 .images-defaults .card .details .view-details:hover {
   background-color: #df8600;
 }
-.images-defaults .card:hover {
+.images-defaults .card:hover, .images-defaults .card-2 {
   margin-bottom: 100px;
   margin-top: 0;
 }
-.images-defaults .card:hover .details {
+.images-defaults .card:hover .details, .images-defaults .card-2 .details {
   height: 75px;
 }
-.images-defaults .card:hover .details .header {
+.images-defaults .card:hover .details .header, .images-defaults .card-2 .details .header {
   opacity: 1;
 }
-.images-defaults .card:hover .details .bar, .images-defaults .card:hover .details .view-details {
+.images-defaults .card:hover .details .bar, .images-defaults .card:hover .details .view-details, .images-defaults .card-2 .details .bar, .images-defaults .card-2 .details .view-details {
   opacity: 1;
+}
+.images-defaults .card-1:hover ~ .card-2, .images-defaults .card-3:hover ~ .card-2 {
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+.images-defaults .card-1:hover ~ .card-2 .details, .images-defaults .card-3:hover ~ .card-2 .details {
+  height: 0;
+}
+.images-defaults .card-1:hover ~ .card-2 .details .header, .images-defaults .card-3:hover ~ .card-2 .details .header {
+  opacity: 0;
+}
+.images-defaults .card-1:hover ~ .card-2 .details .bar, .images-defaults .card-1:hover ~ .card-2 .details .view-details, .images-defaults .card-3:hover ~ .card-2 .details .bar, .images-defaults .card-3:hover ~ .card-2 .details .view-details {
+  opacity: 0;
 }
 @media (max-width: 760px) {
   .images-defaults .card {
     margin-top: 25px;
     margin-bottom: 25px;
   }
-  .images-defaults .card:hover {
+  .images-defaults .card:hover, .images-defaults .card-2 {
     margin-bottom: 50px;
     margin-top: 0;
   }
+  .images-defaults .card-1:hover ~ .card-2, .images-defaults .card-3:hover ~ .card-2 {
+    margin-bottom: 25px;
+    margin-top: 25px;
+  }
 }
 .images-defaults .card-1 {
+  order: 1;
   background-image: url("./lounge.jpg");
 }
+@media (max-width: 520px) {
+  .images-defaults .card-1 {
+    margin-left: 20px;
+  }
+}
 .images-defaults .card-2 {
+  order: 2;
   background-image: url("./pool-1.jpg");
 }
 .images-defaults .card-3 {
+  order: 3;
   background-image: url("./pool-2.jpg");
 }/*# sourceMappingURL=RelaxingPleasure.css.map */

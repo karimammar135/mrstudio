@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300&display=swap");
 .welcoming-page {
   /* size */
   max-width: 100%;
@@ -125,6 +126,7 @@
   justify-content: space-between;
 }
 .informative-table .facilities .facilities-options div {
+  cursor: pointer;
   /* flexbox */
   display: flex;
   flex-direction: column;
@@ -189,12 +191,15 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+  cursor: pointer;
   border-radius: 5px;
   border: 1px solid #B8B8B8;
   height: 35px;
+  transition: background-color 0.7s, border-color 0.7s;
 }
 .hotels1 .price i {
   color: #001AFF;
+  transition: color 0.7s;
 }
 .hotels1 .price span {
   font-size: 12px;
@@ -202,6 +207,14 @@
   font-weight: 400;
   color: #000000;
   padding-right: 5px;
+  transition: color 0.7s;
+}
+.hotels1 .price:hover {
+  border-color: #001AFF;
+  background-color: #001AFF;
+}
+.hotels1 .price:hover i, .hotels1 .price:hover span {
+  color: #ffffff;
 }
 
 /* End of hotels1 */
@@ -219,13 +232,18 @@
   /* flexbox */
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
+  height: 40px;
 }
 .hotels2 .head span {
   color: #8F8F8F;
   font-size: 16px;
   font-family: "Inter", sans-serif;
   font-weight: 400;
+}
+.hotels2 .head i {
+  cursor: pointer;
 }
 .hotels2 .head .actions {
   /* flexbox */
@@ -236,16 +254,51 @@
   font-size: 22px;
   color: #B7B7B7;
 }
-.hotels2 .head .actions .search {
+.hotels2 .head .actions .search-btn {
   font-size: 22px;
   color: #327FF2;
   margin-left: 40px;
+}
+.hotels2 .search_bar {
+  background-color: #327FF2;
+  overflow: hidden;
+  border-radius: 10px;
+}
+.hotels2 .search_bar #search_hotels {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  border: none;
+  background-color: #327FF2;
+  padding-left: 15px;
+  color: #000000;
+}
+.hotels2 .search_bar #search_hotels:focus {
+  border: none;
+  outline: none;
+}
+.hotels2 .search_bar #search_hotels::-moz-placeholder {
+  color: #ffffff;
+  font-size: 12px;
+  font-family: "Lexend Deca", sans-serif;
+  font-weight: 300;
+}
+.hotels2 .search_bar #search_hotels::placeholder {
+  color: #ffffff;
+  font-size: 12px;
+  font-family: "Lexend Deca", sans-serif;
+  font-weight: 300;
+}
+.hotels2 .search_bar .close-search {
+  color: #ffffff;
+  margin-right: 15px;
+  margin-left: 5px;
 }
 .hotels2 .elipses {
   /* flexbox */
   display: flex;
 }
-.hotels2 .elipses div {
+.hotels2 .elipses a {
   height: 40px;
   width: 40px;
   border-radius: 40px;

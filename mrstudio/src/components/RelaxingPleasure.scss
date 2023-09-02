@@ -126,23 +126,23 @@
         @media (max-width: 510px) {
             margin-left: 15px;
         }
-        @media (max-width: 435px) {
+        @media (max-width: 520px) {
             margin-left: 0;
         }
         // flexbox
         display: flex;
         align-items: center;
-        @media (min-width: 436px) {
+        @media (min-width: 521px) {
             width: 415px;
             justify-content: space-between;
         }
-        @media (max-width: 435px) {
-            justify-content: center;
+        @media (max-width: 520px) {
+            justify-content: flex-start;
             flex-wrap: nowrap;
             overflow-x: scroll;
         }
 
-        @media (max-width: 435px) {
+        @media (max-width: 520px) {
             .card-2 {
                 margin-right: 20px;
                 margin-left: 20px;
@@ -255,7 +255,7 @@
         }
         // end of details
     }
-    .card:hover {
+    .card:hover, .card-2 {
         margin-bottom: 100px;
         margin-top: 0;
         .details {
@@ -268,23 +268,46 @@
             }
         }
     }
+    .card-1:hover ~ .card-2, .card-3:hover ~ .card-2 {
+        margin-bottom: 50px;
+        margin-top: 50px;
+        .details {
+            height: 0;
+            .header {
+                opacity: 0;
+            }
+            .bar, .view-details{
+                opacity: 0;
+            }
+        }
+    }
     @media (max-width: 760px){
         .card {
             margin-top: 25px;
             margin-bottom: 25px;
         }
-        .card:hover {
+        .card:hover, .card-2 {
             margin-bottom: 50px;
             margin-top: 0;
         }
+        .card-1:hover ~ .card-2, .card-3:hover ~ .card-2 {
+            margin-bottom: 25px;
+            margin-top: 25px;
+        }
     }
     .card-1 {
+        order: 1;
         background-image: url('./lounge.jpg');
+        @media (max-width: 520px) {
+            margin-left: 20px;
+        }
     }
     .card-2 {
+        order: 2;
         background-image: url('./pool-1.jpg');
     }
     .card-3 {
+        order: 3;
         background-image: url('./pool-2.jpg');
     }
 }

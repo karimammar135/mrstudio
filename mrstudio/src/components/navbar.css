@@ -52,6 +52,7 @@
   border-radius: 5px;
   border: 1px solid #A1A1A1;
   transition: color, border-color, background-color 0.6s;
+  cursor: pointer;
 }
 .nav-body button:hover {
   background-color: #4ca35f;

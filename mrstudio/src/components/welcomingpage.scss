@@ -1,5 +1,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300&display=swap');
 
 .welcoming-page {
     /* size */
@@ -116,6 +117,7 @@
         justify-content: space-between;
     }
     .facilities-options div{
+        cursor: pointer;
         /* flexbox */
         display: flex;
         flex-direction: column;
@@ -185,13 +187,16 @@
         display: flex;
         justify-content: space-around;
         align-items: center;
+        cursor: pointer;
 
         border-radius: 5px;
         border: 1px solid #B8B8B8;
         height: 35px;
+        transition: background-color 0.7s, border-color 0.7s;
 
         i {
             color: #001AFF;
+            transition: color 0.7s;
         }
         span {
             font-size: 12px;
@@ -199,6 +204,14 @@
             font-weight: 400;
             color: #000000;
             padding-right: 5px;
+            transition: color 0.7s;
+        }
+    }
+    .price:hover {
+        border-color: #001AFF;
+        background-color: #001AFF;
+        i, span {
+            color: #ffffff;
         }
     }
 }
@@ -219,14 +232,19 @@
         /* flexbox */
         display: flex;
         justify-content: space-between;
+        align-items: center;
 
         width: 100%;
+        height: 40px;
 
         span {
             color: #8F8F8F;
             font-size: 16px;
             font-family: 'Inter', sans-serif;
             font-weight: 400;
+        }
+        i {
+            cursor: pointer;
         }
         .actions{
             /* flexbox */
@@ -238,11 +256,42 @@
                 font-size: 22px;
                 color: #B7B7B7;
             }
-            .search {
+            .search-btn {
                 font-size: 22px;
                 color: #327FF2;
                 margin-left: 40px;
             }
+        }
+    }
+    // Search Bar
+    .search_bar {
+        background-color: #327FF2;
+        overflow: hidden;
+        border-radius: 10px;
+        #search_hotels {
+            width: 100%;
+            height: 100%;
+            border-radius: 5px;
+            border: none;
+            background-color: #327FF2;
+            padding-left: 15px;
+
+            color: #000000;
+        }
+        #search_hotels:focus {
+            border: none;
+            outline: none;
+        }
+        #search_hotels::placeholder {
+            color: #ffffff;
+            font-size: 12px;
+            font-family: 'Lexend Deca', sans-serif;
+            font-weight: 300;
+        }
+        .close-search {
+            color: #ffffff;
+            margin-right: 15px;
+            margin-left: 5px;
         }
     }
 
@@ -250,7 +299,7 @@
         /* flexbox */
         display: flex;
 
-        div {
+        a {
             height: 40px;
             width: 40px;
             border-radius: 40px;

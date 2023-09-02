@@ -3,6 +3,11 @@ import './RelaxingPleasure.css';
 
 export default function RelaxingPleasure(){
 
+    document.addEventListener('DOMContentLoaded', () => {
+        let scrollbar = document.querySelector('.images-scrollbar');
+        scrollbar.scrollLeft = ((scrollbar.scrollWidth - scrollbar.clientWidth - 49) / 2);
+    });
+
     return ( 
         <div className="center-relaxing-pleasure">
             <div className="relaxing-pleasure-container">
@@ -20,7 +25,7 @@ export default function RelaxingPleasure(){
                             <a className="view-details" href="#">View Details</a>
                         </div>
                     </div>
-                    <div className="card card-2">
+                    <div className="card card-3">
                         <div className="details">
                             <div className="header">
                                 <span className="resort-name">MRstudio Resort</span>
@@ -33,7 +38,7 @@ export default function RelaxingPleasure(){
                             <a className="view-details" href="#">View Details</a>
                         </div>
                     </div>
-                    <div className="card card-3">
+                    <div className="card card-2">
                         <div className="details">
                             <div className="header">
                                 <span className="resort-name">MRstudio Resort</span>
@@ -71,7 +76,7 @@ export default function RelaxingPleasure(){
                         <a className="view-details" href="#">View Details</a>
                     </div>
                 </div>
-                <div className="card card-2">
+                <div className="card card-3">
                     <div className="details">
                         <div className="header">
                             <span className="resort-name">MRstudio Resort</span>
@@ -84,7 +89,7 @@ export default function RelaxingPleasure(){
                         <a className="view-details" href="#">View Details</a>
                     </div>
                 </div>
-                <div className="card card-3">
+                <div className="card card-2">
                     <div className="details">
                         <div className="header">
                             <span className="resort-name">MRstudio Resort</span>
