@@ -1,0 +1,89 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+// dash Wrapper 
+.dash_wrapper {
+    width: 100%;
+    /* flexbxo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 90px;
+
+    // MAin content container 
+    .dash_container {
+        /* flexbox */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        width: 100%;
+        max-width: 385px;
+        margin: 0 15px 0 15px;
+
+        h1{
+            color: #000;
+            font-size: 44px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            margin: 0;
+
+            // small screens
+            @media (max-width: 415px) {
+                font-size: 32px;
+            }
+        }
+        p {
+            color: #737373;
+            font-size: 17px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            max-width: 308px;
+            text-align: center;
+            margin: 15px 0 18px 0;
+        }
+
+        // email form
+        .email_form {
+            width: 100%;
+            // flexbox
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+
+            input[type=email] {
+                width: 235px;
+                height: 40px;
+                border-radius: 5px;
+                border: 0.5px solid #CFCFCF;
+                box-shadow: 0px 2px 4px 2px rgba(195, 195, 195, 0.25);
+                text-align: center;
+            }
+            input[type=email]::placeholder {
+                color: #BDBDBD;
+                font-size: 15px;
+                font-family: 'Inter', sans-serif;
+                font-weight: 400;
+            }
+
+            input[type=submit]{
+                width: 119px;
+                height: 43px;
+                border-radius: 5px;
+                border: none;
+                background-color: #0840D0;
+                box-shadow: 0px 4px 10px 4px rgba(8, 64, 208, 0.13);
+
+                color: #D6D6D6;
+                font-size: 15px;
+                font-family: 'Inter', sans-serif;
+                font-weight: 400;
+                text-align: center;
+            }
+        }
+    }
+    // end of main container
+}
+// end of dash wrapper

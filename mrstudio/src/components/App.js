@@ -8,6 +8,7 @@ import Resorts from './Resorts.js';
 import ResortSurprises from './ResortSurprises.js';
 import RelaxingPleasure from './RelaxingPleasure.js';
 import Airlines from './Airlines.js';
+import Dash from './Dash.js';
 
 export default function App(){
 
@@ -22,7 +23,7 @@ export default function App(){
       <ResortSurprises />
       <RelaxingPleasure />
       <Airlines />
-      
+      <Dash />
     </>
   );
 }
