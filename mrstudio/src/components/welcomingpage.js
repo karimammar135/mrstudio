@@ -1,9 +1,9 @@
 import React from "react";
 import './welcomingpage.css';
-import pool from './pool.png';
-import wifi from './wifi.png';
-import ac from './ac.png';
-import dinner from './dinner.png';
+import pool from './images/pool.png';
+import wifi from './images/wifi.png';
+import ac from './images/ac.png';
+import dinner from './images/dinner.png';
 
 function Hotels2Head(){
     const[showSearchbar, setShowSearchBar] = React.useState(false);

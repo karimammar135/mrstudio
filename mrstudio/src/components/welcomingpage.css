@@ -39,7 +39,7 @@
 .image {
   height: 100%;
   width: 100%;
-  background: url("./welcoming.jpg");
+  background: url("./images/welcoming.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -310,19 +310,19 @@
   background-size: cover;
 }
 .hotels2 .elipses .elipse1 {
-  background-image: url("./1-hotel.jpg");
+  background-image: url("./images/1-hotel.jpg");
 }
 .hotels2 .elipses .elipse2 {
-  background-image: url("./2-hotel.jpg");
+  background-image: url("./images/2-hotel.jpg");
 }
 .hotels2 .elipses .elipse3 {
-  background-image: url("./3-hotel.jpg");
+  background-image: url("./images/3-hotel.jpg");
 }
 .hotels2 .elipses .elipse4 {
-  background-image: url("./4-hotel.jpg");
+  background-image: url("./images/4-hotel.jpg");
 }
 .hotels2 .elipses .elipse5 {
-  background-image: url("./5-hotel.jpg");
+  background-image: url("./images/5-hotel.jpg");
 }
 
 /* End of hotels2 */

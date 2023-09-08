@@ -1,0 +1,145 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap');
+
+// Airlines container
+.airlines-background {
+    width: 100%;
+    background-color: #E5F7FF;
+
+    // flexbox
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 150px;
+
+    // Airlines wrapper container
+    .airlines-wrapper-container {
+        position: relative;
+        width: 100%;
+        max-width: 1140px;
+
+        background-color: #fff;
+        margin: 42px 19px 42px 19px;
+        border-radius: 15px;
+
+        // Small Screens
+        @media (max-width: 850px) {
+            width: fit-content;
+            // flexbox
+            display: flex;
+            justify-content: center;
+        }
+
+        .airlines-wrapper {
+            width: fit-content;
+            margin: 43px 0 43px 5%;
+            // Small Screens
+            @media (max-width: 870px) {
+                margin-left: 25px;
+            }
+            @media (max-width: 850px) {
+                margin: 310px 30px 45px 30px;
+            }
+            @media (max-width: 360px) {
+                margin-top: 265px;
+            }
+            @media (max-width: 300px) {
+                margin-top: 240px;
+            }
+
+            // flexbox
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            h1 {
+                color: #000;
+                font-size: 30px;
+                font-family: 'Inter', sans-serif;
+                font-weight: 700;
+                margin: 0;
+                // small screens
+                @media (max-width: 385px) {
+                    font-size: 24px;
+                }
+                @media (max-width: 300px) {
+                    font-size: 20px;
+                }
+            }
+            .airlines-list {
+                width: 100%;
+                // flexbox
+                display: flex;
+                justify-content: space-between;
+                gap: 30px;
+                flex-wrap: wrap;
+
+                ul {
+                    padding-left: 0;
+                    margin: 0;
+                    // flexbox
+                    display: flex;
+                    flex-direction: column;
+                    gap: 35px;
+                    li{
+                        list-style: none;
+                        // flexbox
+                        display: flex;
+                        align-items: center;
+                        flex-wrap: nowrap;
+                        img {
+                            width: 27px;
+                        }
+                        span {
+                            color: #737373;
+                            font-size: 14px;
+                            font-weight: 500;
+                            font-family: 'Inter', sans-serif;
+                            padding-left: 13px;
+                        }
+                    }
+                } 
+                // custom styles
+                
+            }
+        }
+        // end of airlines wrapper
+
+        // Smiley woman
+        .smiley_woman {
+            position: absolute;
+            bottom: 0;
+            right: 7%;
+            width: 35%;
+            min-width: 354px;
+            @media (max-width: 1050px) {
+                right: 10px;
+            }
+            // Small Screens
+            @media (max-width: 850px) {
+                // hide
+                display: none;
+            }
+        }
+        // Smiley woman 2
+        .smiley_woman_2 {
+            position: absolute;
+            top: -150px;
+            width: 335px;
+            display: none;
+            // Small Screens
+            @media (max-width: 850px) {
+                // hide
+                display: block;
+            }
+            @media (max-width: 385px) {
+                width: 97%;
+            }
+            @media (max-width: 340px) {
+                top: -110px;
+            }
+        }
+    }
+    // END of Airlines wrapper container
+}
+// End of airlines background

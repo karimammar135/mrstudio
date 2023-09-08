@@ -110,22 +110,22 @@
   color: #000000;
 }
 .hotels-choices .card .img1 {
-  background-image: url("./mircle.jpg");
+  background-image: url("./images/mircle.jpg");
 }
 .hotels-choices .card .img2 {
-  background-image: url("./warwick-hotel.jpg");
+  background-image: url("./images/warwick-hotel.jpg");
 }
 .hotels-choices .card .img3 {
-  background-image: url("./hitto.jpg");
+  background-image: url("./images/hitto.jpg");
 }
 .hotels-choices .card .img4 {
-  background-image: url("./barcelo.jpg");
+  background-image: url("./images/barcelo.jpg");
 }
 .hotels-choices .card .img5 {
-  background-image: url("./sackman.jpg");
+  background-image: url("./images/sackman.jpg");
 }
 .hotels-choices .card .img6 {
-  background-image: url("./schloss.jpg");
+  background-image: url("./images/schloss.jpg");
 }
 .hotels-choices .card .body {
   display: flex;

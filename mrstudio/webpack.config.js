@@ -20,12 +20,17 @@ module.exports = {
         use: ["style-loader", "css-loader"],
       },
       {
-        test: /\.(png)$/i,
+        test: /\.(png|jpg|gif|webp)$/i,
+        dependency: { not: ['url'] },
         use: [
           {
-            loader: 'file-loader',
+            loader: 'url-loader',
+            options: {
+              limit: 8192,
+            }
           },
         ],
+       type: 'javascript/auto'
       },
       {
         test: /\.mp4$/,

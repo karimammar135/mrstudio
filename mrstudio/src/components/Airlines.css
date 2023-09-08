@@ -1,0 +1,138 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap");
+.airlines-background {
+  width: 100%;
+  background-color: #E5F7FF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 150px;
+}
+.airlines-background .airlines-wrapper-container {
+  position: relative;
+  width: 100%;
+  max-width: 1140px;
+  background-color: #fff;
+  margin: 42px 19px 42px 19px;
+  border-radius: 15px;
+}
+@media (max-width: 850px) {
+  .airlines-background .airlines-wrapper-container {
+    width: -moz-fit-content;
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+  }
+}
+.airlines-background .airlines-wrapper-container .airlines-wrapper {
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 43px 0 43px 5%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+@media (max-width: 870px) {
+  .airlines-background .airlines-wrapper-container .airlines-wrapper {
+    margin-left: 25px;
+  }
+}
+@media (max-width: 850px) {
+  .airlines-background .airlines-wrapper-container .airlines-wrapper {
+    margin: 310px 30px 45px 30px;
+  }
+}
+@media (max-width: 360px) {
+  .airlines-background .airlines-wrapper-container .airlines-wrapper {
+    margin-top: 265px;
+  }
+}
+@media (max-width: 300px) {
+  .airlines-background .airlines-wrapper-container .airlines-wrapper {
+    margin-top: 240px;
+  }
+}
+.airlines-background .airlines-wrapper-container .airlines-wrapper h1 {
+  color: #000;
+  font-size: 30px;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  margin: 0;
+}
+@media (max-width: 385px) {
+  .airlines-background .airlines-wrapper-container .airlines-wrapper h1 {
+    font-size: 24px;
+  }
+}
+@media (max-width: 300px) {
+  .airlines-background .airlines-wrapper-container .airlines-wrapper h1 {
+    font-size: 20px;
+  }
+}
+.airlines-background .airlines-wrapper-container .airlines-wrapper .airlines-list {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+.airlines-background .airlines-wrapper-container .airlines-wrapper .airlines-list ul {
+  padding-left: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+}
+.airlines-background .airlines-wrapper-container .airlines-wrapper .airlines-list ul li {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+.airlines-background .airlines-wrapper-container .airlines-wrapper .airlines-list ul li img {
+  width: 27px;
+}
+.airlines-background .airlines-wrapper-container .airlines-wrapper .airlines-list ul li span {
+  color: #737373;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: "Inter", sans-serif;
+  padding-left: 13px;
+}
+.airlines-background .airlines-wrapper-container .smiley_woman {
+  position: absolute;
+  bottom: 0;
+  right: 7%;
+  width: 35%;
+  min-width: 354px;
+}
+@media (max-width: 1050px) {
+  .airlines-background .airlines-wrapper-container .smiley_woman {
+    right: 10px;
+  }
+}
+@media (max-width: 850px) {
+  .airlines-background .airlines-wrapper-container .smiley_woman {
+    display: none;
+  }
+}
+.airlines-background .airlines-wrapper-container .smiley_woman_2 {
+  position: absolute;
+  top: -150px;
+  width: 335px;
+  display: none;
+}
+@media (max-width: 850px) {
+  .airlines-background .airlines-wrapper-container .smiley_woman_2 {
+    display: block;
+  }
+}
+@media (max-width: 385px) {
+  .airlines-background .airlines-wrapper-container .smiley_woman_2 {
+    width: 97%;
+  }
+}
+@media (max-width: 340px) {
+  .airlines-background .airlines-wrapper-container .smiley_woman_2 {
+    top: -110px;
+  }
+}/*# sourceMappingURL=Airlines.css.map */

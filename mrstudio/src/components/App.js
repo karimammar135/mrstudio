@@ -7,6 +7,7 @@ import WelcomingPage from './welcomingpage.js';
 import Resorts from './Resorts.js';
 import ResortSurprises from './ResortSurprises.js';
 import RelaxingPleasure from './RelaxingPleasure.js';
+import Airlines from './Airlines.js';
 
 export default function App(){
 
@@ -20,6 +21,8 @@ export default function App(){
       <Resorts />
       <ResortSurprises />
       <RelaxingPleasure />
+      <Airlines />
+      
     </>
   );
 }

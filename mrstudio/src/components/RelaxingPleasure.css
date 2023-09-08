@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
 .center-relaxing-pleasure {
-  padding: 70px 45px 500px 45px;
+  padding: 70px 45px 0 45px;
 }
 @media (min-width: 761px) {
   .center-relaxing-pleasure {
@@ -22,32 +22,32 @@
 }
 @media (max-width: 1100px) {
   .center-relaxing-pleasure {
-    padding: 70px 20px 500px 20px;
+    padding: 70px 20px 0 20px;
   }
 }
 @media (max-width: 880px) {
   .center-relaxing-pleasure {
-    padding: 70px 10px 500px 10px;
+    padding: 70px 10px 0 10px;
   }
 }
 @media (max-width: 760px) {
   .center-relaxing-pleasure {
-    padding: 100px 0 500px 0;
+    padding: 100px 0 0 0;
   }
 }
 @media (max-width: 600px) {
   .center-relaxing-pleasure {
-    padding: 60px 0 500px 0;
+    padding: 60px 0 0 0;
   }
 }
 @media (max-width: 510px) {
   .center-relaxing-pleasure {
-    padding: 60px 0 500px 0;
+    padding: 60px 0 0 0;
   }
 }
 @media (max-width: 460px) {
   .center-relaxing-pleasure {
-    padding: 60px 0 500px 0;
+    padding: 60px 0 0 0;
   }
 }
 
@@ -166,6 +166,7 @@
     justify-content: flex-start;
     flex-wrap: nowrap;
     overflow-x: scroll;
+    overflow-y: visible;
   }
 }
 @media (max-width: 760px) and (max-width: 520px) {
@@ -313,7 +314,7 @@
 }
 .images-defaults .card-1 {
   order: 1;
-  background-image: url("./lounge.jpg");
+  background-image: url("./images/lounge.jpg");
 }
 @media (max-width: 520px) {
   .images-defaults .card-1 {
@@ -322,9 +323,9 @@
 }
 .images-defaults .card-2 {
   order: 2;
-  background-image: url("./pool-1.jpg");
+  background-image: url("./images/pool-1.jpg");
 }
 .images-defaults .card-3 {
   order: 3;
-  background-image: url("./pool-2.jpg");
+  background-image: url("./images/pool-2.jpg");
 }/*# sourceMappingURL=RelaxingPleasure.css.map */
