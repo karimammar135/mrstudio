@@ -67,6 +67,7 @@
 .dash_wrapper .dash_container .email_form input[type=submit] {
   width: 119px;
   height: 43px;
+  cursor: pointer;
   border-radius: 5px;
   border: none;
   background-color: #0840D0;
@@ -76,4 +77,7 @@
   font-family: "Inter", sans-serif;
   font-weight: 400;
   text-align: center;
+}
+.dash_wrapper .dash_container .email_form input[type=submit]:hover {
+  background-color: #0d4ff5;
 }/*# sourceMappingURL=dash.css.map */

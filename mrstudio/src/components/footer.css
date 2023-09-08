@@ -1,0 +1,156 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
+.footer_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 100px;
+}
+.footer_wrapper .footer_container {
+  width: 100%;
+  max-width: 925px;
+  margin: 0 15px 0 15px;
+}
+.footer_wrapper .footer_container .footer_content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+.footer_wrapper .footer_container .footer_content .line1 {
+  display: none;
+  width: 100%;
+  height: 1px;
+  background-color: #B5B5B5;
+  margin-bottom: 10px;
+}
+@media (max-width: 432px) {
+  .footer_wrapper .footer_container .footer_content .line1 {
+    display: block;
+  }
+  .footer_wrapper .footer_container .footer_content .support {
+    padding-right: 90px;
+  }
+}
+@media (max-width: 345px) {
+  .footer_wrapper .footer_container .footer_content .support {
+    padding-right: 30px;
+  }
+}
+.footer_wrapper .footer_container .footer_content .mrstudio {
+  align-self: flex-end;
+  display: flex;
+  flex-direction: column;
+}
+@media (max-width: 432px) {
+  .footer_wrapper .footer_container .footer_content .mrstudio {
+    width: 100%;
+  }
+}
+.footer_wrapper .footer_container .footer_content .mrstudio h1 {
+  color: #000;
+  font-size: 18px;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+}
+.footer_wrapper .footer_container .footer_content .mrstudio p {
+  color: #B5B5B5;
+  font-size: 13px;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  max-width: 171px;
+  margin-top: 0;
+  margin-bottom: 40px;
+}
+.footer_wrapper .footer_container .footer_content .mrstudio .social_media {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  padding-left: 0;
+  margin: 0;
+}
+.footer_wrapper .footer_container .footer_content .mrstudio .social_media li {
+  height: 29px;
+  width: 29px;
+  border: 1px solid #B5B5B5;
+  border-radius: 29px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footer_wrapper .footer_container .footer_content .mrstudio .social_media li i, .footer_wrapper .footer_container .footer_content .mrstudio .social_media li span {
+  color: #B5B5B5;
+  font-size: 15px;
+}
+.footer_wrapper .footer_container .footer_content .mrstudio .social_media li a {
+  text-decoration: none;
+}
+.footer_wrapper .footer_container .footer_content .links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 0;
+  padding-left: 0;
+}
+.footer_wrapper .footer_container .footer_content .links h1 {
+  color: #000;
+  font-size: 13px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+}
+.footer_wrapper .footer_container .footer_content .links li {
+  list-style: none;
+}
+.footer_wrapper .footer_container .footer_content .links li a {
+  color: #949494;
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  text-decoration: none;
+}
+.footer_wrapper .footer_container .footer_bottom {
+  width: 100%;
+  margin-top: 60px;
+}
+.footer_wrapper .footer_container .footer_bottom .line2 {
+  width: 100%;
+  height: 1px;
+  background-color: #B5B5B5;
+}
+.footer_wrapper .footer_container .footer_bottom .bottom_content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px 15px 20px 15px;
+}
+@media (max-width: 462px) {
+  .footer_wrapper .footer_container .footer_bottom .bottom_content {
+    justify-content: space-around;
+  }
+}
+.footer_wrapper .footer_container .footer_bottom .bottom_content span {
+  color: #5E5E5E;
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+}
+@media (max-width: 560px) {
+  .footer_wrapper .footer_container .footer_bottom .bottom_content span {
+    font-size: 12px;
+  }
+}
+.footer_wrapper .footer_container .footer_bottom .bottom_content .bottom_2 {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 15px;
+}
+.footer_wrapper .footer_container .footer_bottom .bottom_content .bottom_2 .break_bar {
+  height: 14px;
+  width: 0.8px;
+  background-color: #5E5E5E;
+}/*# sourceMappingURL=footer.css.map */
