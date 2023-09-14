@@ -14,15 +14,43 @@ import Footer from './Footer.js';
 import LoginPage from './LoginPage.js';
 
 export default function App(){
-  // Configure path
-  let path_name = window.location.pathname;
+  const[state, setState] = React.useState({
+    page: "home"
+  });
+
+  const url_origin = window.location.origin;
+
+  console.log(state.page);
+
+  const onPop = (e) => {
+    setState({
+      page: e.state.page
+    })
+  }
+
+  React.useEffect(() => {
+    window.history.pushState({page: 'home'}, '', 'home');
+  }, []);
+
+  React.useEffect(() => {
+    window.addEventListener('popstate', onPop);
+    return () => window.removeEventListener('popstate', onPop);
+  }, [onPop])
+
+  // handle push state
+  const showPage = (page) => {
+    window.history.pushState({page: page}, '', page);
+    setState({
+      page: page
+    })
+  }
 
   // MAIN Page
-  if (path_name === "/"){
+  if (state.page === "home"){
     return (
       <>
         <div className="intro">
-          <Navbar page="home" />
+          <Navbar showPage={showPage} page="home" />
           <WelcomingPage />
         </div>
         <div className="extra-space"></div>
@@ -36,9 +64,9 @@ export default function App(){
     );
   } 
   // Log In Page
-  else if (path_name === "/login"){
+  else if (state.page === "login"){
     return(
-      <LoginPage />
+      <LoginPage showPage={showPage} />
     );
   }
   else {

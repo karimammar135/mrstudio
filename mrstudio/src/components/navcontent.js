@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
+
 import DropContent from './dropcontent.js';
+import NavBtn from './navbtn.js';
 
 // Nav Content Component
-export default function NavContent({ widthdemension }){
+export default function NavContent({ widthdemension, page, flipContent, is_login }){
     const[dropdown, setDropdown] = React.useState(false);
     const[authenticated, setAuthenticated] = React.useState(false);
 
@@ -42,12 +44,12 @@ export default function NavContent({ widthdemension }){
         return (
             <>
                 <div className="nav-items">
-                    <a href="#">Home</a>
+                    <a href="/">Home</a>
                     <a href="#">About</a>
                     <a href="#">Type of house</a>
                     <a href="#">Contact</a>
                 </div>
-                {authenticated && <button>Logout</button> || <button>Login</button>}
+                <NavBtn page={page} authenticated={authenticated} flipContent={flipContent} is_login={is_login}/>
                 
             </>
         );

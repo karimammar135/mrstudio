@@ -3,7 +3,7 @@ import './navbar.css';
 import NavContent from "./navcontent.js";
 
 // Navbar
-export default function Navbar(){
+export default function Navbar({ page, flipContent, is_login }){
     const[widthdemension, setWidthdemension] = React.useState(window.innerWidth);
 
     // Debounce functions
@@ -26,10 +26,10 @@ export default function Navbar(){
 
     // Return navbar
     return (
-        <div className="navbar">
+        <div className="navbar" id={!(page === "login") ? "" : "login_navbar"}>
             <a href="#" className="title">MRstudio</a>
             <div className="nav-body">
-                <NavContent widthdemension={widthdemension} />
+                <NavContent widthdemension={widthdemension} page={page} flipContent={flipContent} is_login={is_login}/>
             </div>
         </div>
     );
