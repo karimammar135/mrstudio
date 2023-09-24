@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'mrstudio.apps.MrstudioConfig',
+    'mrtravel.apps.MrtravelConfig',
 ]
 
 MIDDLEWARE = [
@@ -123,7 +123,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'mrstudio.User'
+AUTH_USER_MODEL = 'mrtravel.User'
 
 DCS_SESSION_COOKIE_SAMESITE = 'None' 
 
