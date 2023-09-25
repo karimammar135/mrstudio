@@ -1,16 +1,32 @@
 import React from "react";
 
-export default function NavContent({ dropdown }){
+import UpdateURL from './UpdateURL.js';
+
+export default function NavContent({ dropdown, authenticated, page, is_login, logout_user }){
     if (dropdown){
-        return (
-            <div id="navDropdown" className="dropdown-content">
-                <a href="#">Home</a>
-                <a href="#">About</a>
-                <a href="#">Type of house</a>
-                <a href="#">Contact</a>
-                <a href="#">Logout</a>
-            </div>
-        );
+        if (page === "home"){
+            return (
+                <div id="navDropdown" className="dropdown-content">
+                    <a onClick={() => {UpdateURL('')}}>Home</a>
+                    <a href="#">About</a>
+                    <a href="#">Type of house</a>
+                    <a href="#">Contact</a>
+                    {authenticated && <a onClick={() => logout_user()}>Logout</a> || <a onClick={() => {UpdateURL('login')}}>Login</a>}
+                </div>
+            );
+        }
+        else if (page === "login"){
+            return (
+                <div id="navDropdown" className="dropdown-content">
+                    <a onClick={() => {UpdateURL('')}}>Home</a>
+                    <a href="#">About</a>
+                    <a href="#">Type of house</a>
+                    <a href="#">Contact</a>
+                    <a onClick={() => UpdateURL(is_login ? 'signup': 'login')}>{is_login && "Sign up" || "Log in"}</a>
+                </div>
+            );
+        }
+        
     } else {
         return (<></>);
     }

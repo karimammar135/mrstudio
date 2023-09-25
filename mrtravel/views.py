@@ -7,12 +7,11 @@ from django.http import JsonResponse
 from django.contrib.auth import authenticate, login, logout
 
 # views
-def index(request):
+def index(request, path):
     return render(request, 'mrtravel/index.html')
 
-def login_form(request):
-    return render(request, 'mrtravel/index.html')
 
+''' API ROUTES '''
 
 ## REGISTER USER API
 def register_view(request):
@@ -52,16 +51,15 @@ def login_user(request):
             return JsonResponse({"message": "User Logged in successfully"}, status=201)
         else:
             return JsonResponse({"error": "Username and/or password is/are not correct"}, status=400)
-        
+    
+
 # LOGOUT 
 def logout_view(request):
+    print('logout user')
     logout(request)
-    return redirect(reverse("index"))
+    return JsonResponse({"message": "user successfuly loged out"}, status=201)
+
 
 # Authentication
 def authentication(request):
     return JsonResponse({"authenticated": request.user.is_authenticated}, status=201)
-
-# Grid test
-def grid(request):
-    return render(request, "mrtravel/grid.html")

@@ -4,20 +4,44 @@ import './loginpage.css';
 import Navbar from './navbar.js';
 import getCookie from './getCookie.js';
 
-export default function LoginPage(){
+import UpdateURL from './UpdateURL.js';
+
+export default function LoginPage({ is_signup }){
     // State
     const[state, setState] = React.useState({
         login: true,
         signup: false
     });
 
-    function flipContent(){
-        setState({
-            ...state,
-            login: !(state.login),
-            signup: !(state.signup)
-        })
-    }
+    // Funtion that Flips between forms
+    function flipContent(flipto){
+        if (flipto === 'login') {
+            setState({
+                ...state,
+                login: true,
+                signup: false
+            })
+        }
+        else {
+            setState({
+                ...state,
+                login: false,
+                signup: true
+            })
+        }
+    } 
+
+    // Check which form to display
+    React.useEffect(() => {
+        if(is_signup){
+            console.log('show sign up form');
+            flipContent('signup');
+        } else {
+            console.log('show login from');
+            flipContent('login');
+        }
+    }, [is_signup]);
+
 
     // Submit Login / Sign Up forms
     function login_user(event){
@@ -126,7 +150,7 @@ export default function LoginPage(){
                             <div className="wrapper">
                                 <h1>{state.login && "Sign up" || "Log in"}</h1>
                                 <p>{state.login && "Create your own account for MRtravel." || "Login with the data you entered during your registration."}</p>
-                                <button onClick={() => {flipContent()}}>{state.login && "Create account" || "Log in"}</button>
+                                <button onClick={() => UpdateURL(state.login ? 'signup': 'login')}>{state.login && "Create account" || "Log in"}</button>
                             </div>
                         </div>
                         <div className="footer">

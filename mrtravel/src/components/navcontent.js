@@ -27,14 +27,26 @@ export default function NavContent({ widthdemension, page, flipContent, is_login
             alert(error)
         })
     }, []);
-    
+
+    // Logout user
+    function logout_user(){
+        fetch('/logout')
+        .then(response => response.json())
+        .then(data => {
+            console.log(data["message"])
+            setAuthenticated(false);
+        })
+        .catch(error => {
+            alert(error)
+        })
+    }
 
     // if window width is less than 710px plug a dropdown menu
     if (widthdemension <= 710){
         return (
             <div className="dropdown">
                 <i onClick={() => setDropdown(!(dropdown))} className={dropdown ? "fa-solid fa-bars dropbtn dropbtn-focus": "fa-solid fa-bars dropbtn"}></i>
-                <DropContent dropdown={dropdown} />
+                <DropContent dropdown={dropdown} page={page} authenticated={authenticated} is_login={is_login} logout_user={logout_user}/>
             </div>
         );
     }
@@ -49,7 +61,7 @@ export default function NavContent({ widthdemension, page, flipContent, is_login
                     <a href="#">Type of house</a>
                     <a href="#">Contact</a>
                 </div>
-                <NavBtn page={page} authenticated={authenticated} flipContent={flipContent} is_login={is_login}/>
+                <NavBtn page={page} authenticated={authenticated} is_login={is_login} logout_user={logout_user}/>
                 
             </>
         );

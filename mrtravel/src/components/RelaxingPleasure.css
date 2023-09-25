@@ -166,7 +166,7 @@
     justify-content: flex-start;
     flex-wrap: nowrap;
     overflow-x: scroll;
-    overflow-y: visible;
+    overflow-y: hidden;
   }
 }
 @media (max-width: 760px) and (max-width: 520px) {
@@ -174,10 +174,6 @@
     margin-right: 20px;
     margin-left: 20px;
   }
-}
-
-.image-scrollbar::-webkit-scrollbar {
-  width: 0;
 }
 
 .images-defaults .card {

@@ -1,18 +1,19 @@
 import React from "react";
 
-import CreateURL from './CreateURL.js';
+import UpdateURL from './UpdateURL.js';
 
-export default function NavBtn({authenticated, page, flipContent, is_login}){
+export default function NavBtn({ authenticated, page, is_login, logout_user }){
+
     if (page === "home"){
         return (
             <>
-                {authenticated && <a className="button" href={CreateURL('logout')}>Logout</a> || <a className="button" href={CreateURL('login')}>Login</a>}
+                {authenticated && <a className="button" onClick={() => logout_user()}>Logout</a> || <a className="button" onClick={() => {UpdateURL('login')}}>Login</a>}
             </>
         );
     }
     else if (page === "login"){
         return (
-            <a className="button" onClick={() => flipContent()}>{is_login && "Sign up" || "Log in"}</a>
+            <a className="button" onClick={() => UpdateURL(is_login ? 'signup': 'login')}>{is_login && "Sign up" || "Log in"}</a>
         );
     }
 }

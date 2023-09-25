@@ -120,6 +120,7 @@
 // IMAGES scrollbar
 .images-scrollbar {
     display: none;
+    
     @media (max-width: 760px) {
         margin-top: 30px;
         margin-left: 25px;
@@ -140,7 +141,7 @@
             justify-content: flex-start;
             flex-wrap: nowrap;
             overflow-x: scroll;
-            overflow-y: visible;
+            overflow-y: hidden;
         }
 
         @media (max-width: 520px) {
@@ -151,9 +152,7 @@
         }  
     }
 }
-.image-scrollbar::-webkit-scrollbar {
-    width: 0;
-}
+
 
 .images-defaults {
     .card {

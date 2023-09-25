@@ -15,10 +15,23 @@ import LoginPage from './LoginPage.js';
 
 export default function App(){
   // Configure path
-  let path_name = window.location.pathname;
+  const[path, setPath] = React.useState(window.location.pathname);
 
+  // Detect url change
+  let url = window.location.href;
+  ['click','popstate', 'onload'].forEach( evt =>
+      window.addEventListener(evt, function () {
+          requestAnimationFrame(()=>{
+              if (url !== location.href) {
+                  setPath(window.location.pathname);
+              }
+              url = location.href;
+          });
+      }, true)
+  );
+    
   // MAIN Page
-  if (path_name === "/"){
+  if (path === "/"){
     return (
       <>
         <div className="intro">
@@ -36,9 +49,17 @@ export default function App(){
     );
   } 
   // Log In Page
-  else if (path_name === "/login"){
+  else if (path === "/login" | path === "/login/"){
+    console.log('login');
     return(
-      <LoginPage />
+      <LoginPage is_signup={false} />
+    );
+  }
+  // Sign up Page
+  else if (path === "/signup" | path === "/signup/"){
+    console.log('sign up');
+    return(
+      <LoginPage is_signup={true} />
     );
   }
   else {
