@@ -1,0 +1,317 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inria+Sans:wght@300&display=swap');
+
+// Navbar when scrolled
+.navbar_scrolled {
+    background-color: rgba(0, 0, 0, 0.50);
+    padding: 10px 45px 10px 45px;
+    @media (max-width: 900px){
+        padding: 10px 35px 10px 35px;
+    }
+    @media(max-width: 710px){
+        padding: 10px 10px 10px 10px;
+    }
+}
+
+// Hotel Page wrapper
+.hotel_page_wrapper {
+    // flexbox
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    // Navbar
+    .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 3;
+
+        // Uneffecting padding with width
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+
+        transition: all 1s;
+
+        .title, .nav-body .nav-items a {
+            color: #ffff;
+        }
+        .nav-body .nav-items a:hover {
+            color: #4ca35f;
+        }
+        .nav-body .button {
+            border-color: #ffff;
+            color: #ffff;
+            background-color: transparent;
+        }
+        .nav-body .button:hover {
+            background-color: #4ca35f;
+            border-color: #4ca35f;
+            color: #ffffff;
+        }
+    }
+
+    // Main section
+    .main_section {
+        width: 100%;
+        height: 85vh;
+
+        position: fixed;
+        top: 0;
+
+        // Background
+        background-image: url('./images/4-hotel.jpg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+
+        .overlay {
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.53);
+
+            // flexbox
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .search_bar {
+                height: 40px;
+                width: 100%;
+                max-width: 280px;
+                margin: 0 10px 0 10px;
+                border-radius: 24px;
+                background-color: #ffff;
+                @media (max-height: 430px) {
+                    margin-top: 40px;
+                }
+
+                // flexbox
+                display: flex;
+                align-items: center;
+
+                i {
+                    font-size: 14px;
+                    color: #808080;
+                    margin: 0 10px 0 10px;
+                }
+                i:last-child {
+                    font-size: 17px;
+                    margin-right: 15px;
+                }
+                input {
+                    flex-grow: 1;
+                    border: none;
+                }
+                input::placeholder {
+                    color: rgba(0, 0, 0, 0.30);
+                    font-size: 13px;
+                    font-family: 'Inter', sans-serif;
+                    font-weight: 400;
+                }
+                input:focus {
+                    outline: none;
+                }
+            }
+        }
+    }
+    // End of main section
+    .empty-space {
+        height: 85vh;
+        width: 100%;
+    }
+
+    // Body section
+    .body {
+        height: 1700px;
+        width: 100%;
+        z-index: 2;
+
+        background-color: #ffff;
+        box-shadow: 0px -4px 4px 0px rgba(103, 103, 103, 0.25);
+
+        // Details section
+        .details_section_wrapper {
+            width: 100%;
+            margin-top: 60px;
+
+            // flexbox
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .details_section {
+                width: 90%;
+                @media (max-width: 590px){
+                    width: 100%;
+                    margin: 0 10px 0 10px;
+                }
+                position: relative;
+                padding-bottom: 70px;
+                
+                .details_container {
+                    height: 100%;
+                    z-index: 2;
+                    position: relative;
+                    box-sizing: border-box;
+                    display: block;
+        
+                    background-color: #ffffff;
+                    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.25);
+                    border-radius: 15px;
+
+                    margin: 0 30px 0 30px;
+                    @media (max-width: 360px){
+                        margin: 0 10px 0 10px;
+                    }
+                    padding: 15px 25px 25px 25px;
+                    @media (max-width: 430px){
+                        padding: 15px 15px 25px 15px;
+                    }       
+
+                    // header
+                    .header{
+                        // flexbox
+                        display: flex;
+                        align-items: center;
+                        flex-wrap: wrap;
+                        gap: 15px;
+                        @media (max-width: 550px){
+                            gap: 0px;
+                        }
+
+                        h1 {
+                            color: #000;
+                            font-size: 32px;
+                            font-weight: 500;
+                            font-family: 'Lora', serif;
+                            margin: 0;
+                            @media (max-width: 550px){
+                                font-size: 25px;
+                            }
+                        }
+                        
+                        div {
+                            background-color: rgba(90, 90, 90, 0.44);
+                            padding: 4px 10px 4px 5px;
+                            border-radius: 5px;
+                            margin-top: 5px;
+                            @media (max-width: 550px){
+                                margin-left: auto;
+                                i {
+                                    font-size: 12px;
+                                }
+                                span:first-child {
+                                    font-size: 11px;
+                                }
+                                span:last-child {
+                                    font-size: 13px;
+                                }
+                            }
+                            
+                            i {
+                                color: #FFC700;
+                                margin: 0 5px 0 5px;
+                            }
+                            span {
+                                color: #fff;
+                                font-family: 'Inria Sans', sans-serif;
+                                font-weight: 300;
+                            }
+                            span:first-child {
+                                font-size: 13px;
+                            }
+                            span:last-child {
+                                font-size: 15px;
+                            }
+                        }
+                    }
+
+                    // List
+                    ul {
+                        margin-top: 10px;
+                        padding-left: 10px;
+                        @media (max-width: 397px){
+                            margin-bottom: 20px;
+                            padding-left: 0;
+                            li {
+                                font-size: 14px;
+                            }
+                        }
+                        li {
+                            list-style: none;
+                            color: #656161;
+                            font-size: 15.5px;
+                            font-family: 'Inter', sans-serif;
+                            font-weight: 500;
+                            margin-bottom: 12px;
+                        }
+                    }
+
+                    // Room size
+                    .room_size {
+                        // flexbox
+                        display: flex;
+                        align-items: center;
+                        flex-wrap: wrap;
+                        gap: 70px;
+                        @media (max-width: 590px){
+                            gap: 20px;
+                        }
+                        @media (max-width: 405px){
+                            gap: 10px;
+                        }
+
+                        span{
+                            color: #383333;
+                            font-size: 17px;
+                            font-family: 'Inter', sans-serif;
+                            font-weight: 500;
+                        }
+                        .select_wrapper {
+                            width: fit-content;
+                            border-radius: 5px;
+                            border: 2px solid #656161;
+                            padding: 3.5px 10px 3.5px 7px;
+                            /* input style */
+                            select {
+                                border: none;
+                                background-color: transparent;
+                            }
+                
+                            /* at focus show no border */
+                            select:focus {
+                                outline: none;
+                            }
+
+                            select {
+                                border: none;
+                                color: #656161;
+                                font-family: 'Inter', sans-serif;
+                                font-weight: 500;
+                                font-size: 14px;
+                                width: 110px;
+                                option {
+                                    color: #656161;
+                                    font-family: 'Inter', sans-serif;
+                                    font-weight: 500;
+                                    font-size: 14px;
+                                }
+                            }
+                        }
+                    }
+                }
+        
+                .blue-background {
+                    height: 55%;
+                }
+            }
+        }
+        
+        // End of details section
+    }
+    // End of body section
+}
+// End of hotel page wrapper 

@@ -4,7 +4,7 @@ import DropContent from './dropcontent.js';
 import NavBtn from './navbtn.js';
 
 // Nav Content Component
-export default function NavContent({ widthdemension, page, flipContent, is_login }){
+export default function NavContent({ widthdemension, page, is_login }){
     const[dropdown, setDropdown] = React.useState(false);
     const[authenticated, setAuthenticated] = React.useState(false);
 

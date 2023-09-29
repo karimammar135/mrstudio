@@ -55,12 +55,7 @@
   }
 }
 .hotels-choices .blue-background {
-  background-color: #E5F7FF;
-  width: 100%;
   height: 200px;
-  position: absolute;
-  bottom: 0;
-  border-radius: 20px;
 }
 .hotels-choices .card {
   scroll-snap-align: start;

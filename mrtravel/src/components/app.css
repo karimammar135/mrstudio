@@ -9,3 +9,12 @@
     flex-direction: column;
     
 }
+
+/* background decor */
+.blue-background {
+    background-color: #E5F7FF;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    border-radius: 20px;
+}

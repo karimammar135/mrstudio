@@ -10,6 +10,7 @@ import RelaxingPleasure from './RelaxingPleasure.js';
 import Airlines from './Airlines.js';
 import Dash from './Dash.js';
 import Footer from './Footer.js';
+import HotelDetails from './HotelDetails.js';
 
 import LoginPage from './LoginPage.js';
 
@@ -35,7 +36,7 @@ export default function App(){
     return (
       <>
         <div className="intro">
-          <Navbar page="home" />
+          <Navbar page="home" is_login={null} />
           <WelcomingPage />
         </div>
         <div className="extra-space"></div>
@@ -49,19 +50,29 @@ export default function App(){
     );
   } 
   // Log In Page
-  else if (path === "/login" | path === "/login/"){
+  else if (path.slice(0, 6) === "/login"){
     console.log('login');
     return(
       <LoginPage is_signup={false} />
     );
   }
   // Sign up Page
-  else if (path === "/signup" | path === "/signup/"){
+  else if (path.slice(0, 7) === "/signup"){
     console.log('sign up');
     return(
       <LoginPage is_signup={true} />
     );
   }
+
+  // Hotel Details Page
+  else if (path.slice(0, 6) === "/hotel"){
+    // Scroll to the top of the page
+    window.scrollTo(0, 0);
+    return(
+      <HotelDetails path={path} />
+    );
+  }
+
   else {
     return (
       <div>No page found</div>
