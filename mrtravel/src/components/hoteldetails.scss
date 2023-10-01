@@ -51,6 +51,9 @@
             border-color: #4ca35f;
             color: #ffffff;
         }
+        .nav-body .dropdown i{
+            color: #fff;
+        }
     }
 
     // Main section
@@ -309,8 +312,65 @@
                 }
             }
         }
-        
         // End of details section
+
+        // Location and map section
+        .map_wrapper {
+            width: 100%;
+            // flexbox
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 90px;
+            
+            .map_container {
+                width: 90%;
+
+                .map {
+                    border: 0;
+                    background-image: url('./images/hotel_location.png');
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+
+                    height: 340px;
+                    @media (min-width: 1700px) {
+                        height: 410px;
+                    }
+                    border-radius: 10px;
+                    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+                }
+                .location {
+                    margin-top: 20px;
+                    // flexbox
+                    display: flex;
+                    align-items: center;
+                    i {
+                        color: #BE1B1B;
+                        font-size: 19px;
+                        margin-right: 10px;
+                        margin-left: 10px;
+                        align-self: flex-start;
+                    }
+                    span {
+                        color: #000;
+                        font-size: 14px;
+                        font-family: 'Inter', sans-serif;
+                        font-weight: 400;
+                        padding-top: 2px;
+                    }
+                    @media (min-width: 1700px) {
+                        i {
+                            font-size: 22px;
+                        } 
+                        span {
+                            font-size: 17px;
+                        }
+                    }
+                }
+            }
+        }
+        // End OF location and map Section
     }
     // End of body section
 }
