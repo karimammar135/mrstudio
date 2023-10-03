@@ -4,6 +4,8 @@ import './hoteldetails.css';
 import Navbar from "./navbar.js";
 import HotelDetailsSection from "./HotelDetailsSection.js";
 import HotelLocation from "./HotelLocation.js";
+import VideoSection from "./VideoSection.js";
+import PaymentDetails from './PaymentDetails.js';
 import Footer from './Footer.js';
 
 export default function HotelDetails({ path }){
@@ -21,15 +23,12 @@ export default function HotelDetails({ path }){
 
     // On scroll change navabr background
     window.addEventListener('scroll', debounce((event) => {
-        console.log(window.screenY);
         if (window.scrollY >= 100){
-            console.log('scrolled');
             document.querySelector('.navbar').classList.add('navbar_scrolled');
             console.log(document.querySelector('.navbar'));
         }
         if (window.scrollY < 100){
             document.querySelector('.navbar').classList.remove('navbar_scrolled');
-            console.log('stop');
         }
     }, 200));
 
@@ -52,6 +51,9 @@ export default function HotelDetails({ path }){
             <section className="body">
                 <HotelDetailsSection />
                 <HotelLocation />
+                <VideoSection page="hotel_page" />
+                <PaymentDetails />
+                <Footer />
             </section>
 
         </div>

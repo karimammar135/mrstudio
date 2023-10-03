@@ -1,7 +1,7 @@
 import React from "react";
 import video from './video.mp4';
 
-export default function() {
+export default function VideoPlayer() {
     const[demensions, setDemensions] = React.useState(window.innerWidth);
     const[showVideo, setShowVideo] = React.useState(false);
 

@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lora:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inria+Sans:wght@300&display=swap');
 
@@ -128,7 +128,6 @@
 
     // Body section
     .body {
-        height: 1700px;
         width: 100%;
         z-index: 2;
 
@@ -371,7 +370,293 @@
             }
         }
         // End OF location and map Section
+
+        // Payment Section
+        // Payment Details wrapper
+        .payment_details_wrapper {
+            width: 100%;
+            // flexbox
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 90px;
+
+            // Payment details container
+            .payment_details_container {
+                width: 85%;
+                max-width: 1450px;
+                @media (max-width: 595px) {
+                    width: 100%;
+                    margin: 0 20px 0 20px;
+                }
+
+                border-radius: 10px;
+                box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.25);
+                padding: 15px 20px 20px 20px;
+                @media (max-width: 390px) {
+                    padding-right: 10px;
+                    padding-left: 15px;
+                }
+                @media (max-width: 370px) {
+                    padding-bottom: 0px;
+                }
+
+                // Grid
+                display: grid;
+                grid-template-columns: 1fr 0.9fr;
+                @media (max-width: 1100px) {
+                    grid-template-columns: 1fr 0.7fr;
+                }
+                @media (max-width: 775px) {
+                    grid-template-columns: 1fr 0.6fr;
+                }
+                @media (max-width: 705px) {
+                    grid-template-columns: 1fr;
+                    grid-template-rows: 1fr auto;
+                    grid-row-gap: 50px;
+                }
+
+                // Details about payment
+                .details {
+                    grid-column: span 1;
+                    
+                    h1 {
+                        color: #000;
+                        font-size: 22px;
+                        font-family: 'Inter', sans-serif;
+                        font-weight: 400;
+                        margin: 0;
+                    }
+                    .content {
+                        margin: 10px 0 20px 15px;
+                        
+                        // selection
+                        .selection {
+                            // flexbox
+                            display: flex;
+                            align-items: center;
+                            flex-wrap: wrap;
+                            gap: 20px;
+                            @media (max-width: 590px){
+                                gap: 20px;
+                            }
+                            @media (max-width: 405px){
+                                gap: 10px;
+                            }
+
+                            span{
+                                color: #000000;
+                                font-size: 17px;
+                                font-family: 'Inter', sans-serif;
+                                font-weight: 400;
+                            }
+                            .select_wrapper {
+                                width: fit-content;
+                                border-radius: 5px;
+                                border: 2px solid #656161;
+                                padding: 3.5px 10px 3.5px 7px;
+                                /* input style */
+                                select {
+                                    border: none;
+                                    background-color: transparent;
+                                }
+                    
+                                /* at focus show no border */
+                                select:focus {
+                                    outline: none;
+                                }
+
+                                select {
+                                    border: none;
+                                    color: #656161;
+                                    font-family: 'Inter', sans-serif;
+                                    font-weight: 500;
+                                    font-size: 14px;
+                                    width: 110px;
+                                    option {
+                                        color: #656161;
+                                        font-family: 'Inter', sans-serif;
+                                        font-weight: 500;
+                                        font-size: 14px;
+                                    }
+                                }
+                                select[name=change_duration] {
+                                    width: 140px;
+                                }
+                            }
+                        }
+                        .selection:nth-child(2) {
+                            margin-top: 10px;
+                            margin-bottom: 20px;
+                        }
+                        // end of selection
+                        ul {
+                            margin: 0;
+                            padding-left: 25px;
+                            @media (max-width: 370px) {
+                                padding-left: 10px;
+                            }
+                            li {
+                                margin-top: 12px;
+                                color: #656161;
+                                font-size: 15px;
+                                font-family: 'Inter', sans-serif;
+                                font-weight: 500;
+                                line-height: 1.5;
+                            }
+                            li:first-child {
+                                span {
+                                    position: relative;
+                                }
+                                span::after {
+                                    content: "";
+                                    position: absolute;
+                                    top: 50%;
+                                    left: 0;
+                                    height: 1px;
+                                    width: 100%;
+                                    background-color: #BE1B1B;
+                                }
+                            }
+                            .mrtravel_coupon {
+                                span:first-child {
+                                    color: white;
+                                    font-weight: 400;
+                                    margin-right: 5px;
+                                    position: relative;
+                                    padding: 2px 5px 2px 5px;
+                                    font-size: 14px;
+                                }
+                                span:first-child::before {
+                                    content: "";
+                                    z-index: -1;
+                                    position: absolute;
+                                    top: 0;
+                                    left: 0;
+                                    width: 100%;
+                                    background-color: #BE1B1B;
+                                    height: 100%;
+                                    border-radius: 2px;
+                                }
+                            }
+                        }
+                    }
+                    .order_total {
+                        span {
+                            color: #000;
+                            font-size: 17px;
+                            font-family: 'Inter', sans-serif;
+                            font-weight: 400;
+                        }
+                        span:nth-child(2) {
+                            position: relative;
+                            margin: 0 5px 0 5px;
+                            color: #656161;
+                        }
+                        span:nth-child(2)::after {
+                            content: "";
+                            position: absolute;
+                            top: 50%;
+                            left: 0;
+                            height: 1px;
+                            width: 100%;
+                            background-color: #BE1B1B;
+                        }
+                    }
+                }
+                // End of details about payment 
+
+                // Payment section
+                .payment {
+                    
+                    // flexbox
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px;
+
+                    padding-bottom: 20px;
+
+                    .header, span, p {
+                        color: #656161;
+                        font-size: 15px;
+                        font-family: 'Inter', sans-serif;
+                        font-weight: 400;
+                        margin: 0;
+                    }
+                    .header {
+                        span {
+                            position: relative;
+                            color: #fff;
+                            font-weight: 300;
+                            padding: 1px 3px 1px 3px;
+                        }
+                        span::after {
+                            content: "";
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            height: 100%;
+                            width: 100%;
+                            background-color: #BE1B1B;
+                            border-radius: 2px;
+                            z-index: -1;
+                        }
+                    }
+                    button {
+                        cursor: pointer;
+                        background-color: #BE1B1B;
+                        width:fit-content;
+                        border: none;
+                        border-radius: 4px;
+                        padding: 7px 10px 7px 10px;
+
+                        color: #fff;
+                        font-size: 15px;
+                        font-family: 'Inter', sans-serif;
+                        font-weight: 400;
+                    }
+                    button:hover {
+                        background-color: #991111;
+                    }
+
+                    .or {
+                        width: 150px;
+                        text-align: center;
+                    }
+
+                    // Date selector
+                    input {
+                        height: 35px;
+                        width: 170px;
+                        border-radius: 4px;
+                        border: 0.5px solid #000;
+                        padding: 0 12px 0 12px;
+
+                        color: #656161;
+                        font-size: 15px;
+                        font-family: 'Inter', sans-serif;
+                        font-weight: 400;
+                    }
+                }
+                // End of payment section
+            }
+            // End of payment details container
+        }
+        // END of Payment Section
     }
     // End of body section
 }
 // End of hotel page wrapper 
+
+
+// Custom styles
+.resort-surprises .details .title {
+    font-size: 40px;
+}
+.resort-surprises .details .facilities .facility .icon i {
+    font-size: 15px;
+}
+
+.resort-surprises .video-container .video-cover {
+    background-image: url('./images/4-hotel.jpg');
+}

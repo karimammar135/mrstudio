@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lora:wght@500&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inria+Sans:wght@300&display=swap");
 .navbar_scrolled {
@@ -114,7 +114,6 @@
   width: 100%;
 }
 .hotel_page_wrapper .body {
-  height: 1700px;
   width: 100%;
   z-index: 2;
   background-color: white;
@@ -345,4 +344,267 @@
   .hotel_page_wrapper .body .map_wrapper .map_container .location span {
     font-size: 17px;
   }
+}
+.hotel_page_wrapper .body .payment_details_wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 90px;
+}
+.hotel_page_wrapper .body .payment_details_wrapper .payment_details_container {
+  width: 85%;
+  max-width: 1450px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.25);
+  padding: 15px 20px 20px 20px;
+  display: grid;
+  grid-template-columns: 1fr 0.9fr;
+}
+@media (max-width: 595px) {
+  .hotel_page_wrapper .body .payment_details_wrapper .payment_details_container {
+    width: 100%;
+    margin: 0 20px 0 20px;
+  }
+}
+@media (max-width: 390px) {
+  .hotel_page_wrapper .body .payment_details_wrapper .payment_details_container {
+    padding-right: 10px;
+    padding-left: 15px;
+  }
+}
+@media (max-width: 370px) {
+  .hotel_page_wrapper .body .payment_details_wrapper .payment_details_container {
+    padding-bottom: 0px;
+  }
+}
+@media (max-width: 1100px) {
+  .hotel_page_wrapper .body .payment_details_wrapper .payment_details_container {
+    grid-template-columns: 1fr 0.7fr;
+  }
+}
+@media (max-width: 775px) {
+  .hotel_page_wrapper .body .payment_details_wrapper .payment_details_container {
+    grid-template-columns: 1fr 0.6fr;
+  }
+}
+@media (max-width: 705px) {
+  .hotel_page_wrapper .body .payment_details_wrapper .payment_details_container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
+    grid-row-gap: 50px;
+  }
+}
+.hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .details {
+  grid-column: span 1;
+}
+.hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .details h1 {
+  color: #000;
+  font-size: 22px;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  margin: 0;
+}
+.hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .details .content {
+  margin: 10px 0 20px 15px;
+}
+.hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .details .content .selection {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+@media (max-width: 590px) {
+  .hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .details .content .selection {
+    gap: 20px;
+  }
+}
+@media (max-width: 405px) {
+  .hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .details .content .selection {
+    gap: 10px;
+  }
+}
+.hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .details .content .selection span {
+  color: #000000;
+  font-size: 17px;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+}
+.hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .details .content .selection .select_wrapper {
+  width: -moz-fit-content;
+  width: fit-content;
+  border-radius: 5px;
+  border: 2px solid #656161;
+  padding: 3.5px 10px 3.5px 7px;
+  /* input style */
+  /* at focus show no border */
+}
+.hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .details .content .selection .select_wrapper select {
+  border: none;
+  background-color: transparent;
+}
+.hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .details .content .selection .select_wrapper select:focus {
+  outline: none;
+}
+.hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .details .content .selection .select_wrapper select {
+  border: none;
+  color: #656161;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  width: 110px;
+}
+.hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .details .content .selection .select_wrapper select option {
+  color: #656161;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+}
+.hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .details .content .selection .select_wrapper select[name=change_duration] {
+  width: 140px;
+}
+.hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .details .content .selection:nth-child(2) {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .details .content ul {
+  margin: 0;
+  padding-left: 25px;
+}
+@media (max-width: 370px) {
+  .hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .details .content ul {
+    padding-left: 10px;
+  }
+}
+.hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .details .content ul li {
+  margin-top: 12px;
+  color: #656161;
+  font-size: 15px;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  line-height: 1.5;
+}
+.hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .details .content ul li:first-child span {
+  position: relative;
+}
+.hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .details .content ul li:first-child span::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: 1px;
+  width: 100%;
+  background-color: #BE1B1B;
+}
+.hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .details .content ul .mrtravel_coupon span:first-child {
+  color: white;
+  font-weight: 400;
+  margin-right: 5px;
+  position: relative;
+  padding: 2px 5px 2px 5px;
+  font-size: 14px;
+}
+.hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .details .content ul .mrtravel_coupon span:first-child::before {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #BE1B1B;
+  height: 100%;
+  border-radius: 2px;
+}
+.hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .details .order_total span {
+  color: #000;
+  font-size: 17px;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+}
+.hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .details .order_total span:nth-child(2) {
+  position: relative;
+  margin: 0 5px 0 5px;
+  color: #656161;
+}
+.hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .details .order_total span:nth-child(2)::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: 1px;
+  width: 100%;
+  background-color: #BE1B1B;
+}
+.hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .payment {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-bottom: 20px;
+}
+.hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .payment .header, .hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .payment span, .hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .payment p {
+  color: #656161;
+  font-size: 15px;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  margin: 0;
+}
+.hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .payment .header span {
+  position: relative;
+  color: #fff;
+  font-weight: 300;
+  padding: 1px 3px 1px 3px;
+}
+.hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .payment .header span::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #BE1B1B;
+  border-radius: 2px;
+  z-index: -1;
+}
+.hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .payment button {
+  cursor: pointer;
+  background-color: #BE1B1B;
+  width: -moz-fit-content;
+  width: fit-content;
+  border: none;
+  border-radius: 4px;
+  padding: 7px 10px 7px 10px;
+  color: #fff;
+  font-size: 15px;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+}
+.hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .payment button:hover {
+  background-color: #991111;
+}
+.hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .payment .or {
+  width: 150px;
+  text-align: center;
+}
+.hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .payment input {
+  height: 35px;
+  width: 170px;
+  border-radius: 4px;
+  border: 0.5px solid #000;
+  padding: 0 12px 0 12px;
+  color: #656161;
+  font-size: 15px;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+}
+
+.resort-surprises .details .title {
+  font-size: 40px;
+}
+
+.resort-surprises .details .facilities .facility .icon i {
+  font-size: 15px;
+}
+
+.resort-surprises .video-container .video-cover {
+  background-image: url("./images/4-hotel.jpg");
 }/*# sourceMappingURL=hoteldetails.css.map */
