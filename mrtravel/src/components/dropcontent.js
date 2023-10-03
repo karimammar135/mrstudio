@@ -4,18 +4,7 @@ import UpdateURL from './UpdateURL.js';
 
 export default function NavContent({ dropdown, authenticated, page, is_login, logout_user }){
     if (dropdown){
-        if (page === "home"){
-            return (
-                <div id="navDropdown" className="dropdown-content">
-                    <a onClick={() => {UpdateURL('')}}>Home</a>
-                    <a href="#">About</a>
-                    <a href="#">Type of house</a>
-                    <a href="#">Contact</a>
-                    {authenticated && <a onClick={() => logout_user()}>Logout</a> || <a onClick={() => {UpdateURL('login')}}>Login</a>}
-                </div>
-            );
-        }
-        else if (page === "login"){
+        if (page === "login"){
             return (
                 <div id="navDropdown" className="dropdown-content">
                     <a onClick={() => {UpdateURL('')}}>Home</a>
@@ -26,7 +15,17 @@ export default function NavContent({ dropdown, authenticated, page, is_login, lo
                 </div>
             );
         }
-        
+        else {
+            return (
+                <div id="navDropdown" className="dropdown-content">
+                    <a onClick={() => {UpdateURL('')}}>Home</a>
+                    <a href="#">About</a>
+                    <a href="#">Type of house</a>
+                    <a href="#">Contact</a>
+                    {authenticated && <a onClick={() => logout_user()}>Logout</a> || <a onClick={() => {UpdateURL('login')}}>Login</a>}
+                </div>
+            );
+        }
     } else {
         return (<></>);
     }

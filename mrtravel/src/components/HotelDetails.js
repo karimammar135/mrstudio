@@ -25,7 +25,6 @@ export default function HotelDetails({ path }){
     window.addEventListener('scroll', debounce((event) => {
         if (window.scrollY >= 100){
             document.querySelector('.navbar').classList.add('navbar_scrolled');
-            console.log(document.querySelector('.navbar'));
         }
         if (window.scrollY < 100){
             document.querySelector('.navbar').classList.remove('navbar_scrolled');
