@@ -26,6 +26,7 @@ def register_view(request):
         # Attempt to create user
         try: 
             user = User.objects.create_user(data["username"], data["email"], data["password"])
+            user.hotelier = data["hotelier_account"]
             user.save()
         except IntegrityError:
             return JsonResponse({"error": "Coudn't create user"}, status=400)

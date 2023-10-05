@@ -1,21 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lora:wght@500&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inria+Sans:wght@300&display=swap");
-.navbar_scrolled {
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 10px 45px 10px 45px;
-}
-@media (max-width: 900px) {
-  .navbar_scrolled {
-    padding: 10px 35px 10px 35px;
-  }
-}
-@media (max-width: 710px) {
-  .navbar_scrolled {
-    padding: 10px 10px 10px 10px;
-  }
-}
-
 .hotel_page_wrapper {
   display: flex;
   flex-direction: column;
@@ -47,6 +32,20 @@
 }
 .hotel_page_wrapper .navbar .nav-body .dropdown i {
   color: #fff;
+}
+.hotel_page_wrapper .navbar_scrolled {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px 45px 10px 45px;
+}
+@media (max-width: 900px) {
+  .hotel_page_wrapper .navbar_scrolled {
+    padding: 10px 35px 10px 35px;
+  }
+}
+@media (max-width: 710px) {
+  .hotel_page_wrapper .navbar_scrolled {
+    padding: 10px 10px 10px 10px;
+  }
 }
 .hotel_page_wrapper .main_section {
   width: 100%;

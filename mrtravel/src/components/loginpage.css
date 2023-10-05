@@ -140,6 +140,20 @@
   border-radius: 2.76px;
   border: 0.828px solid #475E6B;
 }
+.login_wrapper_body .login_body .login_container .login_form form .hotelier_checkbox_container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 4px;
+  margin: 10px 0 15px 0;
+}
+.login_wrapper_body .login_body .login_container .login_form form .hotelier_checkbox_container label {
+  color: #2655FB;
+  margin-bottom: 0;
+}
+.login_wrapper_body .login_body .login_container .login_form form .hotelier_checkbox_container input {
+  cursor: pointer;
+}
 .login_wrapper_body .login_body .login_container .login_form form input[type=submit] {
   cursor: pointer;
   width: 100%;

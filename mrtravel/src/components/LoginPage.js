@@ -86,6 +86,7 @@ export default function LoginPage({ is_signup }){
             const email = document.querySelector('form #email').value;
             const password = document.querySelector('form #password').value;
             const confirmation = document.querySelector('form #confirmation').value;
+            const hotelier_account = document.querySelector('form #hotelier_account').checked;
 
             // Get csrf token
             const csrftoken = getCookie('csrftoken');
@@ -98,7 +99,8 @@ export default function LoginPage({ is_signup }){
                     username: username,
                     password: password, 
                     email: email,
-                    confirmation: confirmation
+                    confirmation: confirmation, 
+                    hotelier_account: hotelier_account
                 })
             })
             .then(response => response.json())
@@ -142,7 +144,8 @@ export default function LoginPage({ is_signup }){
                             {state.signup && <label htmlFor="email">Email</label>}
                             {state.signup && <input id="email" type="email" name="email" placeholder="Enter email" autoComplete="true"></input>}
                             {state.signup && <label htmlFor="confirmation">Confirm password</label>}
-                            {state.signup && <input id="confirmation" type="password" name="confirmation" placeholder="Confirm password"></input>}         
+                            {state.signup && <input id="confirmation" type="password" name="confirmation" placeholder="Confirm password"></input>}     
+                            {state.signup && <div className="hotelier_checkbox_container"><input type="checkbox" value="hotelieraccount" id="hotelier_account"></input><label htmlFor="hotelier_account">Do you want a Hostlier Account?</label></div>}     
                             <input type="submit" value={state.login && "Log in" || "Sign up"}></input>
                             {state.login && <a href="#">Did you forget your passowrd?</a>}
                         </form>

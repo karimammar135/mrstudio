@@ -3,18 +3,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Lora:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inria+Sans:wght@300&display=swap');
 
-// Navbar when scrolled
-.navbar_scrolled {
-    background-color: rgba(0, 0, 0, 0.50);
-    padding: 10px 45px 10px 45px;
-    @media (max-width: 900px){
-        padding: 10px 35px 10px 35px;
-    }
-    @media(max-width: 710px){
-        padding: 10px 10px 10px 10px;
-    }
-}
-
 // Hotel Page wrapper
 .hotel_page_wrapper {
     // flexbox
@@ -53,6 +41,18 @@
         }
         .nav-body .dropdown i{
             color: #fff;
+        }
+    }
+
+    // Navbar when scrolled
+    .navbar_scrolled {
+        background-color: rgba(0, 0, 0, 0.50);
+        padding: 10px 45px 10px 45px;
+        @media (max-width: 900px){
+            padding: 10px 35px 10px 35px;
+        }
+        @media(max-width: 710px){
+            padding: 10px 10px 10px 10px;
         }
     }
 
