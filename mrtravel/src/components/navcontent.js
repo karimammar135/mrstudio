@@ -58,7 +58,7 @@ export default function NavContent({ widthdemension, page, is_login }){
                 <div className="nav-items">
                     <a href="/">Home</a>
                     <a href="#">About</a>
-                    <a href="#">Type of house</a>
+                    <a href="#">Account</a>
                     <a href="#">Contact</a>
                 </div>
                 <NavBtn page={page} authenticated={authenticated} is_login={is_login} logout_user={logout_user}/>

@@ -11,6 +11,7 @@ import Airlines from './Airlines.js';
 import Dash from './Dash.js';
 import Footer from './Footer.js';
 import HotelDetails from './HotelDetails.js';
+import HotelierPage from "./HotelierPage.js";
 
 import LoginPage from './LoginPage.js';
 
@@ -71,6 +72,13 @@ export default function App(){
     return(
       <HotelDetails path={path} />
     );
+  }
+
+  // Hotelier Page
+  else if(path.slice(0, 11) === "/post_hotel"){
+    return(
+      <HotelierPage />
+    )
   }
 
   else {

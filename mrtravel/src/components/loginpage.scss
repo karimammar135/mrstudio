@@ -6,10 +6,25 @@
     height: 100vh;
     width: 100vw;
     overflow-x: hidden;
+    position: relative;
     
     // flexbox
     display: flex;
     flex-direction: column;
+
+    .background_triangle_1 {
+        z-index: -1;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-top: 0;
+        border-left: 650px solid #E5F7FF;
+        border-bottom: 350px solid transparent;
+        @media (min-width: 1400px) {
+            border-left: 40vw solid #E5F7FF;
+            border-bottom: calc(0.667 * 30vw) solid transparent;
+        }
+    }
 
     // Login Body
     .login_body {
@@ -21,18 +36,7 @@
         align-items: center;
 
         // Background decorations
-        .background_triangle_1 {
-            position: absolute;
-            top: 0;
-            left: 0;
-            border-top: 0;
-            border-left: 572px solid #E5F7FF;
-            border-bottom: 290px solid transparent;
-            @media (min-width: 1400px) {
-                border-left: 40vw solid #E5F7FF;
-                border-bottom: calc(0.667 * 30vw) solid transparent;
-            }
-        }
+        
         .background_triangle_2 {
             position: absolute;
             bottom: 0;

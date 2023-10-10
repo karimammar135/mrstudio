@@ -9,7 +9,7 @@ export default function NavContent({ dropdown, authenticated, page, is_login, lo
                 <div id="navDropdown" className="dropdown-content">
                     <a onClick={() => {UpdateURL('')}}>Home</a>
                     <a href="#">About</a>
-                    <a href="#">Type of house</a>
+                    <a href="#">Account</a>
                     <a href="#">Contact</a>
                     <a onClick={() => UpdateURL(is_login ? 'signup': 'login')}>{is_login && "Sign up" || "Log in"}</a>
                 </div>
@@ -20,7 +20,7 @@ export default function NavContent({ dropdown, authenticated, page, is_login, lo
                 <div id="navDropdown" className="dropdown-content">
                     <a onClick={() => {UpdateURL('')}}>Home</a>
                     <a href="#">About</a>
-                    <a href="#">Type of house</a>
+                    <a href="#">Account</a>
                     <a href="#">Contact</a>
                     {authenticated && <a onClick={() => logout_user()}>Logout</a> || <a onClick={() => {UpdateURL('login')}}>Login</a>}
                 </div>

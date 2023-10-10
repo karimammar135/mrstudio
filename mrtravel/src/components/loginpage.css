@@ -3,8 +3,24 @@
   height: 100vh;
   width: 100vw;
   overflow-x: hidden;
+  position: relative;
   display: flex;
   flex-direction: column;
+}
+.login_wrapper_body .background_triangle_1 {
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-top: 0;
+  border-left: 650px solid #E5F7FF;
+  border-bottom: 350px solid transparent;
+}
+@media (min-width: 1400px) {
+  .login_wrapper_body .background_triangle_1 {
+    border-left: 40vw solid #E5F7FF;
+    border-bottom: 20.01vw solid transparent;
+  }
 }
 .login_wrapper_body .login_body {
   flex-grow: 1;
@@ -12,20 +28,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.login_wrapper_body .login_body .background_triangle_1 {
-  position: absolute;
-  top: 0;
-  left: 0;
-  border-top: 0;
-  border-left: 572px solid #E5F7FF;
-  border-bottom: 290px solid transparent;
-}
-@media (min-width: 1400px) {
-  .login_wrapper_body .login_body .background_triangle_1 {
-    border-left: 40vw solid #E5F7FF;
-    border-bottom: 20.01vw solid transparent;
-  }
 }
 .login_wrapper_body .login_body .background_triangle_2 {
   position: absolute;

@@ -211,11 +211,12 @@
             align-items: center;
 
             .video-wrapper {
-                height: fit-content;
                 width: 75%;
                 position: relative;
 
-                video {
+                iframe {
+                    aspect-ratio: 16 / 9;
+                    max-height: 90%;
                     border: 3px solid #E5F7FF;
                     border-radius: 10px;
                     box-shadow: 5px 5px 48px 19px #979797;
