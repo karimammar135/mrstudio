@@ -4,7 +4,6 @@ import './resorts.css';
 import UpdateURL from './UpdateURL.js';
 
 export default function Resorts(){
-
     // Swipe carousel
     function swipe_carousel(direction){
         const carousel = document.querySelector('.carousel');

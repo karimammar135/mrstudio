@@ -11,7 +11,7 @@ import Airlines from './Airlines.js';
 import Dash from './Dash.js';
 import Footer from './Footer.js';
 import HotelDetails from './HotelDetails.js';
-import HotelierPage from "./HotelierPage.js";
+import AccountPage from './AccountPage.js';
 
 import LoginPage from './LoginPage.js';
 
@@ -42,7 +42,7 @@ export default function App(){
         </div>
         <div className="extra-space"></div>
         <Resorts />
-        <VideoSection page="main_page" />
+        <VideoSection page="main_page" img_path='./images/3-hotel.jpg' />
         <RelaxingPleasure />
         <Airlines />
         <Dash />
@@ -74,11 +74,18 @@ export default function App(){
     );
   }
 
-  // Hotelier Page
-  else if(path.slice(0, 11) === "/post_hotel"){
+  // Account Page
+  else if(path.slice(0, 8) === "/account"){
     return(
-      <HotelierPage />
-    )
+      <AccountPage />
+    );
+  }
+
+  // Add Hotel Page
+  else if(path.slice(0, 10) === "/add_hotel"){
+    return(
+      <div>Add your hotel page</div>
+    );
   }
 
   else {

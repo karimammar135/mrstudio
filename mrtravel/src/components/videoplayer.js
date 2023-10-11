@@ -1,7 +1,6 @@
 import React from "react";
-import video from './video.mp4';
 
-export default function VideoPlayer() {
+export default function VideoPlayer({ img_path }) {
     const[demensions, setDemensions] = React.useState(window.innerWidth);
     const[showVideo, setShowVideo] = React.useState(false);
 
@@ -34,7 +33,7 @@ export default function VideoPlayer() {
 
     return (
         <div className="video-container">
-            <div className="video-cover" onClick={startVideo}>
+            <div className="video-cover" onClick={startVideo} >
                 <i className="fa-regular fa-circle-play" id="start-icon"></i>
                 <i className="fa-solid fa-spinner fa-spin" id="loading-icon"></i>
             </div>

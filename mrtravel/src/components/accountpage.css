@@ -1,0 +1,192 @@
+@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@400;500&display=swap");
+.top_section {
+  width: 100%;
+  height: 235px;
+  background-color: #E5F7FF;
+  position: relative;
+}
+.top_section .back_icon {
+  font-size: 19px;
+  position: absolute;
+  top: 20px;
+  left: 25px;
+  cursor: pointer;
+}
+.top_section .profile_info {
+  position: absolute;
+  bottom: 0;
+  left: 40px;
+  display: flex;
+  align-items: flex-start;
+  transform: translatey(100%);
+}
+@media (max-width: 380px) {
+  .top_section .profile_info {
+    left: 20px;
+  }
+}
+@media (max-width: 310px) {
+  .top_section .profile_info {
+    flex-direction: column;
+  }
+}
+.top_section .profile_info .img_wrapper {
+  height: 62.5px;
+}
+.top_section .profile_info .img_wrapper img {
+  width: 125px;
+  transform: translateY(-50%);
+}
+.top_section .profile_info .info {
+  padding: 0;
+  margin: 0 0 0 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+@media (max-width: 310px) {
+  .top_section .profile_info .info {
+    padding-left: 20px;
+  }
+}
+.top_section .profile_info .info li {
+  list-style: none;
+}
+.top_section .profile_info .info #hide {
+  opacity: 0;
+}
+@media (max-width: 310px) {
+  .top_section .profile_info .info #hide {
+    height: 0;
+    margin: 0;
+    padding: 0;
+  }
+}
+.top_section .profile_info .info li:first-child {
+  margin-top: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 3px;
+}
+.top_section .profile_info .info li:first-child .verified {
+  color: #365E7D;
+  position: relative;
+}
+.top_section .profile_info .info li:first-child .verified .check {
+  color: #fff;
+  font-size: 8px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+.top_section .profile_info .info li:first-child span {
+  color: #616161;
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+}
+.top_section .profile_info .info li:last-child {
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+}
+@media (max-width: 475px) {
+  .top_section .profile_info .info li:last-child {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+.top_section .profile_info .info li:last-child div {
+  display: flex;
+  flex-direction: column;
+}
+.top_section .profile_info .info li:last-child div .username {
+  color: #000;
+  font-size: 24px;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+}
+.top_section .profile_info .info li:last-child div .email {
+  color: #616161;
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+}
+.top_section .profile_info .info li:last-child button {
+  height: 30px;
+  background-color: #365E7D;
+  border-radius: 5px;
+  border: none;
+  padding: 0 20px 0 20px;
+  cursor: pointer;
+  color: #fff;
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+  font-weight: 300;
+  white-space: nowrap;
+  margin-right: 10px;
+}
+.top_section .profile_info .info li:last-child button:hover {
+  background-color: #4980aa;
+}
+
+.white_space_hotelier {
+  height: 75px;
+}
+@media (max-width: 475px) {
+  .white_space_hotelier {
+    height: 115px;
+  }
+}
+@media (max-width: 310px) {
+  .white_space_hotelier {
+    height: 180px;
+  }
+}
+
+.white_space_regular {
+  height: 75px;
+}
+@media (max-width: 310px) {
+  .white_space_regular {
+    height: 113.5px;
+  }
+}
+
+.account_details_wrapper {
+  margin-top: 70px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.account_details_wrapper .account_details {
+  width: 80%;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.25);
+  padding: 15px 10px 25px 25px;
+}
+.account_details_wrapper .account_details h1 {
+  margin: 0;
+  color: #000;
+  font-size: 24px;
+  font-family: "Mulish", sans-serif;
+  font-weight: 500;
+}
+.account_details_wrapper .account_details ul {
+  padding: 10px 0 0 10px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.account_details_wrapper .account_details ul li {
+  list-style: none;
+  color: #616161;
+  font-size: 14px;
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+}/*# sourceMappingURL=accountpage.css.map */

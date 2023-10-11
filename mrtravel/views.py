@@ -64,3 +64,7 @@ def logout_view(request):
 # Authentication
 def authentication(request):
     return JsonResponse({"authenticated": request.user.is_authenticated}, status=201)
+
+# User Info API
+def user_info(request):
+    return JsonResponse(request.user.serialize(), safe=False)

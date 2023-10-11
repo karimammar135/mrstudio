@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 
 import DropContent from './dropcontent.js';
 import NavBtn from './navbtn.js';
+import UpdateURL from "./UpdateURL.js";
 
 // Nav Content Component
 export default function NavContent({ widthdemension, page, is_login }){
@@ -58,7 +59,7 @@ export default function NavContent({ widthdemension, page, is_login }){
                 <div className="nav-items">
                     <a href="/">Home</a>
                     <a href="#">About</a>
-                    <a href="#">Account</a>
+                    <a onClick={() => UpdateURL('account')}>Account</a>
                     <a href="#">Contact</a>
                 </div>
                 <NavBtn page={page} authenticated={authenticated} is_login={is_login} logout_user={logout_user}/>

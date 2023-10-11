@@ -327,11 +327,6 @@
 
                 .map {
                     border: 0;
-                    background-image: url('./images/hotel_location.png');
-                    background-position: center;
-                    background-repeat: no-repeat;
-                    background-size: cover;
-
                     height: 340px;
                     @media (min-width: 1700px) {
                         height: 410px;
@@ -655,8 +650,4 @@
 }
 .resort-surprises .details .facilities .facility .icon i {
     font-size: 15px;
-}
-
-.resort-surprises .video-container .video-cover {
-    background-image: url('./images/4-hotel.jpg');
 }

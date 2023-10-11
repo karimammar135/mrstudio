@@ -2,7 +2,7 @@ import React from "react";
 import './video-section.css';
 import VideoPlayer from './videoplayer.js';
 
-export default function ResortSurprises({ page }){
+export default function VideoSection({ page, img_path }){
     return (
         <div className="center-resort-surprises">
             <div className="resort-surprises">
@@ -36,7 +36,7 @@ export default function ResortSurprises({ page }){
                         </div>
                     </div>
                 </div>
-                <VideoPlayer />
+                <VideoPlayer img_path={img_path} />
             </div>
         </div>
     );

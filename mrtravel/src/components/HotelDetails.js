@@ -50,7 +50,7 @@ export default function HotelDetails({ path }){
             <section className="body">
                 <HotelDetailsSection />
                 <HotelLocation />
-                <VideoSection page="hotel_page" />
+                <VideoSection page="hotel_page" img_path='./images/4-hotel.jpg' />
                 <PaymentDetails />
                 <Footer />
             </section>

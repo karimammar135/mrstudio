@@ -5,6 +5,14 @@ from django.contrib.auth.models import AbstractUser
 class User(AbstractUser):
     hotelier = models.BooleanField(default=False)
 
+    def serialize(self):
+        return {
+            "id": self.id,
+            "username": self.username,
+            "email": self.email,
+            "hotelier": self.hotelier
+        }
+
 # Hotel Details Model
 class HotelInfo(models.Model):
     ''' Hotel information fields '''
