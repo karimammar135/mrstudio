@@ -33,7 +33,7 @@ class HotelInfo(models.Model):
 
     ''' Price details '''
     security_deposit = models.FloatField()
-    mrtravel_hyphen = models.BooleanField(default=False)
+    mrtravel_hyphin = models.BooleanField(default=False)
     
     def __str__(self):
         return f"hotel_name: {self.hotel_name}, hotel_description: {self.hotel_description}, locality: {self.locality}, city: {self.city}, country: {self.country}, youtube_video: {self.youtube_video}, picture_url: {self.picture_url}, location: {self.location}, check_in: {self.check_in}, check_out: {self.check_out}"
@@ -44,7 +44,7 @@ class RoomSize(models.Model):
     hotel = models.ForeignKey(HotelInfo, on_delete=models.CASCADE, related_name="room_sizes")
     size = models.IntegerField()
     price_per_day = models.FloatField()
-    discount = models.IntegerField()
+    discount = models.IntegerField(blank=True)
 
     def __str__(self):
         return f"room_size: {self.size}, price_per_day: {self.price_per_day}, discount: {self.discount}"

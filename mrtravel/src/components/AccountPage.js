@@ -8,13 +8,19 @@ import Footer from './Footer.js';
 export default function AccountPage(){
     // State for user info
     const[userInfo, setUserInfo] = React.useState({id: null, username: null, email: null, hotelier: null})
-    
+
     // Fetch User Info
     React.useEffect(() => {
         fetch('/user_info')
         .then(response => response.json())
         .then(data => {
-            setUserInfo(data)
+            if(data.error != null){
+                console.log(data.error)
+                location.replace('/login');
+            }
+            else{
+                setUserInfo(data)
+            }
         })
         .catch(error => {
             alert(error)

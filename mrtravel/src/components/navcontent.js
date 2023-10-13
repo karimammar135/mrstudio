@@ -36,6 +36,7 @@ export default function NavContent({ widthdemension, page, is_login }){
         .then(data => {
             console.log(data["message"])
             setAuthenticated(false);
+            location.href = "/";
         })
         .catch(error => {
             alert(error)
@@ -59,7 +60,7 @@ export default function NavContent({ widthdemension, page, is_login }){
                 <div className="nav-items">
                     <a href="/">Home</a>
                     <a href="#">About</a>
-                    <a onClick={() => UpdateURL('account')}>Account</a>
+                    <a onClick={() => {if(authenticated){UpdateURL('account')} else{UpdateURL('login')}}}>Account</a>
                     <a href="#">Contact</a>
                 </div>
                 <NavBtn page={page} authenticated={authenticated} is_login={is_login} logout_user={logout_user}/>

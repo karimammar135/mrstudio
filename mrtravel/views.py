@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
 from django.db import IntegrityError
 from django.urls import reverse
-from .models import User
 import json
 from django.http import JsonResponse
 from django.contrib.auth import authenticate, login, logout
+
+from .models import User, HotelInfo, RoomSize
 
 # views
 def index(request, path):
@@ -56,7 +57,6 @@ def login_user(request):
 
 # LOGOUT 
 def logout_view(request):
-    print('logout user')
     logout(request)
     return JsonResponse({"message": "user successfuly loged out"}, status=201)
 
@@ -67,4 +67,35 @@ def authentication(request):
 
 # User Info API
 def user_info(request):
-    return JsonResponse(request.user.serialize(), safe=False)
+    try:
+        user_info = request.user.serialize()
+        return JsonResponse(user_info, safe=False)
+    except AttributeError:
+        return JsonResponse({"error": "user not logged in"}, status=400)
+
+
+# Submit Hotel Form
+def submit_hotel_form(request):
+    # collect the data submited
+    data = json.loads(request.body)
+    
+    # save data in the database
+    ''' Save hotel '''
+    try:
+        hotel = HotelInfo(hotel_name=data['hotel_name'], hotel_description=data['description'], locality=data['locality'], city=data['city'], country=data['country'], youtube_video=data['youtube_video_url'], picture_url=data['pic_url'], location=data['location_url'], check_in=data['check_in'], check_out=data['check_out'], security_deposit=data['security_deposit'], mrtravel_hyphin=data['mrtravel_hyphin'])
+        hotel.save()
+    except KeyError:
+        # Return error message
+        return JsonResponse({"error": "Key error in hotel info"}, status=400)
+
+    '''Save rooms'''
+    for room in data['rooms']:
+        try:
+            room_size = RoomSize(hotel=hotel, size=room['size'], price_per_day=room['price'], discount=room['discount'])
+            room_size.save()
+        except KeyError:
+            # Return error message
+            return JsonResponse({"error": "key error in rooms' info"}, status=400)
+
+    # Return a success message
+    return JsonResponse({"message": "data received and saved successfully"}, status=201)

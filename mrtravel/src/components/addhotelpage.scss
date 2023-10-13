@@ -1,0 +1,348 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300;400&display=swap');
+
+// navbar 
+.add_hotel_page .navbar {
+    padding-top: 20px;
+}
+
+// Add hotel page
+.add_hotel_page {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+
+    // Body
+    .body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+        margin-bottom: 100px;
+        flex-grow: 1;
+
+        .content {
+            width: 83%;
+            @media (max-width: 400px) {
+                width: 90%;
+            }
+
+            .header {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                h1 {
+                    color: #000;
+                    font-size: 24px;
+                    font-family: 'Indie Flower', cursive;
+                    font-weight: 400;
+                    @media (max-width: 810px) {
+                        font-size: 20px;
+                    }
+                }
+                .coffee_cup {
+                    font-size: 30px;
+                    padding-bottom: 5px;
+                }
+            }
+
+            .main_form {
+                max-width: 100%;
+                border-radius: 10px;
+                box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.25);
+                background-color: #fff;
+                padding: 20px 25px 20px 25px;
+                @media (max-width: 330px) {
+                    padding: 20px 10px 20px 10px;
+                }
+
+                // Grid
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: repeat(2, auto);
+                grid-gap: 20px;
+                @media (max-width: 1000px) {
+                    grid-template-columns: repeat(2, 1fr);
+                    grid-template-rows: repeat(3, auto);
+                    grid-row-gap: 30px;
+                }
+                @media (max-width: 700px) {
+                    grid-template-columns: repeat(1, 1fr);
+                    grid-template-rows: repeat(4, auto);
+                    grid-row-gap: 30px;
+                }
+
+                .part2 {
+                    .description {
+                        flex-grow: 1;
+                        textarea {
+                            width: 100%;
+                            flex-grow: 1;
+                            border-radius: 10px;
+                            border: 1px solid #D0D5DD;
+                            box-sizing: border-box;
+                            padding: 8px 0 0 12px;
+                        }
+                        textarea::placeholder {
+                            color: #98A2B3;
+                            font-size: 15.5px;
+                            font-family: 'Mulish', sans-serif;
+                            font-weight: 400;
+                        }
+                        textarea:focus {
+                            outline: none;
+                        }
+                    }
+                }
+
+                .part3 {
+                    .picture_link {
+                        margin-top: 15px;
+                    }
+                    ul {
+                        margin: 0;
+                        padding-left: 5px;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 15px;
+
+                        li {
+                            display: flex;
+                            align-items: center;
+                            gap: 10px;
+                            div {
+                                width: 7px;
+                                height: 7px;
+                                background-color: #344054;
+                                border-radius: 7px;
+                            }
+                            input {
+                                flex-grow: 1;
+                            }
+                        }
+                    }
+                }
+
+                .part4 {
+                    h1 {
+                        color: #000;
+                        font-size: 24px;
+                        font-family: 'Inter', sans-serif;
+                        font-weight: 400;
+                        margin: 0;
+                        transform: translateX(-2%);
+                    }
+                    .add_room_btn {
+                        cursor: pointer;
+                        height: 40px;
+                        width: 125px;
+                        background-color: #344054;
+                        border-radius: 10px;
+                        border: none;
+                        align-self: flex-end;
+
+                        color: #fff;
+                        font-size: 14px;
+                        font-family: 'Mulish', sans-serif;
+                        font-weight: 300;
+                        margin-top: 5px;
+                    }
+                    .add_room_btn:hover {
+                        background-color: #4f6181;
+                    }
+                }
+
+                .part5 {
+                    padding-top: 40px;
+                    @media (max-width: 1000px) {
+                        padding-top: 0;
+                    }
+                    .rooms {
+                        overflow-y: scroll;
+                        max-height: 295px;
+                        padding: 20px 10px 0 10px;
+                        margin: 0;
+                        border-radius: 10px;
+                        border: 1px solid #D0D5DD;
+                        flex-grow: 1;
+                        @media (max-width: 800px) {
+                            min-height: 250px;
+                        }
+
+                        .none {
+                            display: block;
+                            width: 100%;
+                            text-align: center;
+                            font-family: 'Inter', sans-serif;
+                            font-weight: 300;
+                            color: #98A2B3;
+                            font-size: 13px;
+                        }
+
+                        li {
+                            cursor: pointer;
+                            list-style: none;
+                            width: 100%;
+                            height: 40px;
+                            background-color: #D9D9D9;
+                            border-radius: 10px;
+                            padding: 0 15px 0 15px;
+                            box-sizing: border-box;
+                            -moz-box-sizing: border-box;
+                            margin-bottom: 10px;
+
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+
+                            span {
+                                color: #000;
+                                font-size: 15.5px;
+                                font-family: 'Mulish', sans-serif;
+                                font-weight: 400;
+                            }
+                            .cancel {
+                                color: #BE1B1B;
+                                transition: scale 0.1s;
+                            }
+                            .cancel:hover {
+                                scale: 1.2;
+                            }
+                            .arrow_down {
+                                font-size: 15px;
+                            }
+                        }
+                    }
+                    .rooms::-webkit-scrollbar {
+                        display: none;
+                    }
+                }
+                .part6 {
+                    padding-top: 40px;
+                    @media (max-width: 1000px) {
+                        padding-top: 0;
+                    }
+                    .coupon {
+                        height: 40px;
+                        border-radius: 10px;
+                        border: 1px solid #D0D5DD;
+                        padding-left: 12px;
+                        
+                        display: flex;
+                        align-items: center;
+                        span {
+                            color: #98A2B3;
+                            font-size: 15.5px;
+                            font-family: 'Mulish', sans-serif;
+                            font-weight: 400;
+                        }
+                        button {
+                            cursor: pointer;
+                            border-radius: 0px 10px 10px 0px;
+                            border: none;
+                            background: #344054;
+                            height: 100%;
+                            width: 125px;
+
+                            color: #fff;
+                            font-size: 14px;
+                            font-family: 'Mulish', sans-serif;
+                            font-weight: 300;
+                        }
+                        i {
+                            margin-left: auto;
+                            margin-right: 10px;
+                        }
+                        .applied_icon {
+                            color: #23c01e;
+                        }
+                        .unpplied_icon {
+                            color: #BE1B1B;
+                        }
+                    }
+                    .add_hotel_btn {
+                        cursor: pointer;
+                        align-self: flex-end;
+                        margin-top: auto;
+                        height: 40px;
+                        width: 125px;
+                        border: none;
+                        border-radius: 10px;
+                        background: #327FF2;
+
+                        color: #fff;
+                        font-size: 14px;
+                        font-family: 'Mulish', sans-serif;
+                        font-weight: 300;
+                    }
+                    .add_hotel_btn:hover {
+                        background: #498aec;
+                    }
+                }
+
+                // Default layout design
+                .default_layout {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                    grid-column: span 1;
+                    grid-row: span 1;
+                }
+
+                // Default input design
+                .default_input {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 7px;
+
+                    label {
+                        color: #344054;
+                        font-size: 14px;
+                        font-family: 'Mulish', sans-serif;
+                        font-weight: 400;
+                    }
+                    input {
+                        height: 35px;
+                        border-radius: 10px;
+                        border: 1px solid #D0D5DD;
+                        padding-left: 12px;
+                        padding-right: 10px;
+                        padding-top: 2px;
+                    }
+                    input::placeholder {
+                        color: #98A2B3;
+                        font-size: 15.5px;
+                        font-family: 'Mulish', sans-serif;
+                        font-weight: 400;
+                    }
+                    input:focus {
+                        outline: none;
+                    }
+                }
+            }
+        }
+    }
+    // Body
+
+    // Background decorations
+    .background_triangle_1 {
+        border-left: 750px solid #E5F7FF;
+        border-bottom: 400px solid transparent;
+        @media (min-width: 1400px) {
+            border-left: 40vw solid #E5F7FF;
+            border-bottom: calc(0.667 * 30vw) solid transparent;
+        }
+    }        
+    .background_triangle_2 {
+        border-right: 682px solid #E5F7FF;
+        border-top: 340px solid transparent;
+        @media (min-width: 1400px) {
+            border-right: 50vw solid #E5F7FF;
+        }
+    }
+}
+// End of add hotel page

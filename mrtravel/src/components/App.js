@@ -12,6 +12,8 @@ import Dash from './Dash.js';
 import Footer from './Footer.js';
 import HotelDetails from './HotelDetails.js';
 import AccountPage from './AccountPage.js';
+import AddHotelPage from './AddHotelPage.js';
+import UpdateURL from "./UpdateURL.js";
 
 import LoginPage from './LoginPage.js';
 
@@ -52,14 +54,12 @@ export default function App(){
   } 
   // Log In Page
   else if (path.slice(0, 6) === "/login"){
-    console.log('login');
     return(
       <LoginPage is_signup={false} />
     );
   }
   // Sign up Page
   else if (path.slice(0, 7) === "/signup"){
-    console.log('sign up');
     return(
       <LoginPage is_signup={true} />
     );
@@ -84,7 +84,7 @@ export default function App(){
   // Add Hotel Page
   else if(path.slice(0, 10) === "/add_hotel"){
     return(
-      <div>Add your hotel page</div>
+      <AddHotelPage />
     );
   }
 

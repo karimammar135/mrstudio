@@ -123,10 +123,9 @@ export default function LoginPage({ is_signup }){
         <div className="login_wrapper_body">
             <Navbar page="login" is_login={state.login} />
             <div className="background_triangle_1"></div>
+            <div className="background_triangle_2"></div>
+            
             <div className="login_body">
-                
-                <div className="background_triangle_2"></div>
-
                 <div className="login_container">
                     <div className="smiley_woman"></div>
                     <div className="login_form">
