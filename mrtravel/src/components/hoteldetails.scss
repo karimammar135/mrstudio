@@ -65,7 +65,6 @@
         top: 0;
 
         // Background
-        background-image: url('./images/4-hotel.jpg');
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
@@ -439,6 +438,26 @@
                                 gap: 10px;
                             }
 
+                            .change_duration_btn {
+                                border-radius: 5px;
+                                border: 2px solid #656161;
+                                padding: 3.5px 10px 3.5px 7px;
+                                color: #656161;
+                                font-family: 'Inter', sans-serif;
+                                font-weight: 500;
+                                font-size: 14px;
+                                background-color: transparent;
+                            }
+
+                            form {
+                                input {
+                                    width: 50px;
+                                    border-radius: 4px;
+                                    border: 1px solid #656161;
+                                    padding: 3.5px 5px 3.5px 7px;
+                                }
+                            }
+
                             span{
                                 color: #000000;
                                 font-size: 17px;
@@ -500,10 +519,10 @@
                                 line-height: 1.5;
                             }
                             li:first-child {
-                                span {
+                                .cross {
                                     position: relative;
                                 }
-                                span::after {
+                                .cross::after {
                                     content: "";
                                     position: absolute;
                                     top: 50%;
@@ -537,18 +556,21 @@
                         }
                     }
                     .order_total {
+                        .hide {
+                            display: none;
+                        }
                         span {
                             color: #000;
                             font-size: 17px;
                             font-family: 'Inter', sans-serif;
                             font-weight: 400;
                         }
-                        span:nth-child(2) {
+                        .cross:nth-child(2) {
                             position: relative;
                             margin: 0 5px 0 5px;
                             color: #656161;
                         }
-                        span:nth-child(2)::after {
+                        .cross:nth-child(2)::after {
                             content: "";
                             position: absolute;
                             top: 50%;
@@ -567,9 +589,8 @@
                     // flexbox
                     display: flex;
                     flex-direction: column;
+                    justify-content: center;
                     gap: 20px;
-
-                    padding-bottom: 20px;
 
                     .header, span, p {
                         color: #656161;
@@ -578,6 +599,7 @@
                         font-weight: 400;
                         margin: 0;
                     }
+                    
                     .header {
                         span {
                             position: relative;

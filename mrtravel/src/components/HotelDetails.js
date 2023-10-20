@@ -9,7 +9,30 @@ import PaymentDetails from './PaymentDetails.js';
 import Footer from './Footer.js';
 
 export default function HotelDetails({ path }){
-    const[hotel_num, setHotel_num] = React.useState(path.slice(0, 7).replace(path.slice(0, 6), ''));
+    const[hotel_id, setHotel_id] = React.useState(path.split(/\//)[2]);
+    const[hotel, setHotel] = React.useState(null);
+    const[rooms, setRooms] = React.useState(null);
+    const[room_selected, setRoom_selected] = React.useState({id: null, size: null, price_per_day: null, discount: null, discount_type: null});
+
+    // Fetch hotel info
+    React.useEffect(() => {
+        fetch(`/hotel_info${hotel_id}`)
+        .then(response => response.json())
+        .then(data => {
+            setHotel(data.hotel)
+            setRooms(data.rooms)
+        })
+        .catch(error => {
+            alert(error)
+        });
+    }, []);
+
+    // Set selected room
+    React.useEffect(() => {
+        if (rooms != null){
+            setRoom_selected(rooms[0])
+        }
+    }, [rooms])
 
     // DEBOUNCE function
     function debounce(fn, delay) {
@@ -31,30 +54,36 @@ export default function HotelDetails({ path }){
         }
     }, 200));
 
-    return (
-        <div className="hotel_page_wrapper">
-            <section className="main_section">
-                <div className="overlay">
-                    <div className="search_bar">
-                        <i className="fa-solid fa-magnifying-glass"></i>
-                        <input type="text" placeholder="Serch for other hotels"></input>
-                        <i className="fa-solid fa-hotel"></i>
+    // Making sure hotel isn't null
+    if(hotel === null | rooms === null){
+        return <></>;
+    }
+    else {
+        return (
+            <div className="hotel_page_wrapper">
+                <section className="main_section" style={{ backgroundImage: `url(${hotel.picture_url})` }}>
+                    <div className="overlay">
+                        <div className="search_bar">
+                            <i className="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" placeholder="Serch for other hotels"></input>
+                            <i className="fa-solid fa-hotel"></i>
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <section className="empty-space"></section>
+                <section className="empty-space"></section>
 
-            <Navbar page="hotel_page" is_login={null} />
+                <Navbar page="hotel_page" is_login={null} />
 
-            <section className="body">
-                <HotelDetailsSection />
-                <HotelLocation />
-                <VideoSection page="hotel_page" img_path='./images/4-hotel.jpg' />
-                <PaymentDetails />
-                <Footer />
-            </section>
+                <section className="body">
+                    <HotelDetailsSection hotel={hotel} rooms={rooms} room_selected={room_selected} setRoom_selected={setRoom_selected} />
+                    <HotelLocation hotel={hotel} />
+                    <VideoSection page="hotel_page" hotel={hotel} />
+                    <PaymentDetails hotel={hotel} rooms={rooms} room_selected={room_selected} setRoom_selected={setRoom_selected} />
+                    <Footer />
+                </section>
 
-        </div>
-    );
+            </div>
+        );
+    }
 }

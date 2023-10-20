@@ -75,27 +75,48 @@ def user_info(request):
 
 
 # Submit Hotel Form
-def submit_hotel_form(request):
-    # collect the data submited
-    data = json.loads(request.body)
-    
-    # save data in the database
-    ''' Save hotel '''
-    try:
-        hotel = HotelInfo(hotel_name=data['hotel_name'], hotel_description=data['description'], locality=data['locality'], city=data['city'], country=data['country'], youtube_video=data['youtube_video_url'], picture_url=data['pic_url'], location=data['location_url'], check_in=data['check_in'], check_out=data['check_out'], security_deposit=data['security_deposit'], mrtravel_hyphin=data['mrtravel_hyphin'])
-        hotel.save()
-    except KeyError:
-        # Return error message
-        return JsonResponse({"error": "Key error in hotel info"}, status=400)
+def hotels(request):
+    # Post method
+    if request.method == "POST":
+        # collect the data submited
+        data = json.loads(request.body)
 
-    '''Save rooms'''
-    for room in data['rooms']:
+        if len(data['rooms']) == 0:
+            return JsonResponse({"error": "No rooms created in this hotel"}, status=400)
+        
+        # save data in the database
+        ''' Save hotel '''
         try:
-            room_size = RoomSize(hotel=hotel, size=room['size'], price_per_day=room['price'], discount=room['discount'])
-            room_size.save()
+            hotel = HotelInfo(hotel_name=data['hotel_name'], hotel_description=data['description'], locality=data['locality'], city=data['city'], country=data['country'], youtube_video=data['youtube_video_url'], picture_url=data['pic_url'], location=data['location_url'], check_in=data['check_in'], check_out=data['check_out'], security_deposit=data['security_deposit'], direct_payment_discount=data['direct_payment_discount'], mrtravel_hyphin=data['mrtravel_hyphin'], feature1=data['feature1'], feature2=data['feature2'], feature3=data['feature3'], feature4=data['feature4'])
+            hotel.save()
         except KeyError:
             # Return error message
-            return JsonResponse({"error": "key error in rooms' info"}, status=400)
+            return JsonResponse({"error": "Key error in hotel info"}, status=400)
 
-    # Return a success message
-    return JsonResponse({"message": "data received and saved successfully"}, status=201)
+        '''Save rooms'''
+        for room in data['rooms']:
+            try:
+                room_size = RoomSize(hotel=hotel, size=room['size'], price_per_day=room['price'], discount=room['discount'], discount_type = room['discount_type'])
+                room_size.save()
+            except KeyError:
+                # Return error message
+                return JsonResponse({"error": "key error in rooms' info"}, status=400)
+
+        # Return a success message
+        return JsonResponse({"message": "data received and saved successfully"}, status=201)
+    
+    # Get method
+    else:
+        hotels = HotelInfo.objects.all()
+        return JsonResponse([hotel.serialize() for hotel in hotels], safe=False)
+    
+# Hotel Info
+def hotel_info(request, id):
+    try:
+        hotel = HotelInfo.objects.get(id=id)
+        rooms = hotel.room_sizes.all()
+        print(rooms)
+        return JsonResponse({"hotel": hotel.serialize(), "rooms": [room.serialize() for room in rooms]}, safe=False)
+    
+    except HotelInfo.DoesNotExist:
+        return JsonResponse({"error": "Hotel not found"}, status=400)

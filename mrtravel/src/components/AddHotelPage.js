@@ -43,6 +43,7 @@ export default function AddHotelPage(){
         let size = document.querySelector('.part4 input[name="room_size"]').value;
         let price = document.querySelector('.part4 input[name="room_price"]').value;
         let discount = document.querySelector('.part4 input[name="discount"]').value;
+        let discount_type = document.querySelector('.part4 .dicount_field .select_wrapper select').value;
         let amount = document.querySelector('.part4 input[name="room_amount"]').value;
 
         // Check for validations
@@ -75,8 +76,9 @@ export default function AddHotelPage(){
         // Save the room info in the state
         setRooms([
             ...rooms,
-            {size: size, price: price, amount: amount, discount: discount}
+            {size: size, price: price, amount: amount, discount: discount, discount_type: discount_type}
         ]);
+        console.log(rooms);
 
         // Emptying the input fields
         document.querySelector('.part4 input[name="room_size"]').value = '';
@@ -117,12 +119,22 @@ export default function AddHotelPage(){
         let feature4 = document.querySelector('input[name="feature4"]').value;
         let pic_url = document.querySelector('input[name="pic_url"]').value;
         let security_deposit = document.querySelector('input[name="security_deposit"]').value;
+        let direct_payment_discount = document.querySelector('input[name="direct_payment_discount"]').value;
         let mrtravel_hyphin = coupon;
+
+        // Check for necessary requirements
+        if (rooms.length === 0){
+            alert('You should at least have 1 room size available');
+            return false;
+        }
+        if(direct_payment_discount === ""){
+            direct_payment_discount = 0;
+        }
 
         // Get csrf token
         const csrftoken = getCookie('csrftoken');
         // Fetch submitted data to the back-end using API
-        fetch('/submit_hotel_form', {
+        fetch('/hotels', {
             method: 'POST',
             headers: {'X-CSRFToken': csrftoken},
             mode: 'same-origin',
@@ -142,6 +154,7 @@ export default function AddHotelPage(){
                 feature4: feature4,
                 pic_url: pic_url,
                 security_deposit: security_deposit,
+                direct_payment_discount: direct_payment_discount,
                 mrtravel_hyphin: mrtravel_hyphin,
                 rooms: rooms
             })
@@ -240,9 +253,17 @@ export default function AddHotelPage(){
                                 <label>Price for this room size</label>
                                 <input name="room_price" type="float" placeholder="Price in $" autoComplete="off"></input>
                             </div>
-                            <div className="default_input">
+                            <div className="default_input dicount_field_container">
                                 <label>Discount(optional)</label>
-                                <input name="discount" type="number" placeholder="%" autoComplete="off"></input>
+                                <div className="dicount_field">
+                                    <input name="discount" type="number" placeholder="%" autoComplete="off"></input>
+                                    <div className="select_wrapper">
+                                        <select>
+                                            <option defaultValue>firts day</option>
+                                            <option>always</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                             <div className="default_input">
                                 <label>Amount of this room size</label>
@@ -273,13 +294,19 @@ export default function AddHotelPage(){
                                 <input name="security_deposit" type="number" placeholder="Price in $" autoComplete="off" required></input>
                             </div>
                             <div className="default_input">
+                                <label>Discount for direct payment (optional)</label>
+                                <input name="direct_payment_discount" type="number" placeholder="%" autoComplete="off"></input>
+                            </div>
+                            <div className="default_input">
                                 <label>MRtravel HYPHIN</label>
                                 <div className="coupon">
                                     <span>40%</span>
                                     {coupon && <i className="fa-regular fa-circle-check applied_icon"></i> || <i className="fa-solid fa-ban unpplied_icon"></i>}
                                     <button onClick={(event) => {event.preventDefault(); setCoupon(!coupon)}}>{coupon &&  'Unapply coupon' || 'Apply coupon'}</button>
                                 </div>
+                                <p className="coupon_description">This coupon will be applied on all you items (rooms). You can apply or unapply this token later whenever you want.</p>
                             </div>
+                            <p className="note">Note: All the fields you enterd in this page are editable.</p>
                             <input type="submit" value="Add Hotel" className="add_hotel_btn"></input>
                         </div>
                     </form>

@@ -52,7 +52,6 @@
   height: 85vh;
   position: fixed;
   top: 0;
-  background-image: url("./images/4-hotel.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -419,6 +418,22 @@
     gap: 10px;
   }
 }
+.hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .details .content .selection .change_duration_btn {
+  border-radius: 5px;
+  border: 2px solid #656161;
+  padding: 3.5px 10px 3.5px 7px;
+  color: #656161;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  background-color: transparent;
+}
+.hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .details .content .selection form input {
+  width: 50px;
+  border-radius: 4px;
+  border: 1px solid #656161;
+  padding: 3.5px 5px 3.5px 7px;
+}
 .hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .details .content .selection span {
   color: #000000;
   font-size: 17px;
@@ -479,10 +494,10 @@
   font-weight: 500;
   line-height: 1.5;
 }
-.hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .details .content ul li:first-child span {
+.hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .details .content ul li:first-child .cross {
   position: relative;
 }
-.hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .details .content ul li:first-child span::after {
+.hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .details .content ul li:first-child .cross::after {
   content: "";
   position: absolute;
   top: 50%;
@@ -510,18 +525,21 @@
   height: 100%;
   border-radius: 2px;
 }
+.hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .details .order_total .hide {
+  display: none;
+}
 .hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .details .order_total span {
   color: #000;
   font-size: 17px;
   font-family: "Inter", sans-serif;
   font-weight: 400;
 }
-.hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .details .order_total span:nth-child(2) {
+.hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .details .order_total .cross:nth-child(2) {
   position: relative;
   margin: 0 5px 0 5px;
   color: #656161;
 }
-.hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .details .order_total span:nth-child(2)::after {
+.hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .details .order_total .cross:nth-child(2)::after {
   content: "";
   position: absolute;
   top: 50%;
@@ -533,8 +551,8 @@
 .hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .payment {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 20px;
-  padding-bottom: 20px;
 }
 .hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .payment .header, .hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .payment span, .hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .payment p {
   color: #656161;
