@@ -1,0 +1,304 @@
+.payment_page {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto;
+}
+@media (max-width: 800px) {
+  .payment_page {
+    grid-template-columns: auto;
+    grid-template-rows: repeat(2, auto);
+  }
+}
+.payment_page .payment_details {
+  grid-column: span 1;
+  grid-row: span 1;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.payment_page .payment_details .details_container {
+  height: 330px;
+  width: 100%;
+  max-width: 330px;
+  margin: 50px 10px 50px 10px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+.payment_page .payment_details .details_container h1 {
+  margin: 0;
+  color: #000;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  margin-top: auto;
+  margin-bottom: 15px;
+}
+.payment_page .payment_details .details_container p {
+  text-align: center;
+  color: #656161;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  z-index: 2;
+  margin: 0 10px 0 10px;
+}
+.payment_page .payment_details .details_container p span {
+  position: relative;
+  color: #fff;
+  font-weight: 300;
+  padding: 1px 3px 1px 3px;
+}
+.payment_page .payment_details .details_container p span::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #BE1B1B;
+  border-radius: 2px;
+  z-index: -1;
+}
+.payment_page .payment_details .details_container .order_total .hide {
+  display: none;
+}
+.payment_page .payment_details .details_container .order_total span {
+  color: #000;
+  font-size: 17px;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+}
+.payment_page .payment_details .details_container .order_total .cross:nth-child(2) {
+  position: relative;
+  margin: 0 5px 0 5px;
+  color: #656161;
+}
+.payment_page .payment_details .details_container .order_total .cross:nth-child(2)::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: 1px;
+  width: 100%;
+  background-color: #BE1B1B;
+}
+.payment_page .payment_details .details_container .top {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.payment_page .payment_details .details_container .top .size, .payment_page .payment_details .details_container .top .duration {
+  color: #383333;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 17px;
+}
+.payment_page section {
+  grid-column: span 1;
+  grid-row: span 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.payment_page section .payment_form {
+  padding: 50px 20px 50px 20px;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+@media (max-width: 1200px) {
+  .payment_page section .payment_form {
+    width: 75%;
+  }
+}
+@media (max-width: 880px) {
+  .payment_page section .payment_form {
+    width: 100%;
+  }
+}
+.payment_page section .payment_form input[type=submit] {
+  height: 45px;
+  border-radius: 5px;
+  background-color: #344054;
+  border: none;
+  color: #fff;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+}
+.payment_page section .payment_form .head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.payment_page section .payment_form .head span {
+  width: 100%;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #8792A2;
+  text-align: center;
+  position: relative;
+}
+.payment_page section .payment_form .head span::after {
+  content: "";
+  width: 35%;
+  height: 0.3px;
+  background: rgba(60, 66, 87, 0.2117647059);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+}
+.payment_page section .payment_form .head span::before {
+  content: "";
+  width: 35%;
+  height: 0.3px;
+  background: rgba(60, 66, 87, 0.2117647059);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+}
+.payment_page section .payment_form .card_details .card_num_container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  border-radius: 8px 8px 0 0;
+  border: 1px solid rgba(60, 66, 87, 0.12);
+}
+.payment_page section .payment_form .card_details .card_num_container input {
+  flex-grow: 1;
+  border: none;
+  border-radius: none;
+  box-shadow: none;
+  background-color: transparent;
+}
+.payment_page section .payment_form .card_details .card_num_container img {
+  margin-right: 5px;
+  margin-right: 5px;
+  height: 30px;
+}
+.payment_page section .payment_form .card_details .bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+@media (max-width: 360px) {
+  .payment_page section .payment_form .card_details .bottom {
+    grid-template-columns: 1fr;
+  }
+  .payment_page section .payment_form .card_details .bottom #date {
+    border-radius: 0px 0px 0px 0px;
+  }
+  .payment_page section .payment_form .card_details .bottom .cvc {
+    border-radius: 0 0 8px 8px;
+    border-right: 1px solid rgba(60, 66, 87, 0.12);
+    border-bottom: 1px solid rgba(60, 66, 87, 0.12);
+    border-left: 1px solid rgba(60, 66, 87, 0.12);
+  }
+}
+.payment_page section .payment_form .card_details .bottom input[type=number] {
+  grid-column: span 1;
+  border-radius: 0 0 0 8px;
+  box-shadow: none;
+  border-top: none;
+}
+.payment_page section .payment_form .card_details .bottom div {
+  grid-column: span 1;
+  display: flex;
+  align-items: center;
+  border-radius: 0 0 8px 0;
+  border-right: 1px solid rgba(60, 66, 87, 0.12);
+  border-bottom: 1px solid rgba(60, 66, 87, 0.12);
+}
+.payment_page section .payment_form .card_details .bottom div img {
+  height: 30px;
+  margin-right: 5px;
+}
+.payment_page section .payment_form .card_details .bottom div input {
+  padding-right: 10px;
+  width: 100%;
+  flex-grow: 1;
+  border: none;
+  border-radius: none;
+  box-shadow: none;
+  background-color: transparent;
+}
+.payment_page section .payment_form .input_field_container {
+  display: flex;
+  flex-direction: column;
+}
+.payment_page section .payment_form .input_field_container label {
+  margin-bottom: 10px;
+  color: #344054;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+}
+.payment_page section .payment_form .input_field_container input {
+  height: 37px;
+  border-radius: 8px;
+  border: 1px solid rgba(60, 66, 87, 0.12);
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.04), 0px 2px 5px 0px rgba(0, 0, 0, 0.08);
+  padding-left: 15px;
+}
+.payment_page section .payment_form .input_field_container input:focus {
+  outline: none;
+}
+.payment_page section .payment_form .input_field_container input::-moz-placeholder {
+  line-height: 22px;
+  letter-spacing: 0.07px;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+}
+.payment_page section .payment_form .input_field_container input::placeholder {
+  line-height: 22px;
+  letter-spacing: 0.07px;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+}
+.payment_page section .payment_form .country_region select, .payment_page section .payment_form .country_region input {
+  border: 1px solid rgba(60, 66, 87, 0.12);
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.04), 0px 2px 5px 0px rgba(0, 0, 0, 0.08);
+}
+.payment_page section .payment_form .country_region select {
+  height: 40px;
+  border-radius: 8px 8px 0 0;
+  line-height: 22px;
+  letter-spacing: 0.07px;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  padding-left: 10px;
+  padding-right: 60px;
+  -webkit-appearance: none;
+  appearance: none;
+  -moz-appearance: none;
+  background-image: url("https://www.svgrepo.com/show/80156/down-arrow.svg");
+  background-repeat: no-repeat;
+  background-size: 14px 14px;
+  background-position: calc(100% - 16px);
+}
+.payment_page section .payment_form .country_region select:focus {
+  outline: none;
+}
+.payment_page section .payment_form .country_region input {
+  border-radius: 0 0 8px 8px;
+  padding-right: 10px;
+}/*# sourceMappingURL=payment.css.map */

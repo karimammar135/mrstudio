@@ -584,6 +584,10 @@
                 // End of details about payment 
 
                 // Payment section
+                .disabled {
+                    opacity: 0.5;
+                    pointer-events: none;
+                }
                 .payment {
                     
                     // flexbox
@@ -619,7 +623,7 @@
                             z-index: -1;
                         }
                     }
-                    button {
+                    input[type=submit], button {
                         cursor: pointer;
                         background-color: #BE1B1B;
                         width:fit-content;
@@ -632,7 +636,7 @@
                         font-family: 'Inter', sans-serif;
                         font-weight: 400;
                     }
-                    button:hover {
+                    input[type=submit]:hover {
                         background-color: #991111;
                     }
 
@@ -642,7 +646,7 @@
                     }
 
                     // Date selector
-                    input {
+                    input[type=date] {
                         height: 35px;
                         width: 170px;
                         border-radius: 4px;

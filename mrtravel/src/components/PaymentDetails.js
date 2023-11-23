@@ -1,12 +1,18 @@
 import React from "react";
 
-export default function PaymentDetails({ hotel, rooms, room_selected, setRoom_selected }){
+import UpdateURL from './UpdateURL.js';
+
+export default function PaymentDetails({ hotel, rooms, room_selected, setRoom_selected, showPaymentPage, authenticated }){
     // States
     const[state, setState] = React.useState({
         duration: 1,
         change_duration: false,
         total_price: 0
     });
+
+    // Current date
+    var today = new Date(new Date().getTime() + 86400000).toISOString().split('T')[0];
+    console.log(today);
 
     // Set Totel Price
     React.useEffect(() => {
@@ -43,6 +49,19 @@ export default function PaymentDetails({ hotel, rooms, room_selected, setRoom_se
         return final_price;
     }
 
+    // Submit form
+    function submit_form(event){
+        event.preventDefault();
+        if(authenticated === true){
+            const survey_date = document.querySelector('input[name=survey_date]').value;
+            showPaymentPage(state.duration, state.total_price, survey_date)
+        }
+        else{
+            alert('Login in order to pay'); 
+            window.location.href='/login'
+        }
+    }
+
     return (
         <div className="payment_details_wrapper">
             <div className="payment_details_container">
@@ -77,6 +96,7 @@ export default function PaymentDetails({ hotel, rooms, room_selected, setRoom_se
                         <ul>
                             <li>Payment per day: <span className={(room_selected.discount != 0) ? "cross": ""}>{room_selected.price_per_day}$</span> {(room_selected.discount != 0) && `${calcDiscount(room_selected.price_per_day, room_selected.discount)}$`} {(room_selected.discount != 0 && room_selected.discount_type === "first_day") && "(1st day)"}</li>
                             <li>Security deposit: {hotel.security_deposit}$</li>
+                            <li>available_rooms: {(room_selected.available_rooms === 0) && "No more available rooms" || `${room_selected.available_rooms}`}</li>
                             <li>Total: {state.total_price}$</li>
                             {(hotel.mrtravel_hyphin === true) && <li className="mrtravel_coupon"><span>MRtravel HYPHIN</span><span>coupon applied (40% off)</span></li>}
                         </ul>
@@ -87,14 +107,14 @@ export default function PaymentDetails({ hotel, rooms, room_selected, setRoom_se
                         {(hotel.mrtravel_hyphin === true) && <span className={(hotel.mrtravel_hyphin === false) ? "hide": ""}>{state.total_price - (state.total_price * (40/100))}$</span>}
                     </div>
                 </section>
-                <section className="payment">
+                <form className={(room_selected.available_rooms != 0) ? "payment": "payment disabled"} onSubmit={(event) => submit_form(event)}>
                     {(hotel.direct_payment_discount > 0) && <div className="header">Get <span>{hotel.direct_payment_discount}%</span> extra discount if you pay right now!</div> || <div className="header">Book and pay right now!</div>}
-                    <button>Book and pay now</button>
+                    <input name="survey_date" type="date" min={today} required></input>
+                    <input type="submit" value="Book and pay now"></input>
                     <span className="or">or</span>
                     <p>Pay after a survey date:</p>
-                    <input type="date"></input>
                     <button>Pay after the survey</button>
-                </section>
+                </form>
             </div>
         </div>
     );

@@ -548,6 +548,10 @@
   width: 100%;
   background-color: #BE1B1B;
 }
+.hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
 .hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .payment {
   display: flex;
   flex-direction: column;
@@ -578,7 +582,7 @@
   border-radius: 2px;
   z-index: -1;
 }
-.hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .payment button {
+.hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .payment input[type=submit], .hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .payment button {
   cursor: pointer;
   background-color: #BE1B1B;
   width: -moz-fit-content;
@@ -591,14 +595,14 @@
   font-family: "Inter", sans-serif;
   font-weight: 400;
 }
-.hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .payment button:hover {
+.hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .payment input[type=submit]:hover {
   background-color: #991111;
 }
 .hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .payment .or {
   width: 150px;
   text-align: center;
 }
-.hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .payment input {
+.hotel_page_wrapper .body .payment_details_wrapper .payment_details_container .payment input[type=date] {
   height: 35px;
   width: 170px;
   border-radius: 4px;

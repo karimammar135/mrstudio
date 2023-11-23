@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from datetime import date
 
 # User Model
 class User(AbstractUser):
@@ -15,6 +16,7 @@ class User(AbstractUser):
 
 # Hotel Details Model
 class HotelInfo(models.Model):
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="hotel", blank=True, null=True)
     ''' Hotel information fields '''
     hotel_name = models.CharField(max_length=64)
     hotel_description = models.TextField()
@@ -75,9 +77,11 @@ class RoomSize(models.Model):
     price_per_day = models.FloatField()
     discount = models.IntegerField(blank=True, default=0)
     discount_type = models.CharField(max_length=64, default="first_day")
+    amount = models.IntegerField(default=1)
+    available_rooms = models.IntegerField(default=1)
 
     def __str__(self):
-        return f"room_size: {self.size}, price_per_day: {self.price_per_day}, discount: {self.discount}, discount_type: {self.discount_type}"
+        return f"room_size: {self.size}, price_per_day: {self.price_per_day}, discount: {self.discount}, discount_type: {self.discount_type}, amount: {self.amount}, available_rooms: {self.available_rooms}"
     
     def serialize(self):
         return {
@@ -85,6 +89,16 @@ class RoomSize(models.Model):
             "size": self.size,
             "price_per_day": self.price_per_day,
             "discount": self.discount,
-            "discount_type": self.discount_type
+            "discount_type": self.discount_type,
+            "amount": self.amount,
+            "available_rooms": self.available_rooms
         }
     
+# Rent
+class Rent(models.Model):
+    room_size = models.ForeignKey(RoomSize, on_delete=models.CASCADE, related_name="rents")
+    customer = models.ForeignKey(User, on_delete=models.CASCADE, related_name="rooms_rented")
+    survey_date = models.DateField(default=date.today)
+
+    def __str__(self):
+        return f"room_size: {self.room_size.size}, customer: {self.customer}, survey_date: {self.survey_date}"

@@ -13,6 +13,7 @@ import Footer from './Footer.js';
 import HotelDetails from './HotelDetails.js';
 import AccountPage from './AccountPage.js';
 import AddHotelPage from './AddHotelPage.js';
+import Payment from './Payment.js';
 import UpdateURL from "./UpdateURL.js";
 
 import LoginPage from './LoginPage.js';
@@ -20,6 +21,8 @@ import LoginPage from './LoginPage.js';
 export default function App(){
   // Configure path
   const[path, setPath] = React.useState(window.location.pathname);
+  const[paymentObject, setPaymentObject] = React.useState({});
+  const[authenticated, setAuthenticated] = React.useState(false);
 
   // Detect url change
   let url = window.location.href;
@@ -33,6 +36,18 @@ export default function App(){
           });
       }, true)
   );
+
+  // Check if user is authenticated
+  React.useEffect(() => {
+      fetch('/authentication')
+      .then(response => response.json())
+      .then(data => {
+          setAuthenticated(data.authenticated)
+      })
+      .catch(error => {
+          console.log(error);
+      })
+  }, []);
     
   // MAIN Page
   if (path === "/"){
@@ -69,9 +84,15 @@ export default function App(){
   else if (path.slice(0, 6) === "/hotel"){
     // Scroll to the top of the page
     window.scrollTo(0, 0);
-    return(
-      <HotelDetails path={path} />
-    );
+    console.log();
+    if(path.split(/\//)[3] === 'payment'){
+      return <Payment paymentObject={paymentObject} authenticated={authenticated}/>
+    } 
+    else {
+      return(
+        <HotelDetails authenticated={authenticated} path={path} paymentObject={paymentObject} setPaymentObject={setPaymentObject} />
+      );
+    }
   }
 
   // Account Page

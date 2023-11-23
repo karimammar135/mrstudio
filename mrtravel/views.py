@@ -5,7 +5,7 @@ import json
 from django.http import JsonResponse
 from django.contrib.auth import authenticate, login, logout
 
-from .models import User, HotelInfo, RoomSize
+from .models import User, HotelInfo, RoomSize, Rent
 
 # views
 def index(request, path):
@@ -87,7 +87,7 @@ def hotels(request):
         # save data in the database
         ''' Save hotel '''
         try:
-            hotel = HotelInfo(hotel_name=data['hotel_name'], hotel_description=data['description'], locality=data['locality'], city=data['city'], country=data['country'], youtube_video=data['youtube_video_url'], picture_url=data['pic_url'], location=data['location_url'], check_in=data['check_in'], check_out=data['check_out'], security_deposit=data['security_deposit'], direct_payment_discount=data['direct_payment_discount'], mrtravel_hyphin=data['mrtravel_hyphin'], feature1=data['feature1'], feature2=data['feature2'], feature3=data['feature3'], feature4=data['feature4'])
+            hotel = HotelInfo(owner=request.user, hotel_name=data['hotel_name'], hotel_description=data['description'], locality=data['locality'], city=data['city'], country=data['country'], youtube_video=data['youtube_video_url'], picture_url=data['pic_url'], location=data['location_url'], check_in=data['check_in'], check_out=data['check_out'], security_deposit=data['security_deposit'], direct_payment_discount=data['direct_payment_discount'], mrtravel_hyphin=data['mrtravel_hyphin'], feature1=data['feature1'], feature2=data['feature2'], feature3=data['feature3'], feature4=data['feature4'])
             hotel.save()
         except KeyError:
             # Return error message
@@ -96,7 +96,7 @@ def hotels(request):
         '''Save rooms'''
         for room in data['rooms']:
             try:
-                room_size = RoomSize(hotel=hotel, size=room['size'], price_per_day=room['price'], discount=room['discount'], discount_type = room['discount_type'])
+                room_size = RoomSize(hotel=hotel, size=room['size'], price_per_day=room['price'], discount=room['discount'], discount_type = room['discount_type'], amount= room['amount'], available_rooms= room['amount'])
                 room_size.save()
             except KeyError:
                 # Return error message
@@ -120,3 +120,32 @@ def hotel_info(request, id):
     
     except HotelInfo.DoesNotExist:
         return JsonResponse({"error": "Hotel not found"}, status=400)
+    
+# Rent room 
+def rent_room(request):
+    # Load data
+    data = (json.loads(request.body))['payment_details']
+
+    try:
+        # Collect required data
+        room_size = RoomSize.objects.get(id=(data['room_selected'])['id'])
+        if int(room_size.amount) <= int(len(room_size.rents.all())):
+            return JsonResponse({"error": "No more available rooms"}, status=201)
+        customer = request.user
+        survey_date = data['survey_date']
+    except RoomSize.DoesNotExist:
+        return JsonResponse({"error": "some data does not exist"}, status=201)
+    
+    # Save the rent in the database
+    rent = Rent(room_size=room_size, customer=customer, survey_date=survey_date)
+    rent.save()
+
+    # Update the available rooms in the specific room size
+    room_size.available_rooms = room_size.amount - int(len(room_size.rents.all()))
+    room_size.save()
+
+    print(f"Rents: {len(room_size.rents.all())}")
+    print(f"room_size: {room_size}")
+
+    # Return success message
+    return JsonResponse({"message": "room rented"}, status=201)
