@@ -8,14 +8,14 @@ export default function Resorts(){
 
     // Fetch hotels from backend using API
     React.useEffect(() => {
-        fetch('/hotels')
+        fetch('/hotels/limit-1')
         .then(response => response.json())
         .then(data => {
             setHotels(data)
         })
         .catch(error => {
             alert(error)
-        });
+        })
     }, []);
 
     // Swipe carousel

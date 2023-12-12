@@ -8,6 +8,7 @@ import VideoSection from "./VideoSection.js";
 import PaymentDetails from './PaymentDetails.js';
 import Footer from './Footer.js';
 import UpdateURL from "./UpdateURL.js";
+import getCookie from './getCookie.js';
 
 export default function HotelDetails({ path, paymentObject, setPaymentObject, authenticated }){
     const[hotel_id, setHotel_id] = React.useState(path.split(/\//)[2]);
@@ -63,7 +64,7 @@ export default function HotelDetails({ path, paymentObject, setPaymentObject, au
     }, []);
 
     // Show payment page function
-    function showPaymentPage(duration, total_price, survey_date){
+    function showPaymentPage(duration, total_price, survey_date, survey_end_date, payment){
         setPaymentObject({
             ...paymentObject,
             hotel_name: hotel.name,
@@ -73,11 +74,48 @@ export default function HotelDetails({ path, paymentObject, setPaymentObject, au
             direct_payment_discount: hotel.direct_payment_discount,
             duration: duration,
             survey_date: survey_date,
+            survey_end_date: survey_end_date,
             room_selected: room_selected,
             hotel: hotel,
+            payment: payment,
+            type: 'direct',
         })
         UpdateURL(`hotel/${hotel_id}/payment`);
     }
+    // Send Api Request to save rent with uncomplted payment
+    function rentRoomUncompletedPayment(duration, total_price, survey_date, survey_end_date, payment){
+        // Get csrf token
+        const csrftoken = getCookie('csrftoken');
+        // Fetch the data to the data base to rent a room
+        fetch('/rent_room', {
+            method: 'POST',
+            headers: {'X-CSRFToken': csrftoken},
+            mode: 'same-origin',
+            body: JSON.stringify({
+                payment_details: {
+                    total_price: total_price,
+                    duration: duration,
+                    survey_date: survey_date,
+                    survey_end_date: survey_end_date,
+                    room_selected: room_selected,
+                    payment: payment,
+                }
+            })
+        })
+        .then(response => response.json())
+        .then(result => {
+            if (result.message != null){
+                window.location.href = '/account';
+            } else {
+                alert(result.error)
+            }
+        })
+        .catch(error => {
+            alert(error)
+        });
+        
+    }
+
 
     // Making sure hotel isn't null
     if(hotel === null | rooms === null){
@@ -104,7 +142,7 @@ export default function HotelDetails({ path, paymentObject, setPaymentObject, au
                     <HotelDetailsSection hotel={hotel} rooms={rooms} room_selected={room_selected} setRoom_selected={setRoom_selected} />
                     <HotelLocation hotel={hotel} />
                     <VideoSection page="hotel_page" hotel={hotel} />
-                    <PaymentDetails authenticated={authenticated} hotel={hotel} rooms={rooms} room_selected={room_selected} setRoom_selected={setRoom_selected} showPaymentPage={showPaymentPage} />
+                    <PaymentDetails authenticated={authenticated} hotel={hotel} rooms={rooms} room_selected={room_selected} setRoom_selected={setRoom_selected} showPaymentPage={showPaymentPage} rentRoomUncompletedPayment={rentRoomUncompletedPayment}/>
                     <Footer />
                 </section>
 

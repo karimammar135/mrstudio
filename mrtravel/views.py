@@ -5,6 +5,8 @@ import json
 from django.http import JsonResponse
 from django.contrib.auth import authenticate, login, logout
 
+import random
+
 from .models import User, HotelInfo, RoomSize, Rent
 
 # views
@@ -67,15 +69,26 @@ def authentication(request):
 
 # User Info API
 def user_info(request):
+    # If the user has an hotel
     try:
         user_info = request.user.serialize()
-        return JsonResponse(user_info, safe=False)
+        hotel = HotelInfo.objects.get(owner=request.user)
+        rooms_rented = hotel.hotel_rooms_rented.all()
+        
+        return JsonResponse({"user_info": user_info, "hotel": True, "rooms_rented":  [room.serialize() for room in rooms_rented]}, safe=False)
+    
+    # If the user haven't added his hotel yet
+    except HotelInfo.DoesNotExist:
+        print('no hotel')
+        rooms_rented = request.user.customer_rooms_rented.all()
+        return JsonResponse({"user_info": user_info, "hotel": False, "rooms_rented": [room.serialize() for room in rooms_rented]}, safe=False)
+    
     except AttributeError:
         return JsonResponse({"error": "user not logged in"}, status=400)
 
 
 # Submit Hotel Form
-def hotels(request):
+def hotels(request, limit):
     # Post method
     if request.method == "POST":
         # collect the data submited
@@ -107,7 +120,18 @@ def hotels(request):
     
     # Get method
     else:
-        hotels = HotelInfo.objects.all()
+        # cast to integer
+        try:
+            limit = int(limit)  
+        except ValueError:
+            return JsonResponse({"error": "limit must be in integer"}, safe=False)
+        
+        if limit == -1:
+            hotels = HotelInfo.objects.all()
+        else:
+            hotels = list(HotelInfo.objects.all()[:limit])
+            hotels = random.sample(hotels, limit)
+        
         return JsonResponse([hotel.serialize() for hotel in hotels], safe=False)
     
 # Hotel Info
@@ -115,6 +139,10 @@ def hotel_info(request, id):
     try:
         hotel = HotelInfo.objects.get(id=id)
         rooms = hotel.room_sizes.all()
+        for room in rooms:
+            room.available_rooms = room.amount - len(room.rents.all())
+            room.save()
+        
         print(rooms)
         return JsonResponse({"hotel": hotel.serialize(), "rooms": [room.serialize() for room in rooms]}, safe=False)
     
@@ -133,11 +161,16 @@ def rent_room(request):
             return JsonResponse({"error": "No more available rooms"}, status=201)
         customer = request.user
         survey_date = data['survey_date']
+        survey_end_date = data['survey_end_date']
+        total_price = data['total_price']
+        hotel = HotelInfo.objects.get(id=room_size.hotel.id)
+        payment = data['payment']
+        duration = data['duration']
     except RoomSize.DoesNotExist:
         return JsonResponse({"error": "some data does not exist"}, status=201)
     
     # Save the rent in the database
-    rent = Rent(room_size=room_size, customer=customer, survey_date=survey_date)
+    rent = Rent(room_size=room_size, hotel=hotel, customer=customer, total_price=total_price ,survey_date=survey_date, survey_end_date=survey_end_date, payment=payment, duration=duration)
     rent.save()
 
     # Update the available rooms in the specific room size
@@ -149,3 +182,20 @@ def rent_room(request):
 
     # Return success message
     return JsonResponse({"message": "room rented"}, status=201)
+
+
+## Complete Payment
+def complete_payment(request):
+    # Load data
+    data = (json.loads(request.body))['payment_details'] 
+
+    try:
+        rented_room = Rent.objects.get(id=data['id'])
+        rented_room.payment = True
+        rented_room.save()
+    except Rent.DoesNotExist:
+        # Return failure message
+        return JsonResponse({"error": "Rent wasn't fount"}, status=201)
+
+    # Return success message
+    return JsonResponse({"message": "Payment completed"}, status=201)

@@ -134,7 +134,7 @@ export default function AddHotelPage(){
         // Get csrf token
         const csrftoken = getCookie('csrftoken');
         // Fetch submitted data to the back-end using API
-        fetch('/hotels', {
+        fetch('/hotels/limit0', {
             method: 'POST',
             headers: {'X-CSRFToken': csrftoken},
             mode: 'same-origin',

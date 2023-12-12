@@ -2,10 +2,13 @@ import React from "react";
 
 import './payment.css';
 import getCookie from './getCookie.js';
+import UpdateURL from "./UpdateURL.js";
 
 export default function Payment({ paymentObject }){
     // Payment details 
     const[payment_details, setPayment_details] = React.useState(paymentObject);
+    const[picture_url, setPicture_url] = React.useState(null);
+    const[route, setRoute] = React.useState(null);
 
     const[authenticated, setAuthenticated] = React.useState(false);
     // Check if user is authenticated
@@ -15,7 +18,7 @@ export default function Payment({ paymentObject }){
         .then(data => {
             setAuthenticated(data.authenticated)
             if(!data.authenticated) {
-                window.location.replace('/login');
+                window.location.href = '/login';
             }
         })
         .catch(error => {
@@ -34,7 +37,16 @@ export default function Payment({ paymentObject }){
         } else {
             localStorage.setItem('payment_details', JSON.stringify(paymentObject));
         }
+        if (payment_details.type === 'indirect'){
+            setPicture_url(payment_details.hotel.picture_url)
+            setRoute('complete_payment')
+        } else {
+            setPicture_url(payment_details.picture_url)
+            setRoute('rent_room')
+        }
     }, []);
+
+    console.log(route)
 
     // Rent the room
     function rent_room(event){
@@ -43,7 +55,7 @@ export default function Payment({ paymentObject }){
         // Get csrf token
         const csrftoken = getCookie('csrftoken');
         // Fetch the data to the data base to rent a room
-        fetch('/rent_room', {
+        fetch(`/${route}`, {
             method: 'POST',
             headers: {'X-CSRFToken': csrftoken},
             mode: 'same-origin',
@@ -54,7 +66,9 @@ export default function Payment({ paymentObject }){
         .then(response => response.json())
         .then(result => {
             if (result.message != null){
-                alert(result.message)
+                localStorage.clear();
+                console.log(result.message);
+                window.location.href = '/account';
             } else {
                 alert(result.error)
             }
@@ -64,15 +78,16 @@ export default function Payment({ paymentObject }){
         });
     }
     
-    if (!authenticated){
-        return <h1>Not logged in</h1>;
-    } else {
-        return (
-            <>
-                {(Object.keys(payment_details).length === 0) && <div>0</div> || 
+    console.log(payment_details);
 
-                    <section className="payment_page">
-                        <div className="payment_details" style={{ backgroundImage: `url(${payment_details.picture_url})` }}>
+    // Html Page
+    return (
+        <>
+            {(Object.keys(payment_details).length === 0) && <div></div> || 
+
+                <section className="payment_page">
+                    <div className="payment_details" style={{ backgroundImage: `url(${picture_url})` }}>
+                        {(payment_details.type === 'direct') && 
                             <div className="details_container">
                                 <div className="top">
                                     <span className="size">Room Size: {payment_details.room_selected.size} ft2</span>
@@ -85,53 +100,52 @@ export default function Payment({ paymentObject }){
                                     {(payment_details.mrtravel_hyphin === true) && <span className={(payment_details.mrtravel_hyphin === false) ? "hide": ""}>{payment_details.total_price - (payment_details.total_price * (40/100))}$</span>}
                                 </div>
                                 <h1>{payment_details.hotel_name}</h1>
+                            </div> || <div className="details_container" style={{opacity: '0'}}></div>}
+                    </div>
+                    <section>
+                        <form className="payment_form" onSubmit={(event) => rent_room(event)}>
+                            <div className="head">
+                                <span>pay with card</span>
                             </div>
-                        </div>
-                        <section>
-                            <form className="payment_form" onSubmit={(event) => rent_room(event)}>
-                                <div className="head">
-                                    <span>pay with card</span>
-                                </div>
-                                
-                                <div className="input_field_container">
-                                    <label htmlFor="email">Email</label>
-                                    <input type="email" name="email" id="email" required></input>
-                                </div>
-                                <div className="card_details input_field_container">
-                                    <label htmlFor="card_number">Card details</label>
-                                    <div className="card_num_container">
-                                        <input id="card_number" type="tel" pattern="[0-9\s]{13,19}" autoComplete="cc-number" maxLength="19" placeholder="1234 1234 1234 1234"></input>
-                                        <div>
-                                            <img src="https://cdn4.iconfinder.com/data/icons/flat-brand-logo-2/512/visa-512.png" alt="visa"></img>
-                                            <img src="https://cdn0.iconfinder.com/data/icons/credit-card-debit-card-payment-PNG/128/Mastercard-Curved.png" alt="mastercard"></img>
-                                            <img src="https://cdn3.iconfinder.com/data/icons/flat-icons-web/40/Amex-256.png" alt="amex"></img>
-                                            <img src="https://cdn2.iconfinder.com/data/icons/credit-cards-6/156/discover-512.png" alt="discover"></img>
-                                        </div>
-                                    </div>
-                                    <div className="bottom">
-                                        <input id="date" type="number" name="date" placeholder="MM / YY"></input>
-                                        <div className="cvc"><input type="tel" maxLength="3" placeholder="CVC"></input><img src="https://cdn2.iconfinder.com/data/icons/credit-cards-6/156/security_code_front-256.png" alt="cvc"></img></div>
+                            
+                            <div className="input_field_container">
+                                <label htmlFor="email">Email</label>
+                                <input type="email" name="email" id="email" required></input>
+                            </div>
+                            <div className="card_details input_field_container">
+                                <label htmlFor="card_number">Card details</label>
+                                <div className="card_num_container">
+                                    <input id="card_number" type="tel" pattern="[0-9\s]{13,19}" autoComplete="cc-number" maxLength="19" placeholder="1234 1234 1234 1234"></input>
+                                    <div>
+                                        <img src="https://cdn4.iconfinder.com/data/icons/flat-brand-logo-2/512/visa-512.png" alt="visa"></img>
+                                        <img src="https://cdn0.iconfinder.com/data/icons/credit-card-debit-card-payment-PNG/128/Mastercard-Curved.png" alt="mastercard"></img>
+                                        <img src="https://cdn3.iconfinder.com/data/icons/flat-icons-web/40/Amex-256.png" alt="amex"></img>
+                                        <img src="https://cdn2.iconfinder.com/data/icons/credit-cards-6/156/discover-512.png" alt="discover"></img>
                                     </div>
                                 </div>
-                                <div className="input_field_container">
-                                    <label htmlFor="name_on_card">Name on card</label>
-                                    <input id="name_on_card" type="text"></input>
+                                <div className="bottom">
+                                    <input id="date" type="number" name="date" placeholder="MM / YY"></input>
+                                    <div className="cvc"><input type="tel" maxLength="3" placeholder="CVC"></input><img src="https://cdn2.iconfinder.com/data/icons/credit-cards-6/156/security_code_front-256.png" alt="cvc"></img></div>
                                 </div>
-                                <div className="country_region input_field_container">
-                                    <label>Country or Region</label>
-                                    <select name="country">
-                                        <option value="USA">United States</option>
-                                        <option value="LEB">Lebanon</option>
-                                    </select>
-                                    <input type="tel" maxLength="3" placeholder="ZIP"></input>
-                                </div>
-                                
-                                <input type="submit" value={"Pay $" + payment_details.total_price}></input>
-                            </form>
-                        </section>
+                            </div>
+                            <div className="input_field_container">
+                                <label htmlFor="name_on_card">Name on card</label>
+                                <input id="name_on_card" type="text"></input>
+                            </div>
+                            <div className="country_region input_field_container">
+                                <label>Country or Region</label>
+                                <select name="country">
+                                    <option value="USA">United States</option>
+                                    <option value="LEB">Lebanon</option>
+                                </select>
+                                <input type="tel" maxLength="3" placeholder="ZIP"></input>
+                            </div>
+                            
+                            <input type="submit" value={"Pay $" + payment_details.total_price}></input>
+                        </form>
                     </section>
-                }
-            </> 
-        );
-    }
+                </section>
+            }
+        </> 
+    );
 }

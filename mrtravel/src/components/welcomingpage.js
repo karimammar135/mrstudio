@@ -4,14 +4,28 @@ import pool from './images/pool.png';
 import wifi from './images/wifi.png';
 import ac from './images/ac.png';
 import dinner from './images/dinner.png';
+import UpdateURL from "./UpdateURL.js";
 
 function Hotels2Head(){
     const[showSearchbar, setShowSearchBar] = React.useState(false);
+    const[total_hotels, setTotal_hotels] = React.useState(0);
+
+    // Calculate Number of Hotels
+    React.useEffect(() => {
+        fetch('/hotels/limit-1')
+        .then(response => response.json())
+        .then(data => {
+            setTotal_hotels(data.length)
+        })
+        .catch(error => {
+            alert(error)
+        })
+    }, []);
 
     if (!showSearchbar){
         return (
             <div className="head">
-                <span>150 Results</span>
+                <span>{total_hotels} Results</span>
                 <div className="actions">
                     <i className="fa-solid fa-pen pen"></i>
                     <i className="fa-solid fa-magnifying-glass search-btn" onClick={() => setShowSearchBar(true)}></i>
@@ -29,6 +43,24 @@ function Hotels2Head(){
 }
 
 export default function WelcomingPage(){
+    const[hotels, setHotels] = React.useState(null);
+
+    // Fetch hotels info
+    React.useEffect(() => {
+        fetch('/hotels/limit5')
+        .then(response => response.json())
+        .then(data => {
+            setHotels(data);
+        })
+        .catch(error => {
+            alert(error)
+        })
+    }, []);
+
+    // Show Hotel Details
+    function showDetails(hotel_num){
+        UpdateURL(`hotel/${hotel_num}`);
+    }
 
     return (
         <div className="welcoming-page">
@@ -92,11 +124,9 @@ export default function WelcomingPage(){
                     <div className="hotels2">
                         <Hotels2Head />
                         <div className="elipses">
-                            <a href="#" className="elipse1"></a>
-                            <a href="#" className="elipse2"></a>
-                            <a href="#" className="elipse3"></a>
-                            <a href="#" className="elipse4"></a>
-                            <a href="#" className="elipse5"></a>
+                            {(hotels != null) && hotels.map(hotel => {
+                                return <a key={hotel.id} onClick={() => showDetails(hotel.id)} href="#" style={{backgroundImage: `url(${hotel.picture_url})`}}></a>
+                            })}
                         </div>
                     </div>
                 </div>

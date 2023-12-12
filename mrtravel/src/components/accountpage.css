@@ -1,4 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;700&display=swap");
+* {
+  font-family: "Inter", sans-serif;
+}
+
 .top_section {
   width: 100%;
   height: 235px;
@@ -164,10 +168,17 @@
   align-items: center;
 }
 .account_details_wrapper .account_details {
-  width: 80%;
+  width: 85%;
+  box-sizing: border-box;
   border-radius: 10px;
   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.25);
   padding: 15px 10px 25px 25px;
+}
+@media (max-width: 370px) {
+  .account_details_wrapper .account_details {
+    width: 100%;
+    margin: 0 15px 0 15px;
+  }
 }
 .account_details_wrapper .account_details h1 {
   margin: 0;
@@ -189,4 +200,196 @@
   font-size: 14px;
   font-family: "Mulish", sans-serif;
   font-weight: 400;
+}
+
+.account_page .hotels_rented_wrapper {
+  margin-top: 70px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.account_page .hotels_rented_wrapper .rooms_rented_details {
+  width: 85%;
+  max-width: 1380px;
+  box-sizing: border-box;
+}
+@media (max-width: 370px) {
+  .account_page .hotels_rented_wrapper .rooms_rented_details {
+    width: 100%;
+    padding: 0 15px 0 15px;
+  }
+}
+.account_page .hotels_rented_wrapper .rooms_rented_details h1 {
+  margin: 0 0 20px 0;
+  color: #000;
+  font-size: 24px;
+  font-family: "Mulish", sans-serif;
+  font-weight: 700;
+}
+.account_page .hotels_rented_wrapper .rooms_rented_details .no_rented_rooms {
+  color: #b9b9b9;
+  width: 100%;
+  text-align: center;
+}
+.account_page .hotels_rented_wrapper .rooms_rented_details .table_wrapper {
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+  overflow-y: scroll;
+  width: 100%;
+}
+.account_page .hotels_rented_wrapper .rooms_rented_details table {
+  width: 100%;
+  border-spacing: 0;
+}
+.account_page .hotels_rented_wrapper .rooms_rented_details table .col_w200 {
+  width: 200px;
+}
+.account_page .hotels_rented_wrapper .rooms_rented_details table .col_w160 {
+  width: 160px;
+}
+.account_page .hotels_rented_wrapper .rooms_rented_details table .header_row {
+  height: 50px;
+}
+.account_page .hotels_rented_wrapper .rooms_rented_details table .header_row .customer_id {
+  text-align: center;
+}
+.account_page .hotels_rented_wrapper .rooms_rented_details table th {
+  white-space: nowrap;
+  padding: 0 20px 0 20px;
+  text-align: start;
+  color: #000;
+  font-size: 15px;
+  font-weight: 400;
+}
+.account_page .hotels_rented_wrapper .rooms_rented_details table .photo_header {
+  text-align: center;
+}
+.account_page .hotels_rented_wrapper .rooms_rented_details table tr {
+  height: 90px;
+}
+.account_page .hotels_rented_wrapper .rooms_rented_details table td {
+  height: 100%;
+  margin: auto;
+  padding: 0 20px 0 20px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  font-size: 15px;
+  border-top: 1px solid #B7B7B7;
+}
+.account_page .hotels_rented_wrapper .rooms_rented_details table .center_id {
+  margin: auto;
+  border: none;
+  width: 100%;
+  text-align: center;
+  font-size: 17px;
+  font-weight: 600;
+  display: block;
+}
+.account_page .hotels_rented_wrapper .rooms_rented_details table .completed {
+  font-size: 13px;
+  color: #199916;
+  font-weight: 500;
+}
+.account_page .hotels_rented_wrapper .rooms_rented_details table .completed_white {
+  font-size: 13px;
+  color: #ffffff;
+  font-weight: 500;
+}
+.account_page .hotels_rented_wrapper .rooms_rented_details table .uncompleted {
+  font-size: 13px;
+  color: #BE1B1B;
+  font-weight: 500;
+}
+.account_page .hotels_rented_wrapper .rooms_rented_details table .hotel_name {
+  margin-bottom: 0px;
+  font-size: 16px;
+  font-weight: 600;
+}
+.account_page .hotels_rented_wrapper .rooms_rented_details table .elipse {
+  height: 66px;
+  width: 66px;
+  border-radius: 33px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: auto;
+}
+.account_page .hotels_rented_wrapper .rooms_rented_details table .booking_date {
+  height: 100%;
+}
+.account_page .hotels_rented_wrapper .rooms_rented_details table .booking_date div {
+  /* flexbox */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 5px;
+}
+.account_page .hotels_rented_wrapper .rooms_rented_details table .booking_date div span:first-child {
+  font-size: 13px;
+  font-weight: 600;
+}
+.account_page .hotels_rented_wrapper .rooms_rented_details table .booking_date div span:last-child {
+  font-size: 13px;
+  font-weight: 400;
+  color: #fff;
+  position: relative;
+  padding: 2px 20px 2px 20px;
+}
+.account_page .hotels_rented_wrapper .rooms_rented_details table .booking_date div span:last-child::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #BE1B1B;
+  z-index: -1;
+  border-radius: 2px;
+}
+.account_page .hotels_rented_wrapper .rooms_rented_details table .payment_date .child {
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  position: relative;
+  padding: 2px 16px 2px 16px;
+}
+.account_page .hotels_rented_wrapper .rooms_rented_details table .payment_date .child::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #1B5CBE;
+  z-index: -1;
+  border-radius: 2px;
+}
+.account_page .hotels_rented_wrapper .rooms_rented_details table .child_arrow .child {
+  margin: 10px 0 10px 0;
+  padding: 2px 10px 2px 10px;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+.account_page .hotels_rented_wrapper .rooms_rented_details table .child_arrow .child .arrow_up {
+  display: none;
+}
+.account_page .hotels_rented_wrapper .rooms_rented_details table .child_arrow .child div:first-child {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10px;
+}
+.account_page .hotels_rented_wrapper .rooms_rented_details table .child_arrow .child div:first-child span {
+  white-space: nowrap;
+}
+.account_page .hotels_rented_wrapper .rooms_rented_details table .child_arrow .child .payment_details {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 5px;
 }/*# sourceMappingURL=accountpage.css.map */

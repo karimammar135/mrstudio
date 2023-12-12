@@ -12,7 +12,8 @@ urlpatterns = [
     path('register', views.register_view, name="register_view"),
     path('logout', views.logout_view, name="logout_view"),
     path('user_info', views.user_info, name="user_info"),
-    path('hotels', views.hotels, name="hotels"),
+    path('hotels/limit<str:limit>', views.hotels, name="hotels"),
     path('hotel_info<int:id>', views.hotel_info, name="hotel_info"),
     path('rent_room', views.rent_room, name="rent_room"),
+    path('complete_payment', views.complete_payment, name="complete_payment"),
 ]

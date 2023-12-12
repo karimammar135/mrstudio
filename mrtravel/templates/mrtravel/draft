@@ -1,0 +1,190 @@
+
+setPaymentObject({
+    ...room,
+    type: 'indirect',
+})
+UpdateURL('payment');
+
+<div className="rooms_rented_details">
+                    <h1>{(userInfo.hotelier === true) && 'Pending surveys' || 'Hotels Rented'}</h1>
+                    <div className="info_container">
+                        {(userInfo.hotelier === true) && <>
+                            <span className="header">Customer id</span>
+                            <span className="header">Survey date</span>
+                            <span className="header">Room size</span>
+                            <span className="header">Duration</span>
+                            <span className="header">Payment</span>
+                            <span className="header">Total payment</span>
+                            <span className="header">Payment date</span>
+                        </> || <>
+                            <span className="header">Hotel name</span>
+                            <span className="header photo_header">Photo</span>
+                            <span className="header">Booking date</span>
+                            <span className="header">Room size</span>
+                            <span className="header">Duration</span>
+                            <span className="header">Total payment</span>
+                            <span className="header">payment</span>
+                        </>}
+
+                        {(Object.keys(userInfo.rooms_rented).length > 0) && userInfo.rooms_rented.map(room => {
+                            if (userInfo.hotelier === false) {
+                                return (
+                                    <>
+                                        <h1 className="row_element hotel_name">{room.hotel.name}</h1>
+                                        <div className="row_element "><div className="elipse" style={{ backgroundImage: `url(${room.hotel.picture_url})` }}></div></div>
+                                        <div className="row_element booking_date">
+                                            <span>{room.survey_date_named}</span>
+                                            <span>{room.survey_date}</span>
+                                        </div>
+                                        <span className="row_element">{room.room_size.size}ft2</span>
+                                        <span className="row_element">{room.duration - 1} day {room.duration} nights</span>
+                                        <span className="row_element">{room.total_price}$(tax included)</span>
+                                        <div className="row_element payment_date">
+                                            {room.payment === true && `${room.survey_date}` || `${room.survey_end_date}`}
+                                        </div>
+                                    </>
+                                );
+                            } else {
+                                return (
+                                    <>
+                                        <div className="row_element"><h1 className="row_element center_element">{room.customer.id}</h1></div>
+                                        <div className="row_element booking_date">
+                                            <span>{room.survey_date_named}</span>
+                                            <span>{room.survey_date}</span>
+                                        </div>
+                                        <div className="row_element"><span className="center_element">{room.room_size.size}ft2</span></div>
+                                        <span className="row_element">{room.duration - 1} day {room.duration} nights</span>
+                                        <span className={classNames('row_element', {'completed': (room.payment === true), 'uncompleted': (room.payment != true)})}>{room.payment === true && 'completed' || 'uncompleted'}</span>
+                                        <span className="row_element">{room.total_price}$(tax included)</span>
+                                        <div className="row_element payment_date">
+                                            <span>{room.payment === true && `${room.survey_date}` || `${room.survey_end_date}`}</span>
+                                        </div>
+                                    </>
+                                );
+                            }
+                        })}
+                    </div>
+                    {(Object.keys(userInfo.rooms_rented).length === 0) && <p className="no_rented_rooms">no rooms rented yet.</p>}
+                </div>
+
+
+
+                // Info container
+                .info_container {
+                    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+                    overflow-y: scroll;
+                    // grid
+                    display: grid;
+                    grid-template-columns: repeat(7, auto);
+                    grid-template-rows: 50px;
+                    grid-auto-rows: 90px;
+        
+                    // Header elements
+                    .header {
+                        white-space: nowrap;
+                        margin-top: auto;
+                        margin-bottom: auto;
+                        padding: 0 20px 0 20px;
+        
+                        color: #000;
+                        font-family: 'Inter', sans-serif;
+                        font-size: 15px;
+                        font-weight: 400;
+                    }
+                    .photo_header {
+                        margin: auto;
+                    }
+        
+                    // Row elements
+                    .row_element {
+                        height: 100%;
+                        display: flex;
+                        align-items: center;
+                        padding: 0 20px 0 20px;
+                        box-sizing: border-box;
+                        -moz-box-sizing: border-box;
+                        border-top: 0.6px solid #B7B7B7;
+                        font-size: 15px;
+                    }
+                    .center_element {
+                        margin: auto;
+                        border: none;
+                    }
+                    .completed {
+                        font-size: 13px;
+                        color: #199916;
+                        font-weight: 500;
+                    }
+                    .uncompleted {
+                        font-size: 13px;
+                        color: #BE1B1B;
+                        font-weight: 500;
+                    }
+                    .hotel_name {
+                        margin-bottom: 0px;
+                        font-size: 16px;
+                        font-weight: 600;
+                    }
+                    .elipse {
+                        height: 66px;
+                        width: 66px;
+                        border-radius: 33px;
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        margin: auto;
+                    }
+                    .booking_date {
+                        /* flexbox */
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: flex-start;
+                        gap: 5px;
+        
+                        span:first-child {
+                            font-size: 13px;
+                            font-weight: 600;
+                        }
+                        span:last-child {
+                            font-size: 13px;
+                            font-weight: 400;
+                            color: #fff;
+                            position: relative;
+                            padding: 2px 20px 2px 20px;
+                        }
+                        span:last-child::before {
+                            content: "";
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            background-color: #BE1B1B;
+                            z-index: -1;
+                            border-radius: 2px;
+                        }
+                    }
+                    .payment_date {
+                        span {
+                            color: #fff;
+                            font-size: 13px;
+                            font-weight: 500;
+                            position: relative;
+                            padding: 2px 16px 2px 16px;
+                        }
+                        span::before {
+                            content: "";
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            background-color: #1B5CBE;
+                            z-index: -1;
+                            border-radius: 2px;
+                        }
+                    }
+                    // End of row elements
+                }
+                // End of info container

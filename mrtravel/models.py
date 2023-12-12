@@ -50,6 +50,7 @@ class HotelInfo(models.Model):
     def serialize(self):
         return {
             "id": self.id,
+            "owner_id": self.owner.id,
             "name": self.hotel_name,
             "description": self.hotel_description,
             "locality": self.locality,
@@ -97,8 +98,27 @@ class RoomSize(models.Model):
 # Rent
 class Rent(models.Model):
     room_size = models.ForeignKey(RoomSize, on_delete=models.CASCADE, related_name="rents")
-    customer = models.ForeignKey(User, on_delete=models.CASCADE, related_name="rooms_rented")
+    hotel = models.ForeignKey(HotelInfo, on_delete=models.CASCADE, related_name="hotel_rooms_rented", blank=True, null=True)
+    customer = models.ForeignKey(User, on_delete=models.CASCADE, related_name="customer_rooms_rented")
+    total_price = models.IntegerField(default=0)
     survey_date = models.DateField(default=date.today)
+    survey_end_date = models.DateField(default=date.today)
+    duration = models.IntegerField(default=1)
+    payment = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"room_size: {self.room_size.size}, customer: {self.customer}, survey_date: {self.survey_date}"
+        return f"room_size: {self.room_size.size}, hotel: {self.hotel}, customer: {self.customer}, total_price:{self.total_price}, survey_date: {self.survey_date}, survey_end_date: {self.survey_end_date}, payment: {self.payment}"
+    
+    def serialize(self):
+        return {
+            "id": self.id,
+            "hotel": self.hotel.serialize(),
+            "customer": self.customer.serialize(),
+            "total_price": self.total_price,
+            "survey_date": self.survey_date.strftime("%d/%m/%Y"),
+            "survey_date_named": self.survey_date.strftime("%d - %B - %Y"),
+            "survey_end_date": self.survey_end_date,
+            "duration": self.duration,
+            "room_size": self.room_size.serialize(), 
+            "payment": self.payment
+        }

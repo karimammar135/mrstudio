@@ -69,12 +69,18 @@ export default function App(){
   } 
   // Log In Page
   else if (path.slice(0, 6) === "/login"){
+    if(authenticated){
+      window.location.href = '/';
+    }
     return(
       <LoginPage is_signup={false} />
     );
   }
   // Sign up Page
   else if (path.slice(0, 7) === "/signup"){
+    if(authenticated){
+      window.location.href = '/';
+    }
     return(
       <LoginPage is_signup={true} />
     );
@@ -86,6 +92,7 @@ export default function App(){
     window.scrollTo(0, 0);
     console.log();
     if(path.split(/\//)[3] === 'payment'){
+      
       return <Payment paymentObject={paymentObject} authenticated={authenticated}/>
     } 
     else {
@@ -98,7 +105,7 @@ export default function App(){
   // Account Page
   else if(path.slice(0, 8) === "/account"){
     return(
-      <AccountPage />
+      <AccountPage setPaymentObject={setPaymentObject} />
     );
   }
 
@@ -106,6 +113,13 @@ export default function App(){
   else if(path.slice(0, 10) === "/add_hotel"){
     return(
       <AddHotelPage />
+    );
+  }
+
+  // Payment page
+  else if(path.slice(0, 8) === "/payment"){
+    return(
+      <Payment paymentObject={paymentObject} authenticated={authenticated}/>
     );
   }
 
