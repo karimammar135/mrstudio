@@ -6,9 +6,15 @@ import ac from './images/ac.png';
 import dinner from './images/dinner.png';
 import UpdateURL from "./UpdateURL.js";
 
+import SearchBar from './SearchBar.js';
+import SearchResults from './SearchResults.js';
+
 function Hotels2Head(){
     const[showSearchbar, setShowSearchBar] = React.useState(false);
     const[total_hotels, setTotal_hotels] = React.useState(0);
+    const[hotels, setHotels] = React.useState();
+    const[results, setResults] = React.useState([]);
+    const[input, setInput] = React.useState("");
 
     // Calculate Number of Hotels
     React.useEffect(() => {
@@ -16,6 +22,7 @@ function Hotels2Head(){
         .then(response => response.json())
         .then(data => {
             setTotal_hotels(data.length)
+            setHotels(data)
         })
         .catch(error => {
             alert(error)
@@ -33,12 +40,10 @@ function Hotels2Head(){
             </div>
         );
     } else {
-        return (
-            <div className="head search_bar">
-                <input name="hotel_name" placeholder="Search for hotels" id="search_hotels"/>
-                <i className="fa-solid fa-xmark close-search" onClick={() => setShowSearchBar(false)}></i>
-            </div>
-        );
+        return <div className="search-container">
+            <SearchBar input={input} setInput={setInput} setShowSearchBar={setShowSearchBar} hotels={hotels} setResults={setResults} results={results}/>
+            <SearchResults setInput={setInput} results={results} />
+        </div>
     }
 }
 

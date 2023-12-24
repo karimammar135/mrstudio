@@ -75,7 +75,7 @@ def user_info(request):
         hotel = HotelInfo.objects.get(owner=request.user)
         rooms_rented = hotel.hotel_rooms_rented.all()
         
-        return JsonResponse({"user_info": user_info, "hotel": True, "rooms_rented":  [room.serialize() for room in rooms_rented]}, safe=False)
+        return JsonResponse({"user_info": user_info, "hotel": hotel.serialize(), "rooms_rented":  [room.serialize() for room in rooms_rented]}, safe=False)
     
     # If the user haven't added his hotel yet
     except HotelInfo.DoesNotExist:
@@ -143,7 +143,6 @@ def hotel_info(request, id):
             room.available_rooms = room.amount - len(room.rents.all())
             room.save()
         
-        print(rooms)
         return JsonResponse({"hotel": hotel.serialize(), "rooms": [room.serialize() for room in rooms]}, safe=False)
     
     except HotelInfo.DoesNotExist:
@@ -177,9 +176,6 @@ def rent_room(request):
     room_size.available_rooms = room_size.amount - int(len(room_size.rents.all()))
     room_size.save()
 
-    print(f"Rents: {len(room_size.rents.all())}")
-    print(f"room_size: {room_size}")
-
     # Return success message
     return JsonResponse({"message": "room rented"}, status=201)
 
@@ -199,3 +195,88 @@ def complete_payment(request):
 
     # Return success message
     return JsonResponse({"message": "Payment completed"}, status=201)
+
+
+## Edit Hotel Details
+def edit_hotel(request, id):
+    # Load data
+    data = json.loads(request.body)
+    
+    # Get the appropriate hotel and update its fields
+    try:
+        hotel = HotelInfo.objects.get(id=id)
+        hotel.hotel_name = data['hotel_name']
+        hotel.locality = data['locality']
+        hotel.city = data['city']
+        hotel.country = data['country']
+        hotel.location = data['location_url']
+        hotel.youtube_video = data['youtube_video_url']
+        hotel.hotel_description = data['description']
+        hotel.feature1 = data['feature1']
+        hotel.feature2 = data['feature2']
+        hotel.feature3 = data['feature3']
+        hotel.feature4 = data['feature4']
+        hotel.picture_url = data['pic_url']
+        hotel.direct_payment_discount = data['direct_payment_discount']
+        hotel.mrtravel_hyphin = data['mrtravel_hyphin']
+        hotel.check_in=data['check_in']
+        hotel.check_out = data['check_out']
+        hotel.security_deposit = data['security_deposit']
+        hotel.save()
+        
+        # Return success message
+        return JsonResponse({"message": "Hotel edited successfulu"}, status=201)
+    
+    except HotelInfo.DoesNotExist:
+        # Return error message
+        return JsonResponse({"error": "key error in rooms' info"}, status=400)
+    
+
+''' Delete Roomm '''
+def delete_room(request, id):
+    # Get the specific room
+    try:
+        room = RoomSize.objects.get(id=id)
+        room.delete()
+    except RoomSize.DoesNotExist:
+        # Return success message
+        return JsonResponse({"error": f"Couldn't find room with id:{id}"}, status=400)
+
+    # Return success message
+    return JsonResponse({"message": f"Successfully deleted room{id}"}, status=201)
+
+''' Add room '''
+def add_room(request):
+    # Get submitted data
+    data = json.loads(request.body)
+
+    try:
+        hotel = HotelInfo.objects.get(id=data['hotel_id'])
+        new_room = RoomSize(hotel=hotel, size=data['size'], price_per_day=data['price'] ,discount=data['discount'], discount_type=data['discount_type'], amount=data['amount'], available_rooms=data['amount'])
+        new_room.save()
+    except HotelInfo.DoesNotExist:
+        # Return error
+        return JsonResponse({"error": "Hotel not found"}, status=400)
+
+    # Return success message
+    return JsonResponse({"message": "Room added"}, status=201)
+
+''' Edit Room '''
+def edit_room(request):
+    # Collect submitted data
+    data = json.loads(request.body)
+
+    try:
+        room = RoomSize.objects.get(id=data['id'])
+        room.size = data['size']
+        room.price_per_day = data['price_per_day']
+        room.amount = data['amount']
+        room.discount = data['discount']
+        room.discount_type = data['discount_type']
+        room.save()
+    except RoomSize.DoesNotExist:
+        # Return error
+        return JsonResponse({"error": "Room not found"}, status=400)
+
+    # Return success message
+    return JsonResponse({"message": "Room edited successfully"}, status=201)

@@ -1,0 +1,35 @@
+
+.search-container {
+    position: relative;
+}
+
+.results-container {
+    z-index: 2;
+    width: 100%;
+    background-color: #efefef;
+    max-height: 130px;
+    overflow-y: scroll;
+    scrollbar-width: 0px;
+    margin-top: 10px;
+    position: absolute;
+    border-radius: 5px;
+}
+.results-container div{
+    padding: 3px 3px 3px 7px;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+.results-container div:hover{
+    background-color: #327FF2;
+}
+.results-container::-webkit-scrollbar {
+    width: 8px;
+}
+.results-container::-webkit-scrollbar-track {
+    background: transparent;
+  }
+.results-container::-webkit-scrollbar-thumb {
+    background-color: rgba(32, 32, 32, 0.678);
+    border-radius: 5px;
+}

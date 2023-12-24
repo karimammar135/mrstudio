@@ -347,6 +347,9 @@
   z-index: -1;
   border-radius: 2px;
 }
+.account_page .hotels_rented_wrapper .rooms_rented_details table .payment_date {
+  /* flexbox */
+}
 .account_page .hotels_rented_wrapper .rooms_rented_details table .payment_date .child {
   color: #fff;
   font-size: 13px;

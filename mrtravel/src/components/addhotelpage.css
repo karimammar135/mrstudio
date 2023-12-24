@@ -223,6 +223,16 @@
     min-height: 250px;
   }
 }
+.add_hotel_page .body .content .main_form .part5 .rooms .edit_room_btn {
+  background-color: #344054;
+  border: none;
+  border-radius: 3px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 300;
+  height: 20px;
+  width: 40px;
+}
 .add_hotel_page .body .content .main_form .part5 .rooms .none {
   display: block;
   width: 100%;

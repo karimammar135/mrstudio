@@ -1,7 +1,27 @@
 import React from "react";
 import './RelaxingPleasure.css';
 
+import UpdateURL from './UpdateURL.js';
+
 export default function RelaxingPleasure(){
+    const[hotels, setHotels] = React.useState(null);
+
+    // Fetch hotels info
+    React.useEffect(() => {
+        fetch('/hotels/limit3')
+        .then(response => response.json())
+        .then(data => {
+            setHotels(data);
+        })
+        .catch(error => {
+            alert(error)
+        })
+    }, []);
+
+    // Show Hotel Details
+    function showDetails(hotel_num){
+        UpdateURL(`hotel/${hotel_num}`);
+    }
 
     document.addEventListener('DOMContentLoaded', () => {
         let scrollbar = document.querySelector('.images-scrollbar');
@@ -12,45 +32,21 @@ export default function RelaxingPleasure(){
         <div className="center-relaxing-pleasure">
             <div className="relaxing-pleasure-container">
                 <div className="images-regular images-defaults">
-                    <div className="card card-1">
-                        <div className="details">
-                            <div className="header">
-                                <span className="resort-name">MRtravel Resort</span>
-                                <div className="rating">
-                                    <i className="fa-regular fa-heart"></i>
-                                    <span>4.7</span>
+                    {(hotels != null) && hotels.map((hotel, index) => {
+                        return <div key={hotel.id} className={"card " + `card-${index + 1}`} style={{ backgroundImage: `url('${hotel.picture_url}')` }}>
+                            <div className="details">
+                                <div className="header">
+                                    <span className="resort-name">{(hotel.name.length >= 23) && (hotel.name.substring(0, 21) + " ...") || hotel.name}</span>
+                                    <div className="rating">
+                                        <i className="fa-regular fa-heart"></i>
+                                        <span>4.7</span>
+                                    </div>
                                 </div>
+                                <div className="bar"></div>
+                                <a className="view-details" onClick={() => showDetails(hotel.id)}>View Details</a>
                             </div>
-                            <div className="bar"></div>
-                            <a className="view-details" href="#">View Details</a>
                         </div>
-                    </div>
-                    <div className="card card-3">
-                        <div className="details">
-                            <div className="header">
-                                <span className="resort-name">MRtravel Resort</span>
-                                <div className="rating">
-                                    <i className="fa-regular fa-heart"></i>
-                                    <span>4.7</span>
-                                </div>
-                            </div>
-                            <div className="bar"></div>
-                            <a className="view-details" href="#">View Details</a>
-                        </div>
-                    </div>
-                    <div className="card card-2">
-                        <div className="details">
-                            <div className="header">
-                                <span className="resort-name">MRtravel Resort</span>
-                                <div className="rating">
-                                    <i className="fa-regular fa-heart"></i>
-                                    <span>4.7</span>
-                                </div>
-                            </div>
-                            <div className="bar"></div>
-                            <a className="view-details" href="#">View Details</a>
-                        </div>
-                    </div>
+                    })}
                 </div>
                 <div className="details">
                     <span className="header">Welcome to MRtravel Resort</span>
@@ -63,45 +59,21 @@ export default function RelaxingPleasure(){
                 </div>
             </div>
             <div className="images-scrollbar images-defaults">
-                <div className="card card-1">
-                    <div className="details">
-                        <div className="header">
-                            <span className="resort-name">MRtravel Resort</span>
-                            <div className="rating">
-                                <i className="fa-regular fa-heart"></i>
-                                <span>4.7</span>
+                    {(hotels != null) && hotels.map((hotel, index) => {
+                        return <div key={hotel.id} className={"card " + `card-${index + 1}`} style={{ backgroundImage: `url('${hotel.picture_url}')` }}>
+                            <div className="details">
+                                <div className="header">
+                                    <span className="resort-name">{(hotel.name.length >= 23) && (hotel.name.substring(0, 21) + " ...") || hotel.name}</span>
+                                    <div className="rating">
+                                        <i className="fa-regular fa-heart"></i>
+                                        <span>4.7</span>
+                                    </div>
+                                </div>
+                                <div className="bar"></div>
+                                <a className="view-details" onClick={() => showDetails(hotel.id)}>View Details</a>
                             </div>
                         </div>
-                        <div className="bar"></div>
-                        <a className="view-details" href="#">View Details</a>
-                    </div>
-                </div>
-                <div className="card card-3">
-                    <div className="details">
-                        <div className="header">
-                            <span className="resort-name">MRtravel Resort</span>
-                            <div className="rating">
-                                <i className="fa-regular fa-heart"></i>
-                                <span>4.7</span>
-                            </div>
-                        </div>
-                        <div className="bar"></div>
-                        <a className="view-details" href="#">View Details</a>
-                    </div>
-                </div>
-                <div className="card card-2">
-                    <div className="details">
-                        <div className="header">
-                            <span className="resort-name">MRtravel Resort</span>
-                            <div className="rating">
-                                <i className="fa-regular fa-heart"></i>
-                                <span>4.7</span>
-                            </div>
-                        </div>
-                        <div className="bar"></div>
-                        <a className="view-details" href="#">View Details</a>
-                    </div>
-                </div>
+                    })}
             </div>
         </div>
     );

@@ -112,7 +112,7 @@ export default function App(){
   // Add Hotel Page
   else if(path.slice(0, 10) === "/add_hotel"){
     return(
-      <AddHotelPage />
+      <AddHotelPage type="add" path={path}/>
     );
   }
 
@@ -120,6 +120,13 @@ export default function App(){
   else if(path.slice(0, 8) === "/payment"){
     return(
       <Payment paymentObject={paymentObject} authenticated={authenticated}/>
+    );
+  }
+
+  // Log In Page
+  else if (path.slice(0, 12) === "/edit_hotel/"){
+    return(
+      <AddHotelPage type="edit" path={path}/>
     );
   }
 

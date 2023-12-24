@@ -54,6 +54,13 @@ export default function AccountPage({setPaymentObject}){
         })
         UpdateURL('payment');
     }
+
+    // Edit hotel details
+    function editHotel(hotel_id){
+        console.log(hotel_id)
+        // Redirect the user to a page to edit hotel details
+        window.location.href = `/edit_hotel/${hotel_id}`;
+    }
     
     // Return Html
     return (
@@ -76,7 +83,7 @@ export default function AccountPage({setPaymentObject}){
                                 <span className="username">{userInfo.username}</span>
                                 <span className="email">{userInfo.email}</span>
                             </div>
-                            {(userInfo.hotelier === true && userInfo.hotel === false) && <button onClick={() => UpdateURL('add_hotel')}>Add Your Hotel</button>}
+                            {(userInfo.hotelier === true && userInfo.hotel === false) && <button onClick={() => UpdateURL('add_hotel')}>Add Your Hotel</button> || <button onClick={() => editHotel(userInfo.hotel.id)}>Edit Your Hotel</button>}
                         </li>
                     </ul>
                 </div>
@@ -180,8 +187,12 @@ export default function AccountPage({setPaymentObject}){
                                                 <td>{room.duration - 1} day {room.duration} nights</td>
                                                 <td className={classNames('', {'completed': (room.payment === true), 'uncompleted': (room.payment != true)})}>{room.payment === true && 'completed' || 'uncompleted'}</td>
                                                 <td>{room.total_price}$(tax included)</td>
-                                                <td className="payment_date">
-                                                    <span className="child">{room.payment === true && `${room.survey_date}` || `${room.survey_end_date}`}</span>
+                                                <td className="row_element payment_date">
+                                                    <div className="child">
+                                                        <div>
+                                                            <span>{room.payment === true && `${room.survey_date}` || `${room.survey_end_date}`}</span>
+                                                        </div>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         )
