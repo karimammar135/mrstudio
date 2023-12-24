@@ -41,7 +41,7 @@ function Hotels2Head(){
         );
     } else {
         return <div className="search-container">
-            <SearchBar input={input} setInput={setInput} setShowSearchBar={setShowSearchBar} hotels={hotels} setResults={setResults} results={results}/>
+            <SearchBar input={input} setInput={setInput} setShowSearchBar={setShowSearchBar} hotels={hotels} setResults={setResults} results={results} page="main_page"/>
             <SearchResults setInput={setInput} results={results} />
         </div>
     }

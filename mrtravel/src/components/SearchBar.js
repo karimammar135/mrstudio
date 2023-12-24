@@ -1,7 +1,6 @@
 import React from "react";
-import UpdateURL from './UpdateURL.js';
 
-export default function SearchBar({ setShowSearchBar, hotels, setResults, results , setInput, input }){
+export default function SearchBar({ setShowSearchBar, hotels, setResults, results , setInput, input, page }){
     
     // Check results
     const checkResults = (value) => {
@@ -23,17 +22,28 @@ export default function SearchBar({ setShowSearchBar, hotels, setResults, result
         
         for(let i = 0; i < results.length; i++){
             if (results[i].name === input){
-               window.location.href = `hotel/${results[i].id}`;
+               window.location.href = `/hotel/${results[i].id}`;
             } else {
                 console.log(`no match`)
             }
         }
     }
 
-    return (
-        <form className="head search_bar" onSubmit={(e) => handleSubmit(e)}>
-            <input name="hotel_name" onChange={(e) => handleInputChange(e.target.value)} value={input} placeholder="Search for hotels" id="search_hotels" autoComplete="off"/>
-            <i className="fa-solid fa-xmark close-search" onClick={() => setShowSearchBar(false)}></i>
-        </form>
-    );
+    if(page === 'main_page'){
+        return (
+            <form className="head search_bar" onSubmit={(e) => handleSubmit(e)}>
+                <input name="hotel_name" onChange={(e) => handleInputChange(e.target.value)} value={input} placeholder="Search for hotels" id="search_hotels" autoComplete="off"/>
+                <i className="fa-solid fa-xmark close-search" onClick={() => setShowSearchBar(false)}></i>
+            </form>
+        );
+    } else {
+        return (
+            <form className="search_bar" onSubmit={(e) => handleSubmit(e)}>
+                <i className="fa-solid fa-magnifying-glass"></i>
+                <input name="hotel_name" type="text" placeholder="Serch for other hotels" onChange={(e) => handleInputChange(e.target.value)} value={input} autoComplete="off"/>
+                <i className="fa-solid fa-hotel"></i>
+            </form>
+        )
+    }
+    
 }

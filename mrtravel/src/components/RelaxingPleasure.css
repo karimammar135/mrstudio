@@ -319,6 +319,11 @@
 .images-defaults .card-3 {
   order: 2;
 }
+@media (max-width: 520px) {
+  .images-defaults .card-3 {
+    margin-left: 20px;
+  }
+}
 .images-defaults .card-2 {
   order: 3;
 }/*# sourceMappingURL=RelaxingPleasure.css.map */

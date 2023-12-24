@@ -303,6 +303,9 @@
     }
     .card-3 {
         order: 2;
+        @media (max-width: 520px) {
+            margin-left: 20px;
+        }
     }
     .card-2 {
         order: 3;

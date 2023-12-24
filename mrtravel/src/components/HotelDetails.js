@@ -9,6 +9,7 @@ import PaymentDetails from './PaymentDetails.js';
 import Footer from './Footer.js';
 import UpdateURL from "./UpdateURL.js";
 import getCookie from './getCookie.js';
+import SearchBox from './SearchBox.js';
 
 export default function HotelDetails({ path, paymentObject, setPaymentObject, authenticated }){
     const[hotel_id, setHotel_id] = React.useState(path.split(/\//)[2]);
@@ -116,7 +117,6 @@ export default function HotelDetails({ path, paymentObject, setPaymentObject, au
         
     }
 
-
     // Making sure hotel isn't null
     if(hotel === null | rooms === null){
         return <></>;
@@ -126,11 +126,7 @@ export default function HotelDetails({ path, paymentObject, setPaymentObject, au
             <div className="hotel_page_wrapper">
                 <section className="main_section" style={{ backgroundImage: `url(${hotel.picture_url})` }}>
                     <div className="overlay">
-                        <div className="search_bar">
-                            <i className="fa-solid fa-magnifying-glass"></i>
-                            <input type="text" placeholder="Serch for other hotels"></input>
-                            <i className="fa-solid fa-hotel"></i>
-                        </div>
+                        <SearchBox />
                     </div>
                 </section>
 
