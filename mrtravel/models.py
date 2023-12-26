@@ -105,9 +105,10 @@ class Rent(models.Model):
     survey_end_date = models.DateField(default=date.today)
     duration = models.IntegerField(default=1)
     payment = models.BooleanField(default=False)
+    expired = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"room_size: {self.room_size.size}, hotel: {self.hotel}, customer: {self.customer}, total_price:{self.total_price}, survey_date: {self.survey_date}, survey_end_date: {self.survey_end_date}, payment: {self.payment}"
+        return f"room_size: {self.room_size.size}, hotel: {self.hotel}, customer: {self.customer}, total_price:{self.total_price}, survey_date: {self.survey_date}, survey_end_date: {self.survey_end_date}, payment: {self.payment}, expired: {self.expired}"
     
     def serialize(self):
         return {
@@ -120,5 +121,6 @@ class Rent(models.Model):
             "survey_end_date": self.survey_end_date,
             "duration": self.duration,
             "room_size": self.room_size.serialize(), 
-            "payment": self.payment
+            "payment": self.payment,
+            "expired": self.expired
         }

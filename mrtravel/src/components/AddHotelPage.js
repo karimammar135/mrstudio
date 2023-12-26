@@ -166,19 +166,27 @@ export default function AddHotelPage({ type, path }){
     // Delete room 
     function DeleteRoom(room_selected){
         if (type === "edit"){
-            fetch(`/delete_room${room_selected.id}`)
-            .then(response => response.json())
-            .then(data => {
-                if(data.error != null){
-                    alert(data.error)
+            if(!confirm("Are you sure you want to delete this room?") ){
+                return false;
+            } else {
+                if (rooms.length > 1){
+                    fetch(`/delete_room${room_selected.id}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if(data.error != null){
+                            alert(data.error)
+                        } else {
+                            console.log(data.message)
+                            window.location.reload();
+                        }
+                    })
+                    .catch(error => {
+                        alert(error)
+                    });
                 } else {
-                    console.log(data.message)
-                    window.location.reload();
+                    alert("You can't delete this room before adding another one!")
                 }
-            })
-            .catch(error => {
-                alert(error)
-            });
+            }
         } else {
             setRooms(rooms => 
                 rooms.filter(room => {

@@ -46,8 +46,6 @@ export default function Payment({ paymentObject }){
         }
     }, []);
 
-    console.log(route)
-
     // Rent the room
     function rent_room(event){
         event.preventDefault();
@@ -77,14 +75,11 @@ export default function Payment({ paymentObject }){
             alert(error)
         });
     }
-    
-    console.log(payment_details);
 
     // Html Page
     return (
         <>
             {(Object.keys(payment_details).length === 0) && <div></div> || 
-
                 <section className="payment_page">
                     <div className="payment_details" style={{ backgroundImage: `url(${picture_url})` }}>
                         {(payment_details.type === 'direct') && 
@@ -115,7 +110,7 @@ export default function Payment({ paymentObject }){
                             <div className="card_details input_field_container">
                                 <label htmlFor="card_number">Card details</label>
                                 <div className="card_num_container">
-                                    <input id="card_number" type="tel" pattern="[0-9\s]{13,19}" autoComplete="cc-number" maxLength="19" placeholder="1234 1234 1234 1234"></input>
+                                    <input id="card_number" type="tel" pattern="[0-9\s]{13,19}" autoComplete="cc-number" maxLength="19" placeholder="1234 1234 1234 1234" required></input>
                                     <div>
                                         <img src="https://cdn4.iconfinder.com/data/icons/flat-brand-logo-2/512/visa-512.png" alt="visa"></img>
                                         <img src="https://cdn0.iconfinder.com/data/icons/credit-card-debit-card-payment-PNG/128/Mastercard-Curved.png" alt="mastercard"></img>
@@ -124,13 +119,13 @@ export default function Payment({ paymentObject }){
                                     </div>
                                 </div>
                                 <div className="bottom">
-                                    <input id="date" type="number" name="date" placeholder="MM / YY"></input>
+                                    <input id="date" type="tel" maxLength="4" name="date" placeholder="MM / YY" required></input>
                                     <div className="cvc"><input type="tel" maxLength="3" placeholder="CVC"></input><img src="https://cdn2.iconfinder.com/data/icons/credit-cards-6/156/security_code_front-256.png" alt="cvc"></img></div>
                                 </div>
                             </div>
                             <div className="input_field_container">
                                 <label htmlFor="name_on_card">Name on card</label>
-                                <input id="name_on_card" type="text"></input>
+                                <input id="name_on_card" type="text" required></input>
                             </div>
                             <div className="country_region input_field_container">
                                 <label>Country or Region</label>
@@ -138,7 +133,7 @@ export default function Payment({ paymentObject }){
                                     <option value="USA">United States</option>
                                     <option value="LEB">Lebanon</option>
                                 </select>
-                                <input type="tel" maxLength="3" placeholder="ZIP"></input>
+                                <input type="tel" maxLength="3" placeholder="ZIP" required></input>
                             </div>
                             
                             <input type="submit" value={"Pay $" + payment_details.total_price}></input>

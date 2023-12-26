@@ -9,6 +9,7 @@ import classNames from 'classnames';
 export default function AccountPage({setPaymentObject}){
     // State for user info
     const[userInfo, setUserInfo] = React.useState({id: null, username: null, email: null, hotelier: null, hotel: false, rooms_rented: []})
+    const[uncompleted_payments, setUncompleted_payments] = React.useState(0);
 
     // Fetch User Info
     React.useEffect(() => {
@@ -24,6 +25,12 @@ export default function AccountPage({setPaymentObject}){
                     hotel: data.hotel,
                     rooms_rented: data.rooms_rented
                 })
+                // Calculate uncompleted payments
+                for(let i = 0; i < (data.rooms_rented).length; i++){
+                    if ((data.rooms_rented[i]).payment === false){
+                        setUncompleted_payments(parseInt(uncompleted_payments + 1))
+                    }
+                }
             }
         })
         .catch(error => {
@@ -61,6 +68,28 @@ export default function AccountPage({setPaymentObject}){
         // Redirect the user to a page to edit hotel details
         window.location.href = `/edit_hotel/${hotel_id}`;
     }
+
+    // Delete rent
+    function deleteRent(rent_id){
+        if(!confirm("Are you sure you want to delete this rent?") ){
+            return false;
+        } else { 
+            // Fetch rent id to be deleted
+            fetch(`/delete_rent${rent_id}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.error != null){
+                    alert(data.error)
+                } else {
+                    console.log(data.message)
+                    window.location.href = '/account';
+                }
+            })
+            .catch(error => {
+                alert(error)
+            })
+        }
+    }
     
     // Return Html
     return (
@@ -83,7 +112,7 @@ export default function AccountPage({setPaymentObject}){
                                 <span className="username">{userInfo.username}</span>
                                 <span className="email">{userInfo.email}</span>
                             </div>
-                            {(userInfo.hotelier === true && userInfo.hotel === false) && <button onClick={() => UpdateURL('add_hotel')}>Add Your Hotel</button> || <button onClick={() => editHotel(userInfo.hotel.id)}>Edit Your Hotel</button>}
+                            {(userInfo.hotelier === true) && ((userInfo.hotel === false) && <button onClick={() => UpdateURL('add_hotel')}>Add Your Hotel</button> || <button onClick={() => editHotel(userInfo.hotel.id)} >Edit Your Hotel</button>) || <></>}
                         </li>
                     </ul>
                 </div>
@@ -95,10 +124,11 @@ export default function AccountPage({setPaymentObject}){
                     <h1>Account Details:</h1>
                     <ul>
                         <li>Account type: {(userInfo.hotelier === true) && 'hotelier' || 'customer'}</li>
+                        {(userInfo.hotelier === true) && <li>Hotel name: {userInfo.hotel.name}</li>}
                         <li>Email: {userInfo.email}</li>
                         <li>Username: {userInfo.username}</li>
                         <li>Hotel rooms rented : {Object.keys(userInfo.rooms_rented).length}</li>
-                        <li>Uncompleted payments: 1</li>
+                        <li>Uncompleted payments: {uncompleted_payments}</li>
                     </ul>
                 </div>
             </div>
@@ -144,7 +174,7 @@ export default function AccountPage({setPaymentObject}){
                                 {(Object.keys(userInfo.rooms_rented).length > 0) && userInfo.rooms_rented.map(room => {
                                     if (userInfo.hotelier === false) {
                                         return (  
-                                            <tr key={room.id}>
+                                            <tr key={room.id} className={classNames('', {'expired': (room.expired === true)})}>
                                                 <td className="row_element hotel_name">{room.hotel.name}</td>
                                                 <td className="row_element "><div className="elipse" style={{ backgroundImage: `url(${room.hotel.picture_url})` }}></div></td>
                                                 <td className="row_element booking_date">
@@ -172,6 +202,7 @@ export default function AccountPage({setPaymentObject}){
                                                         </div>
                                                     </div>
                                                 </td>
+                                                {(room.expired === true) && <td className="delete"><span>Rent date expired</span></td>}
                                             </tr>
                                     )} else {
                                         return (
@@ -194,6 +225,7 @@ export default function AccountPage({setPaymentObject}){
                                                         </div>
                                                     </div>
                                                 </td>
+                                                {(room.expired === true) && <td className="delete"><span>Rent date expired</span><button onClick={() => deleteRent(room.id)}>delete rent</button></td>}
                                             </tr>
                                         )
                                     }

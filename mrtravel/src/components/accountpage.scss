@@ -273,6 +273,27 @@
             }
 
             // Row elements
+            .expired {
+                opacity: 0.7;
+            }
+            .delete {
+                span{
+                    color: #861212;
+                }
+                button{
+                    background-color: #BE1B1B;
+                    color: #fff;
+                    border: none;
+                    border-radius: 2px;
+                    cursor: pointer;
+                    height: 20px;
+                    width: 90px;
+                    margin-top: 4px;
+                }
+            }
+            .button i:hover {
+                background-color:#861212;
+            }
             tr {
                 height: 90px;
             }
@@ -391,6 +412,10 @@
                     gap: 3px;
                     .arrow_up {
                         display: none;
+                        cursor: pointer;
+                    }
+                    .arrow_down {
+                        cursor: pointer;
                     }
                     div:first-child {
                         display: flex;

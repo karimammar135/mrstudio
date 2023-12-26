@@ -8,10 +8,10 @@ export default function Dash(){
             <div className="dash_container">
                 <h1>Get better work</h1>
                 <p>See why millions of people across 195 countries use Dash.</p>
-                <div className="email_form">
-                    <input type="email" name="dash-email" placeholder="example@gmail.com"></input>
+                <form className="email_form" onSubmit={() => window.open('https://www.dash.org/')}>
+                    <input type="email" name="dash-email" placeholder="example@gmail.com" required></input>
                     <input type="submit" value="Try for free"></input>
-                </div>
+                </form>
             </div>
         </div>
     );

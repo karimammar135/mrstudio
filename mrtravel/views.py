@@ -5,6 +5,7 @@ import json
 from django.http import JsonResponse
 from django.contrib.auth import authenticate, login, logout
 
+import datetime
 import random
 
 from .models import User, HotelInfo, RoomSize, Rent
@@ -67,6 +68,23 @@ def logout_view(request):
 def authentication(request):
     return JsonResponse({"authenticated": request.user.is_authenticated}, status=201)
 
+''' Helper function '''
+def checkExpiration(rooms):
+    for room in rooms:
+        survey_end_date = room.survey_end_date
+        current_date = datetime.datetime.now()
+        if survey_end_date.strftime("%Y") < current_date.strftime("%Y"):
+            room.expired = True
+            room.save()
+        if survey_end_date.strftime("%Y") == current_date.strftime("%Y"):
+            if survey_end_date.strftime("%m") < current_date.strftime("%m"):
+                room.expired = True
+                room.save()
+            if survey_end_date.strftime("%m") == current_date.strftime("%m"):
+                if survey_end_date.strftime("%d") < current_date.strftime("%d"):
+                    room.expired = True
+                    room.save()
+
 # User Info API
 def user_info(request):
     # If the user has an hotel
@@ -74,13 +92,14 @@ def user_info(request):
         user_info = request.user.serialize()
         hotel = HotelInfo.objects.get(owner=request.user)
         rooms_rented = hotel.hotel_rooms_rented.all()
-        
+        checkExpiration(rooms_rented)
         return JsonResponse({"user_info": user_info, "hotel": hotel.serialize(), "rooms_rented":  [room.serialize() for room in rooms_rented]}, safe=False)
     
     # If the user haven't added his hotel yet
     except HotelInfo.DoesNotExist:
         print('no hotel')
         rooms_rented = request.user.customer_rooms_rented.all()
+        checkExpiration(rooms_rented)
         return JsonResponse({"user_info": user_info, "hotel": False, "rooms_rented": [room.serialize() for room in rooms_rented]}, safe=False)
     
     except AttributeError:
@@ -252,6 +271,12 @@ def add_room(request):
 
     try:
         hotel = HotelInfo.objects.get(id=data['hotel_id'])
+        hotel_rooms = hotel.room_sizes.all()
+        for room in hotel_rooms:
+            if int(data['size']) == int(room.size):
+                # Return error
+                return JsonResponse({"error": "This room size has already been added!"}, status=400)
+            
         new_room = RoomSize(hotel=hotel, size=data['size'], price_per_day=data['price'] ,discount=data['discount'], discount_type=data['discount_type'], amount=data['amount'], available_rooms=data['amount'])
         new_room.save()
     except HotelInfo.DoesNotExist:
@@ -280,3 +305,16 @@ def edit_room(request):
 
     # Return success message
     return JsonResponse({"message": "Room edited successfully"}, status=201)
+
+''' Delete rent '''
+def delete_rent(request, id):
+    # Get the appropriate rent
+    try:
+        rent = Rent.objects.get(id=id)
+        rent.delete()
+    except Rent.DoesNotExist:
+        # Return filure messgae
+        return JsonResponse({"error": "Rent not found"})
+
+    # Return success message
+    return JsonResponse({"message": "Rent deleted successfully"}, status=201)

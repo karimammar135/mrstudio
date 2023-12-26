@@ -156,6 +156,7 @@
                 font-family: 'Inter', sans-serif;
                 font-size: 16px;
                 font-weight: 300;
+                cursor: pointer;
             }
             .head {
                 display: flex;
@@ -233,7 +234,7 @@
                         }
                     }
 
-                    input[type=number]{
+                    #date{
                         grid-column: span 1;
                         border-radius: 0 0 0 8px;
                         box-shadow: none;

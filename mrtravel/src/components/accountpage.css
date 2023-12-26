@@ -264,6 +264,25 @@
 .account_page .hotels_rented_wrapper .rooms_rented_details table .photo_header {
   text-align: center;
 }
+.account_page .hotels_rented_wrapper .rooms_rented_details table .expired {
+  opacity: 0.7;
+}
+.account_page .hotels_rented_wrapper .rooms_rented_details table .delete span {
+  color: #861212;
+}
+.account_page .hotels_rented_wrapper .rooms_rented_details table .delete button {
+  background-color: #BE1B1B;
+  color: #fff;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  height: 20px;
+  width: 90px;
+  margin-top: 4px;
+}
+.account_page .hotels_rented_wrapper .rooms_rented_details table .button i:hover {
+  background-color: #861212;
+}
 .account_page .hotels_rented_wrapper .rooms_rented_details table tr {
   height: 90px;
 }
@@ -380,6 +399,10 @@
 }
 .account_page .hotels_rented_wrapper .rooms_rented_details table .child_arrow .child .arrow_up {
   display: none;
+  cursor: pointer;
+}
+.account_page .hotels_rented_wrapper .rooms_rented_details table .child_arrow .child .arrow_down {
+  cursor: pointer;
 }
 .account_page .hotels_rented_wrapper .rooms_rented_details table .child_arrow .child div:first-child {
   display: flex;

@@ -138,6 +138,7 @@
   font-family: "Inter", sans-serif;
   font-size: 16px;
   font-weight: 300;
+  cursor: pointer;
 }
 .payment_page section .payment_form .head {
   display: flex;
@@ -211,7 +212,7 @@
     border-left: 1px solid rgba(60, 66, 87, 0.12);
   }
 }
-.payment_page section .payment_form .card_details .bottom input[type=number] {
+.payment_page section .payment_form .card_details .bottom #date {
   grid-column: span 1;
   border-radius: 0 0 0 8px;
   box-shadow: none;

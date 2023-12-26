@@ -36,3 +36,19 @@ fetch('/hotels/limit0', {
 .catch(error => {
     console.log(error)
 });
+
+
+// Fetch rent id to be deleted
+fetch(`/delete_rent${rent_id}`)
+.then(response => response.json())
+.then(data => {
+    if (data.error != null){
+        alert(data.error)
+    } else {
+        console.log(data.message)
+        window.location.href = '/account';
+    }
+})
+.catch(error => {
+    alert(error)
+})
