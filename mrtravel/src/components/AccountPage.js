@@ -5,10 +5,11 @@ import UpdateURL from "./UpdateURL.js";
 import profile from './images/profile_icon.png';
 import Footer from './Footer.js';
 import classNames from 'classnames';
+import ChartBox from './ChartBox.js';
 
 export default function AccountPage({setPaymentObject}){
     // State for user info
-    const[userInfo, setUserInfo] = React.useState({id: null, username: null, email: null, hotelier: null, hotel: false, rooms_rented: []})
+    const[userInfo, setUserInfo] = React.useState({id: null, username: null, email: null, hotelier: null, hotel: false, rooms_rented: [], hotel_rooms: []})
     const[uncompleted_payments, setUncompleted_payments] = React.useState(0);
 
     // Fetch User Info
@@ -23,7 +24,8 @@ export default function AccountPage({setPaymentObject}){
                 setUserInfo({
                     ...data.user_info,
                     hotel: data.hotel,
-                    rooms_rented: data.rooms_rented
+                    rooms_rented: data.rooms_rented,
+                    hotel_rooms: data.hotel_rooms
                 })
                 // Calculate uncompleted payments
                 for(let i = 0; i < (data.rooms_rented).length; i++){
@@ -236,6 +238,8 @@ export default function AccountPage({setPaymentObject}){
                     </div>
                 </div>
             </section>
+
+            {(userInfo.hotelier === true) && <ChartBox hotel_rooms={userInfo.hotel_rooms} />}
 
             <Footer />
         </section>

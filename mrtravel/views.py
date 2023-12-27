@@ -92,15 +92,16 @@ def user_info(request):
         user_info = request.user.serialize()
         hotel = HotelInfo.objects.get(owner=request.user)
         rooms_rented = hotel.hotel_rooms_rented.all()
+        hotel_rooms = hotel.room_sizes.all()
         checkExpiration(rooms_rented)
-        return JsonResponse({"user_info": user_info, "hotel": hotel.serialize(), "rooms_rented":  [room.serialize() for room in rooms_rented]}, safe=False)
+        return JsonResponse({"user_info": user_info, "hotel": hotel.serialize(), "rooms_rented":  [room.serialize() for room in rooms_rented], "hotel_rooms": [room.serialize() for room in hotel_rooms]}, safe=False)
     
     # If the user haven't added his hotel yet
     except HotelInfo.DoesNotExist:
         print('no hotel')
         rooms_rented = request.user.customer_rooms_rented.all()
         checkExpiration(rooms_rented)
-        return JsonResponse({"user_info": user_info, "hotel": False, "rooms_rented": [room.serialize() for room in rooms_rented]}, safe=False)
+        return JsonResponse({"user_info": user_info, "hotel": False, "rooms_rented": [room.serialize() for room in rooms_rented], "hotel_rooms": None}, safe=False)
     
     except AttributeError:
         return JsonResponse({"error": "user not logged in"}, status=400)
