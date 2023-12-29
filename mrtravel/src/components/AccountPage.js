@@ -236,6 +236,7 @@ export default function AccountPage({setPaymentObject}){
                             </tbody>
                         </table>
                     </div>
+                    {(Object.keys(userInfo.rooms_rented).length === 0) && <span className="no_rented_rooms">No rented rooms yet.</span>}
                 </div>
             </section>
 

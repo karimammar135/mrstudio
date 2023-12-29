@@ -52,7 +52,7 @@ export default function Resorts(){
                                     </div>
                                     <div className="body">
                                         <div className="details">
-                                            <span className="price">$600.00</span>
+                                            <span className="price">${hotel.room.price_per_day}.00</span>
                                             <span className="booking-id">Booking ID: 7595364</span>
                                             <span className="country">{hotel.country}</span>
                                         </div>

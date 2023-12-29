@@ -67,7 +67,8 @@ class HotelInfo(models.Model):
             "feature1": self.feature1,
             "feature2": self.feature2,
             "feature3": self.feature3,
-            "feature4": self.feature4
+            "feature4": self.feature4,
+            "room": self.room_sizes.all().first().serialize()
         }
 
 

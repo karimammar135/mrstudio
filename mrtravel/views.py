@@ -17,6 +17,9 @@ def index(request, path):
 
 ''' API ROUTES '''
 
+def username_exists(username):
+    return User.objects.filter(username=username).exists()
+
 ## REGISTER USER API
 def register_view(request):
     if request.method == "POST":
@@ -26,7 +29,11 @@ def register_view(request):
         # Enssure password matches confirmation password
         if data["password"] != data["confirmation"]:
             return JsonResponse({"error": "Confirmation Password doesn't match password"}, status=400)
-        
+
+        # Ensure username is not taken
+        if username_exists(data['username']):
+            return JsonResponse({"error": "This username is already taken"}, status=400)
+
         # Attempt to create user
         try: 
             user = User.objects.create_user(data["username"], data["email"], data["password"])

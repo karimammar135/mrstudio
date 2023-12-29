@@ -38,7 +38,6 @@ export default function PaymentDetails({ hotel, rooms, room_selected, setRoom_se
     // Form style
     React.useEffect(() => {
         if(state.hotelier === true){
-            console.log('is hotelier')
             set_disable_form(true);
         } else if(room_selected.available_rooms === 0) {
             console.log('no available rooms')

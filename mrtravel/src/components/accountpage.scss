@@ -233,9 +233,11 @@
 
         // no rented rooms
         .no_rented_rooms {
-            color: #b9b9b9;
+            color: #707070;
+            display: block;
             width: 100%;
             text-align: center;
+            margin-top: 13px;
         }
         // Info container
         .table_wrapper {
