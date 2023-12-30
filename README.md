@@ -73,7 +73,7 @@ My website also contains sections for showing **Available Airlines**, **Testing 
 
 # File structure (what's contained in each file)
 ```bash
-└── mrtravel ---> Main project directory (core application )
+└── mrtravel ---> Main project's directory (core application)
     ├── README.md ---> Readme file for intructions
     ├── db.sqlite3 ---> Database
     ├── manage.py
@@ -94,7 +94,7 @@ My website also contains sections for showing **Available Airlines**, **Testing 
     │   │       ├── 0001_initial.cpython-38.pyc
     │   │       ├── .........
     │   ├── models.py ---> File containing all models of my website (User, HotelInfo, RoomSize, Rent)
-    │   ├── package.json
+    │   ├── package.json ---> contains human-readable metadata about the project (like the project name and description) as well as functional metadata like the package version number and a list of dependencies required by the application
     │   ├── src ---> Folder structure completely for React and Webpack
     │   │   ├── components ---> Directory containing all ReactJS componenets
     │   │   │   ├── AccountPage.js ---> React component file
@@ -104,14 +104,14 @@ My website also contains sections for showing **Available Airlines**, **Testing 
     │   │   │   ├── App.js ---> Main app component that controls other components
     │   │   │   ├── .......
     │   │   │   ├── images ---> Directory containing images
-    │   │   │   │   ├── 1-hotel.jpg ---> Image
+    │   │   │   │   ├── 1-hotel.jpg ---> image file
     │   │   │   │   ├── .........
     │   │   └── index.js ---> This file is the entry point for Webpack to start creating the dependency graph
     │   ├── static ---> Folder for static files that can be accessed by django
     │   │   ├── css
     │   │   │   └── style.css ---> css stylesheet
     │   │   ├── frontend
-    │   │   │   ├── 038157aaf589554096e1a5e1731ea713.png
+    │   │   │   ├── 038157aaf589554096e1a5e1731ea713.png --> image file
     │   │   │   ├── ......
     │   │   │   ├── main.js ---> javascript bundle that is accessed by django in the index template
     │   │   │   ├── main.js.LICENSE.txt
@@ -124,11 +124,11 @@ My website also contains sections for showing **Available Airlines**, **Testing 
     │   │       └── index.html ---> Main html django template that displays the app's frontend (displays main.js bundle)
     │   ├── tests.py
     │   ├── urls.py ---> My website urls (including urls for API routes)
-    │   ├── views.py ---> Includes views and API routes
+    │   ├── views.py ---> file including views and API routes
     │   ├── webpack.config.js ---> configuration for webpack and webpack loaders
     │   └── yarn.lock
-    ├── package.json
-    ├── requirements.txt
+    ├── package.json ---> contains human-readable metadata about the project (like the project name and description) as well as functional metadata like the package version number and a list of dependencies required by the application
+    ├── requirements.txt ---> file containing project's dependencies
     ├── resortrenting
     │   ├── __init__.py
     │   ├── __pycache__
@@ -136,8 +136,8 @@ My website also contains sections for showing **Available Airlines**, **Testing 
     │   │   ├── settings.cpython-38.pyc
     │   │   ├── urls.cpython-38.pyc
     │   │   └── wsgi.cpython-38.pyc
-    │   ├── asgi.py
+    │   ├── asgi.py ---> asgi interface configuration
     │   ├── settings.py
-    │   ├── urls.py
+    │   ├── urls.py ---> global urls mapping
     │   └── wsgi.py
     └── yarn.lock
