@@ -126,7 +126,7 @@ My website also contains sections for showing **Available Airlines**, **Testing 
     │   ├── urls.py ---> My website urls (including urls for API routes)
     │   ├── views.py ---> file including views and API routes
     │   ├── webpack.config.js ---> configuration for webpack and webpack loaders
-    │   └── yarn.lock
+    │   └── yarn.lock ---> file that stores the versions of which dependencies are installed with the package
     ├── package.json ---> contains human-readable metadata about the project (like the project name and description) as well as functional metadata like the package version number and a list of dependencies required by the application
     ├── requirements.txt ---> file containing project's dependencies
     ├── resortrenting
@@ -140,4 +140,4 @@ My website also contains sections for showing **Available Airlines**, **Testing 
     │   ├── settings.py
     │   ├── urls.py ---> global urls mapping
     │   └── wsgi.py
-    └── yarn.lock
+    └── yarn.lock ---> file that stores the versions of which dependencies are installed with the package
