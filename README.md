@@ -28,15 +28,17 @@ This website is built with python3 version 3.8.10
   ```
   pip3 install -r requirements.txt
   ```
-
-  <summary>Windows/MAC:</summary>
-  Could not test it on windows or MAC but it should be similar as linux.
-  
+</details>
+<details>
+  <summary>Windows/MAC</summary>
+  ```
+  Could not test it on windows and MAC but it should be smilar.
+  ```
 </details>
 
 # Run the app
 <details>
-  <summary>Linux</summary>
+  <summary>Run app</summary>
 
   1. Apply migrations
   ```
@@ -73,9 +75,9 @@ My website also contains sections for showing **Available Airlines**, **Testing 
 ```bash
 └── mrtravel ---> Main project directory (core application )
     ├── README.md ---> Readme file for intructions
-    ├── db.sqlite3
+    ├── db.sqlite3 ---> Database
     ├── manage.py
-    ├── mrtravel
+    ├── mrtravel ---> Django app
     │   ├── __init__.py
     │   ├── __pycache__
     │   │   ├── __init__.cpython-38.pyc
@@ -86,8 +88,9 @@ My website also contains sections for showing **Available Airlines**, **Testing 
     │   │   └── views.cpython-38.pyc
     │   ├── admin.py
     │   ├── apps.py
-    │   ├── babel.config.json
-    │   ├── migrations
+    │   ├── babel.config.json ---> File that adds few instructions such as required presets and plugins for babel-loader to use
+                                    and helps in transpiling jsx into classic JavaScript.
+    │   ├── migrations ---> Directory containing all migrations of the project
     │   │   ├── 0001_initial.py
     │   │   ├── 0002_alter_roomsize_discount.py
     │   │   ├── 0003_rename_mrtravel_hyphen_hotelinfo_mrtravel_hyphin.py
@@ -129,16 +132,16 @@ My website also contains sections for showing **Available Airlines**, **Testing 
     │   │       ├── 0018_rent_duration.cpython-38.pyc
     │   │       ├── 0019_rent_expired.cpython-38.pyc
     │   │       └── __init__.cpython-38.pyc
-    │   ├── models.py
+    │   ├── models.py ---> File containing all models of my website
     │   ├── package.json
     │   ├── src
-    │   │   ├── components
-    │   │   │   ├── AccountPage.js
+    │   │   ├── components ---> Directory containing all ReactJS componenets
+    │   │   │   ├── AccountPage.js ---> React component file
     │   │   │   ├── AddHotelPage.js
-    │   │   │   ├── Airlines.css
-    │   │   │   ├── Airlines.css.map
+    │   │   │   ├── Airlines.css ---> css Stylesheet file
+    │   │   │   ├── Airlines.css.map ---> maps css files
     │   │   │   ├── Airlines.js
-    │   │   │   ├── Airlines.scss
+    │   │   │   ├── Airlines.scss ---> scss stylesheet file
     │   │   │   ├── App.js
     │   │   │   ├── ChartBox.css
     │   │   │   ├── ChartBox.js
@@ -183,7 +186,7 @@ My website also contains sections for showing **Available Airlines**, **Testing 
     │   │   │   ├── hotelierpage.css
     │   │   │   ├── hotelierpage.css.map
     │   │   │   ├── hotelierpage.scss
-    │   │   │   ├── images
+    │   │   │   ├── images ---> Directory containing images
     │   │   │   │   ├── 1-hotel.jpg
     │   │   │   │   ├── 2-hotel.jpg
     │   │   │   │   ├── 3-hotel.jpg
@@ -306,7 +309,7 @@ My website also contains sections for showing **Available Airlines**, **Testing 
     │   │       └── logo.png
     │   ├── templates
     │   │   └── mrtravel
-    │   │       └── index.html
+    │   │       └── index.html ---> Main html django template that displays  app
     │   ├── tests.py
     │   ├── urls.py
     │   ├── views.py
