@@ -31,9 +31,7 @@ This website is built with python3 version 3.8.10
 </details>
 <details>
   <summary>Windows/MAC</summary>
-  ```
   Could not test it on windows and MAC but it should be smilar.
-  ```
 </details>
 
 # Run the app
