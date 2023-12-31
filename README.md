@@ -66,7 +66,8 @@ I learned many stuff while building my website using this integration such as (W
 #### Description about my website
 My website MRtravel is a resortrenting application that is built up with (Django ReactJS as mentioned above) and a convoluted system that
 has two types of users, an **Hotelier Account** that can login and add his own hotel by adding hotel's details (hotel name, location, youtube descriptive video ....) in addition to providing the room sizes available in his hotel. And a **Customer Account** that can view and interact with these different hotels and/or rent any room.
-![Screenshot (21)](https://github.com/karimammar135/mrtravel/assets/78235290/f5682610-ca7d-4f22-b2f5-29b493cfd08a)
+<img src="https://github.com/karimammar135/mrtravel/assets/78235290/f042b7dd-e29c-491b-bbe4-6e2648d46822" width="70%"></img>
+<img src="https://github.com/karimammar135/mrtravel/assets/78235290/577a52fb-b6d9-4aa2-bfe1-5ac03e376396" width="80%"></img>
 
 To make my website even more complex I gave the hotelier account the ability to edit any detail in his hotel whenever he/she wants to, in addition to the ability to add, remove or edit any room in his/her hotel. I also added different charts that show pending surveys of customers that have rented rooms in the hotel showing all details including the ability to remove any rent that has an expired date. In addition to the different types of charts that condense large amounts of data into an easy to understand format (Pie chart for showing Amount of rooms according to thire sizes, Line graph that shows Average prices($) as room sizes increase). The customer account also has an account page to view all required data for his/her rents including the ability to complete any payment that is set to (pay after a survey date) if a user changes his mind and wants to pay directly online.
 My website also contains sections for showing **Available Airlines**, **Testing Dash**, **Displaying available hotels in an animated section, scrollbars, serachbars ...** Those are just few features of my website that you can discover while checking my web application!
@@ -99,9 +100,9 @@ My website also contains sections for showing **Available Airlines**, **Testing 
     │   │   ├── components ---> Directory containing all ReactJS componenets
     │   │   │   ├── AccountPage.js ---> React component file
     │   │   │   ├── Airlines.css ---> css Stylesheet file
-    │   │   │   ├── Airlines.css.map ---> maps css files
+    │   │   │   ├── Airlines.css.map ---> JSON format file that links css file to its source file
     │   │   │   ├── Airlines.scss ---> scss stylesheet file
-    │   │   │   ├── App.js ---> Main app component that controls other components
+    │   │   │   ├── App.js ---> Main app component that controls other components in my website's frontend
     │   │   │   ├── .......
     │   │   │   ├── images ---> Directory containing images
     │   │   │   │   ├── 1-hotel.jpg ---> image file
