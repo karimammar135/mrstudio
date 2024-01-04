@@ -126,7 +126,7 @@ export default function AccountPage({setPaymentObject}){
                     <h1>Account Details:</h1>
                     <ul>
                         <li>Account type: {(userInfo.hotelier === true) && 'hotelier' || 'customer'}</li>
-                        {(userInfo.hotelier === true) && <li>Hotel name: {userInfo.hotel.name}</li>}
+                        {(userInfo.hotelier === true) && <li>Hotel name: {(userInfo.hotel === false) && "Don't have an hotel yet" || userInfo.hotel.name}</li>}
                         <li>Email: {userInfo.email}</li>
                         <li>Username: {userInfo.username}</li>
                         <li>Hotel rooms rented : {Object.keys(userInfo.rooms_rented).length}</li>
@@ -240,7 +240,7 @@ export default function AccountPage({setPaymentObject}){
                 </div>
             </section>
 
-            {(userInfo.hotelier === true) && <ChartBox hotel_rooms={userInfo.hotel_rooms} />}
+            {(userInfo.hotelier === true) && ((userInfo.hotel === false) && <></> || <ChartBox hotel_rooms={userInfo.hotel_rooms} />) || <></>}
 
             <Footer />
         </section>
