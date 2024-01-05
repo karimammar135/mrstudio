@@ -53,15 +53,14 @@ def login_user(request):
     if request.method == "POST":
         # Get data required
         data = json.loads(request.body)
+        print(data)
 
         # Attempt to login user
-        user = authenticate(request, username=data["username"], password=data["password"])
-
-        # Check if authentication is successful
-        if user is not None:
+        try:
+            user = User.objects.get(username=data["username"], password=data["password"])
             login(request, user)
             return JsonResponse({"message": "User Logged in successfully"}, status=201)
-        else:
+        except User.DoesNotExist:
             return JsonResponse({"error": "Username and/or password is/are not correct"}, status=400)
     
 
