@@ -25,7 +25,7 @@ function Hotels2Head(){
             setHotels(data)
         })
         .catch(error => {
-            alert(error)
+            console.log(error)
         })
     }, []);
 
@@ -58,7 +58,7 @@ export default function WelcomingPage(){
             setHotels(data);
         })
         .catch(error => {
-            alert(error)
+            console.log(error)
         })
     }, []);
 

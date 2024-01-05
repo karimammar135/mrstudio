@@ -309,21 +309,6 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
-.hotels2 .elipses .elipse1 {
-  background-image: url("./images/1-hotel.jpg");
-}
-.hotels2 .elipses .elipse2 {
-  background-image: url("./images/2-hotel.jpg");
-}
-.hotels2 .elipses .elipse3 {
-  background-image: url("./images/3-hotel.jpg");
-}
-.hotels2 .elipses .elipse4 {
-  background-image: url("./images/4-hotel.jpg");
-}
-.hotels2 .elipses .elipse5 {
-  background-image: url("./images/5-hotel.jpg");
-}
 
 /* End of hotels2 */
 /* screen sizes' modifications */

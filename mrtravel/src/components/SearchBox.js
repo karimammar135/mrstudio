@@ -18,7 +18,7 @@ export default function SearchBox(){
             setHotels(data)
         })
         .catch(error => {
-            alert(error)
+            console.log(error)
         })
     }, []);
 

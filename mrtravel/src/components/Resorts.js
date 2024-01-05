@@ -14,7 +14,7 @@ export default function Resorts(){
             setHotels(data)
         })
         .catch(error => {
-            alert(error)
+            console.log(error)
         })
     }, []);
 
