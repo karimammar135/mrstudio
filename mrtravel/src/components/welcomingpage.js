@@ -9,6 +9,9 @@ import UpdateURL from "./UpdateURL.js";
 import SearchBar from './SearchBar.js';
 import SearchResults from './SearchResults.js';
 
+import SkeletonElipses from './SkeletonElipses.js';
+import { SkeletonTheme } from 'react-loading-skeleton';
+
 function Hotels2Head(){
     const[showSearchbar, setShowSearchBar] = React.useState(false);
     const[total_hotels, setTotal_hotels] = React.useState(0);
@@ -68,6 +71,7 @@ export default function WelcomingPage(){
     }
 
     return (
+        <SkeletonTheme baseColor="#313131" highlightColor="#525252">
         <div className="welcoming-page">
             <div className="image">
                 <div className="green-overlay">
@@ -130,13 +134,14 @@ export default function WelcomingPage(){
                         <Hotels2Head />
                         <div className="elipses">
                             {(hotels != null) && hotels.map(hotel => {
-                                return <a key={hotel.id} onClick={() => showDetails(hotel.id)} href="#" style={{backgroundImage: `url(${hotel.picture_url})`}}></a>
-                            })}
+                                return <a key={hotel.id} className="elipse" onClick={() => showDetails(hotel.id)} href="#" style={{backgroundImage: `url(${hotel.picture_url})`}}></a>
+                            }) || <SkeletonElipses elipses={5} />}
                         </div>
                     </div>
                 </div>
             </div>
             
         </div>
+        </SkeletonTheme>
     );
 }

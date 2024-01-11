@@ -72,6 +72,7 @@ def logout_view(request):
 
 # Authentication
 def authentication(request):
+    print(request.user.is_authenticated)
     return JsonResponse({"authenticated": request.user.is_authenticated}, status=201)
 
 ''' Helper function '''

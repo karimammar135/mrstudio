@@ -17,12 +17,14 @@ import Payment from './Payment.js';
 import UpdateURL from "./UpdateURL.js";
 
 import LoginPage from './LoginPage.js';
+import Loading from "./Loading.js";
 
 export default function App(){
   // Configure path
   const[path, setPath] = React.useState(window.location.pathname);
   const[paymentObject, setPaymentObject] = React.useState({});
   const[authenticated, setAuthenticated] = React.useState(false);
+  const[isloading, setIsloading] = React.useState(true);
 
   // Detect url change
   let url = window.location.href;
@@ -43,18 +45,19 @@ export default function App(){
       .then(response => response.json())
       .then(data => {
           setAuthenticated(data.authenticated)
+          setIsloading(false);
       })
       .catch(error => {
           console.log(error);
       })
   }, []);
-    
+
   // MAIN Page
   if (path === "/"){
     return (
       <>
         <div className="intro">
-          <Navbar page="home" is_login={null} />
+          <Navbar page="home" is_login={null} isloading={isloading} />
           <WelcomingPage />
         </div>
         <div className="extra-space"></div>

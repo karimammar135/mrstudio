@@ -300,7 +300,6 @@ export default function AddHotelPage({ type, path }){
             }
         })
     }
-    console.log(editRoom)
     
     // Conver AM/PM to 24-military time
     const toMilitary = (time) => {
@@ -320,8 +319,6 @@ export default function AddHotelPage({ type, path }){
 
     // Activate Edit Room
     const activateEditRoom= (action, room) => {
-        console.log(action)
-        console.log(room)
         setEditRoom({
             activate: true,
             room: room

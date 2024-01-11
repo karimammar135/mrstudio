@@ -298,7 +298,7 @@
   /* flexbox */
   display: flex;
 }
-.hotels2 .elipses a {
+.hotels2 .elipses .elipse {
   height: 40px;
   width: 40px;
   border-radius: 40px;

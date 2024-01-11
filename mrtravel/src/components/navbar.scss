@@ -34,7 +34,7 @@
     justify-content: center;
 
     .nav-items {
-        a{
+        .item{
             cursor: pointer;
             font-size: 14px;
             font-weight: 400;
@@ -43,7 +43,7 @@
             margin-right: 35px;
             text-decoration: none;
         }
-        a:hover {
+        .item:hover {
             color: #4ca35f;
         }
     }

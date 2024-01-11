@@ -2,6 +2,8 @@ import React from "react";
 import './RelaxingPleasure.css';
 
 import UpdateURL from './UpdateURL.js';
+import SkeletonCard from "./SkeletonCard.js";
+import { SkeletonTheme } from "react-loading-skeleton";
 
 export default function RelaxingPleasure(){
     const[hotels, setHotels] = React.useState(null);
@@ -29,6 +31,7 @@ export default function RelaxingPleasure(){
     });
 
     return ( 
+        <SkeletonTheme baseColor="#313131" highlightColor="#525252">
         <div className="center-relaxing-pleasure">
             <div className="relaxing-pleasure-container">
                 <div className="images-regular images-defaults">
@@ -46,7 +49,7 @@ export default function RelaxingPleasure(){
                                 <a className="view-details" onClick={() => showDetails(hotel.id)}>View Details</a>
                             </div>
                         </div>
-                    })}
+                    }) || <SkeletonCard cards={3}/>}
                 </div>
                 <div className="details">
                     <span className="header">Welcome to MRtravel Resort</span>
@@ -73,8 +76,9 @@ export default function RelaxingPleasure(){
                                 <a className="view-details" onClick={() => showDetails(hotel.id)}>View Details</a>
                             </div>
                         </div>
-                    })}
+                    }) || <SkeletonCard cards={3}/>}
             </div>
         </div>
+        </SkeletonTheme>
     );
 }

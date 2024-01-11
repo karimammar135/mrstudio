@@ -35,7 +35,7 @@
   align-items: center;
   justify-content: center;
 }
-.nav-body .nav-items a {
+.nav-body .nav-items .item {
   cursor: pointer;
   font-size: 14px;
   font-weight: 400;
@@ -44,7 +44,7 @@
   margin-right: 35px;
   text-decoration: none;
 }
-.nav-body .nav-items a:hover {
+.nav-body .nav-items .item:hover {
   color: #4ca35f;
 }
 .nav-body .button {

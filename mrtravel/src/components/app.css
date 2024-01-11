@@ -1,3 +1,5 @@
+@import 'react-loading-skeleton/dist/skeleton.css';
+
 .intro {
     height: 100vh;
     min-height: 600px;
@@ -13,6 +15,7 @@
 /* background decor */
 .blue-background {
     background-color: #E5F7FF;
+    color: #616161;
     width: 100%;
     position: absolute;
     bottom: 0;

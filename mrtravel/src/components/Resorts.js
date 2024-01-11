@@ -1,6 +1,8 @@
 import React from "react";
 import './resorts.css';
 
+import SkeletonCard from './SkeletonCard.js';
+import { SkeletonTheme } from 'react-loading-skeleton';
 import UpdateURL from './UpdateURL.js';
 
 export default function Resorts(){
@@ -33,6 +35,7 @@ export default function Resorts(){
     
     // Return the html content
     return (
+        <SkeletonTheme baseColor="#313131" highlightColor="#525252">
         <div className="resorts-container">
             <span className="title">Entire City Of Choice</span>
             <div className="hotels-choices">
@@ -63,12 +66,13 @@ export default function Resorts(){
                                     </div>
                                 </li>
                             )
-                        })}
+                        }) || <SkeletonCard cards={4}/>}
                     </ul>
                     <i id="right" className="fa-solid fa-circle-chevron-right arrow" onClick={() => swipe_carousel("right")}></i>
                 </div>
                 <div className="blue-background"></div>
             </div>
         </div>
+        </SkeletonTheme>
     )
 }

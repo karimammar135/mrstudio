@@ -1,0 +1,16 @@
+
+.loading_page {
+    height: 100vh;
+    width: 100vw;
+    background-color: #ffffff6b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.loading_page div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}

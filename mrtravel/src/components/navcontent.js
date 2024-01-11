@@ -3,9 +3,13 @@ import React, { useEffect } from "react";
 import DropContent from './dropcontent.js';
 import NavBtn from './navbtn.js';
 import UpdateURL from "./UpdateURL.js";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import { dotWave } from 'ldrs'
+
+dotWave.register()
 
 // Nav Content Component
-export default function NavContent({ widthdemension, page, is_login }){
+export default function NavContent({ widthdemension, page, is_login, isloading }){
     const[dropdown, setDropdown] = React.useState(false);
     const[authenticated, setAuthenticated] = React.useState(false);
 
@@ -56,15 +60,17 @@ export default function NavContent({ widthdemension, page, is_login }){
     // Else return nav-items
     else {
         return (
-            <>
-                <div className="nav-items">
-                    <a href="/">Home</a>
-                    <a href="#">About</a>
-                    <a onClick={() => {if(authenticated){UpdateURL('account')} else{UpdateURL('login')}}}>Account</a>
-                    <a href="#">Contact</a>
-                </div>
-                <NavBtn page={page} authenticated={authenticated} is_login={is_login} logout_user={logout_user}/>
-                
+            <>  
+                <SkeletonTheme baseColor="#313131" highlightColor="#525252">
+                    <div className="nav-items">
+                        <a href="/" className="item">Home</a>
+                        <a href="#" className="item">About</a>
+                        <a className="item" onClick={() => {if(authenticated){UpdateURL('account')} else{UpdateURL('login')}}}>Account</a>
+                        <a href="#" className="item">Contact</a>
+                    </div>
+
+                    <NavBtn page={page} authenticated={authenticated} is_login={is_login} logout_user={logout_user} isloading={isloading}/>
+                </SkeletonTheme>
             </>
         );
     }
