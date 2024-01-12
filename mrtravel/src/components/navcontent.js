@@ -23,15 +23,19 @@ export default function NavContent({ widthdemension, page, is_login, isloading }
 
     // Check if user is authenticated
     useEffect(() => {
-        fetch('/authentication')
-        .then(response => response.json())
-        .then(data => {
-            setAuthenticated(data.authenticated)
-        })
-        .catch(error => {
-            alert(error)
-        })
+        fetchData();
     }, []);
+
+    async function fetchData() {
+        try {
+            const response = await fetch('/authentication');
+            const data = await response.json();
+            setAuthenticated(data.authenticated)
+            console.log('Fetched data:', data);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
 
     // Logout user
     function logout_user(){

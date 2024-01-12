@@ -11,16 +11,20 @@ export default function SearchBox(){
 
     // Calculate Number of Hotels
     React.useEffect(() => {
-        fetch('/hotels/limit-1')
-        .then(response => response.json())
-        .then(data => {
+        fetchData();
+    }, []);
+
+    async function fetchData() {
+        try {
+            const response = await fetch('/hotels/limit-1');
+            const data = await response.json();
             setTotal_hotels(data.length)
             setHotels(data)
-        })
-        .catch(error => {
-            console.log(error)
-        })
-    }, []);
+            console.log('Fetched data:', data);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
 
     return (
         <div className="search_wrapper">

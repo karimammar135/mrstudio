@@ -21,16 +21,20 @@ function Hotels2Head(){
 
     // Calculate Number of Hotels
     React.useEffect(() => {
-        fetch('/hotels/limit-1')
-        .then(response => response.json())
-        .then(data => {
+        fetchData();
+    }, []);
+
+    async function fetchData() {
+        try {
+            const response = await fetch('/hotels/limit-1');
+            const data = await response.json();
             setTotal_hotels(data.length)
             setHotels(data)
-        })
-        .catch(error => {
-            console.log(error)
-        })
-    }, []);
+            console.log('Fetched data:', data);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
 
     if (!showSearchbar){
         return (
@@ -55,15 +59,19 @@ export default function WelcomingPage(){
 
     // Fetch hotels info
     React.useEffect(() => {
-        fetch('/hotels/limit5')
-        .then(response => response.json())
-        .then(data => {
-            setHotels(data);
-        })
-        .catch(error => {
-            console.log(error)
-        })
+        fetchData();
     }, []);
+
+    async function fetchData() {
+        try {
+            const response = await fetch('/hotels/limit5');
+            const data = await response.json();
+            setHotels(data)
+            console.log('Fetched data:', data);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
 
     // Show Hotel Details
     function showDetails(hotel_num){

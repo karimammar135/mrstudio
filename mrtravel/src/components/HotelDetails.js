@@ -21,16 +21,20 @@ export default function HotelDetails({ path, paymentObject, setPaymentObject, au
 
     // Fetch hotel info
     React.useEffect(() => {
-        fetch(`/hotel_info${hotel_id}`)
-        .then(response => response.json())
-        .then(data => {
+        fetchData();
+    }, []);
+
+    async function fetchData() {
+        try {
+            const response = await fetch(`/hotel_info${hotel_id}`);
+            const data = await response.json();
             setHotel(data.hotel)
             setRooms(data.rooms)
-        })
-        .catch(error => {
-            alert(error)
-        });
-    }, []);
+            console.log('Fetched data:', data);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
 
     // Set selected room
     React.useEffect(() => {

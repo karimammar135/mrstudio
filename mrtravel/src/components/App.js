@@ -41,16 +41,20 @@ export default function App(){
 
   // Check if user is authenticated
   React.useEffect(() => {
-      fetch('/authentication')
-      .then(response => response.json())
-      .then(data => {
-          setAuthenticated(data.authenticated)
-          setIsloading(false);
-      })
-      .catch(error => {
-          console.log(error);
-      })
+      fetchData();
   }, []);
+
+  async function fetchData() {
+    try {
+        const response = await fetch('/authentication');
+        const data = await response.json();
+        setAuthenticated(data.authenticated)
+        setIsloading(false);
+        console.log('Fetched data:', data);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+  }
 
   // MAIN Page
   if (path === "/"){

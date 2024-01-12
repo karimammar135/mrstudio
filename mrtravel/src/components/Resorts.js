@@ -10,15 +10,19 @@ export default function Resorts(){
 
     // Fetch hotels from backend using API
     React.useEffect(() => {
-        fetch('/hotels/limit-1')
-        .then(response => response.json())
-        .then(data => {
-            setHotels(data)
-        })
-        .catch(error => {
-            console.log(error)
-        })
+        fetchData();
     }, []);
+
+    async function fetchData() {
+        try {
+            const response = await fetch('/hotels/limit-1');
+            const data = await response.json();
+            setHotels(data)
+            console.log('Fetched data:', data);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
 
     // Swipe carousel
     function swipe_carousel(direction){

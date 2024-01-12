@@ -30,6 +30,11 @@
     margin-top: 448px;
   }
 }
+@media (max-width: 500px) {
+  .extra-space {
+    margin-top: 410px;
+  }
+}
 @media (max-width: 334px) {
   .extra-space {
     margin-top: 503px;
@@ -45,6 +50,11 @@
   background-repeat: no-repeat;
   border-radius: 10px;
   position: relative;
+}
+@media (max-width: 500px) {
+  .image {
+    height: 90%;
+  }
 }
 
 .green-overlay {
