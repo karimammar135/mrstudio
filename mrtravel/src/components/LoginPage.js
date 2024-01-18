@@ -76,6 +76,10 @@ export default function LoginPage({ is_signup }){
             .then(result => {
                 if (result.message != null){
                     console.log(result.message);
+                    setState({
+                        ...state,
+                        isloading: false
+                    })
                     window.location.href = "/";
                 }
                 else {
@@ -118,6 +122,10 @@ export default function LoginPage({ is_signup }){
             .then(result => {
                 if (result.message != null){
                     console.log(result.message);
+                    setState({
+                        ...state,
+                        isloading: false
+                    })
                     window.location.href = "/";
                 }
                 else {

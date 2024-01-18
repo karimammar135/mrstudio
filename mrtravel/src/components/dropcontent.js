@@ -1,8 +1,11 @@
 import React from "react";
 
 import UpdateURL from './UpdateURL.js';
+import { leapfrog } from 'ldrs'
 
-export default function NavContent({ dropdown, authenticated, page, is_login, logout_user }){
+leapfrog.register()
+
+export default function NavContent({ dropdown, authenticated, page, is_login, logout_user, isloading }){
     if (dropdown){
         if (page === "login"){
             return (
@@ -22,7 +25,7 @@ export default function NavContent({ dropdown, authenticated, page, is_login, lo
                     <a href="#">About</a>
                     <a onClick={() => UpdateURL('account')}>Account</a>
                     <a href="#">Contact</a>
-                    {authenticated && <a onClick={() => logout_user()}>Logout</a> || <a onClick={() => {UpdateURL('login')}}>Login</a>}
+                    {isloading && <a><l-leapfrog size="20" speed="2.5" color="black" ></l-leapfrog></a> || (authenticated && <a onClick={() => logout_user()}>Logout</a> || <a onClick={() => {UpdateURL('login')}}>Login</a>)}
                 </div>
             );
         }

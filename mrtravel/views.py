@@ -69,7 +69,6 @@ def logout_view(request):
     logout(request)
     return JsonResponse({"message": "user successfuly loged out"}, status=201)
 
-
 # Authentication
 def authentication(request):
     print(request.user.is_authenticated)

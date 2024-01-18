@@ -3,7 +3,7 @@ import React from "react";
 import Navbar from "./navbar.js";
 import getCookie from "./getCookie.js";
 import './addhotelpage.css';
-import Loading from './Loading.js';
+import TransparentLoading from './TransparentLoading.js';
 
 export default function AddHotelPage({ type, path }){
     const[route, setRoute] = React.useState('/hotels/limit0')
@@ -38,6 +38,10 @@ export default function AddHotelPage({ type, path }){
                     setCoupon(true)
                 }
                 setIsloading(false);
+                // Set apprpriate route
+                if (type === 'edit'){
+                    setRoute(`/edit_hotel${data.hotel.id}`)
+                }
             } 
         }
         catch (error) {
@@ -47,7 +51,7 @@ export default function AddHotelPage({ type, path }){
 
     // Check if user is authenticated
     React.useEffect(() => {
-        // Set apprpriate rout
+        // Set apprpriate route
         if (type === 'edit'){
             setRoute(`/edit_hotel${hotel_details.id}`)
         }
@@ -130,6 +134,7 @@ export default function AddHotelPage({ type, path }){
         }
 
         if(type === "edit"){
+            setIsloading(true);
             // Get csrf token
             const csrftoken = getCookie('csrftoken');
             fetch('/add_room', {
@@ -147,6 +152,7 @@ export default function AddHotelPage({ type, path }){
             })
             .then(response => response.json())
             .then(data => {
+                setIsloading(false);
                 if(data.error != null){
                     alert(data.error)
                 } else {
@@ -178,9 +184,11 @@ export default function AddHotelPage({ type, path }){
                 return false;
             } else {
                 if (rooms.length > 1){
+                    setIsloading(true);
                     fetch(`/delete_room${room_selected.id}`)
                     .then(response => response.json())
                     .then(data => {
+                        setIsloading(false);
                         if(data.error != null){
                             alert(data.error)
                         } else {
@@ -243,6 +251,8 @@ export default function AddHotelPage({ type, path }){
             setRooms([]);
         }
 
+        setIsloading(true);
+
         // Get csrf token
         const csrftoken = getCookie('csrftoken');
         // Fetch submitted data to the back-end using API
@@ -273,8 +283,10 @@ export default function AddHotelPage({ type, path }){
         })
         .then(response => response.json())
         .then(data => {
+            setIsloading(false);
             if (data.message != null){
                 console.log(data.message)
+
                 location.replace('/');
             }
             else {
@@ -347,6 +359,8 @@ export default function AddHotelPage({ type, path }){
     const EditRoom = (e) => {
         e.preventDefault()
 
+        setIsloading(true);
+
         // Check for validations
         if(editRoom.room.amount === 0){
             alert('Amount 0 is unaccepted.');
@@ -375,6 +389,7 @@ export default function AddHotelPage({ type, path }){
         })
         .then(response => response.json())
         .then(data => {
+            setIsloading(false);
             if(data.error != null){
                 alert(data.error)
             } else {
@@ -392,210 +407,207 @@ export default function AddHotelPage({ type, path }){
         }); 
     }
 
-    if (isloading){
-        return <Loading />
-    } else {
-        return (
-            <section className="add_hotel_page">
-                <Navbar page="add_hotel_page" />
-                <div className="background_triangle_1"></div>
-                <div className="background_triangle_2"></div>
-            
-                <div className="body">
-                    <div className="content">
-                        <div className="header">
-                            <h1>It may take a while, so grab your favorite Drink and start filling</h1>
-                            <i className="fa-solid fa-mug-hot coffee_cup"></i>
-                        </div>
+    return (
+        <section className="add_hotel_page">
+            {isloading && <TransparentLoading />}
+            <Navbar page="add_hotel_page" />
+            <div className="background_triangle_1"></div>
+            <div className="background_triangle_2"></div>
+        
+            <div className="body">
+                <div className="content">
+                    <div className="header">
+                        <h1>It may take a while, so grab your favorite Drink and start filling</h1>
+                        <i className="fa-solid fa-mug-hot coffee_cup"></i>
+                    </div>
 
-                        <form className="main_form" onSubmit={(event) => submitForm(event)}>
-                            <div className="part1 default_layout">
-                                <div className="default_input">
-                                    <label>Hotel name</label>
-                                    {(type === 'edit') && 
-                                    <input onChange={(e) => handleInputChange(e.target)} value={hotel_details.name} name="name" type="text" placeholder="Hotel name" autoComplete="off" required></input>
-                                    ||
-                                    <input name="name" type="text" placeholder="Hotel name" autoComplete="off" required></input>}
-                                </div>
-                                <div className="default_input">
-                                    <label>Check in</label>
-                                    {(type === 'edit') && 
-                                    <input name="check_in" value={hotel_details.check_in} onChange={(e) => handleInputChange(e.target)} type="time" autoComplete="off" required></input>
-                                    ||
-                                    <input name="check_in" type="time" autoComplete="off" required></input>}
-                                </div>
-                                <div className="default_input">
-                                    <label>Check out</label>
-                                    {(type === 'edit') && 
-                                    <input name="check_out" value={hotel_details.check_out} onChange={(e) => handleInputChange(e.target)} type="time" autoComplete="off" required></input>
-                                    ||
-                                    <input name="check_out" type="time" autoComplete="off" required></input>}
-                                </div>
-                                <div className="default_input">
-                                    <label>Locality</label>
-                                    {(type === 'edit') && 
-                                    <input onChange={(e) => handleInputChange(e.target)} value={hotel_details.locality} name="locality" type="text" placeholder="Locality" autoComplete="off" required></input>
-                                    ||
-                                    <input name="locality" type="text" placeholder="Locality" autoComplete="off" required></input>}
-                                </div>
-                                <div className="default_input">
-                                    <label>City</label>
-                                    {(type === 'edit') && 
-                                    <input onChange={(e) => handleInputChange(e.target)} value={hotel_details.city} name="city" type="text" placeholder="City" autoComplete="off" required></input>
-                                    ||
-                                    <input name="city" type="text" placeholder="City" autoComplete="off" required></input>}
-                                </div>
+                    <form className="main_form" onSubmit={(event) => submitForm(event)}>
+                        <div className="part1 default_layout">
+                            <div className="default_input">
+                                <label>Hotel name</label>
+                                {(type === 'edit') && 
+                                <input onChange={(e) => handleInputChange(e.target)} value={hotel_details.name} name="name" type="text" placeholder="Hotel name" autoComplete="off" required></input>
+                                ||
+                                <input name="name" type="text" placeholder="Hotel name" autoComplete="off" required></input>}
                             </div>
-                            <div className="part2 default_layout">
-                                <div className="default_input">
-                                    <label>Country</label>
-                                    {(type === 'edit') && 
-                                    <input onChange={(e) => handleInputChange(e.target)} value={hotel_details.country} name="country" type="text" placeholder="Country" autoComplete="off" required></input>
-                                    ||
-                                    <input name="country" type="text" placeholder="Country" autoComplete="off" required></input>}
-                                </div>
-                                <div className="default_input">
-                                    <label>Link for a location on google maps</label>
-                                    {(type === 'edit') && 
-                                    <input onChange={(e) => handleInputChange(e.target)} value={hotel_details.location} name="loction" type="url" placeholder="https://" autoComplete="off" required></input>
-                                    ||
-                                    <input name="loction" type="url" placeholder="https://" autoComplete="off" required></input>}
-                                </div>
-                                <div className="default_input">
-                                    <label>Link for a youtube video</label>
-                                    {(type === 'edit') && 
-                                    <input onChange={(e) => handleInputChange(e.target)} value={hotel_details.youtube_video} name="youtube_video" type="url" placeholder="https://" autoComplete="off" required></input>
-                                    ||
-                                    <input name="youtube_video" type="url" placeholder="https://" autoComplete="off" required></input>}
-                                </div>
-                                <div className="default_input description">
-                                    <label>Description</label>
-                                    {(type === 'edit') && 
-                                    <textarea onChange={(e) => handleInputChange(e.target)} value={hotel_details.description} name="description" placeholder="Describe your hotel" autoComplete="off" required></textarea>
-                                    ||
-                                    <textarea name="description" placeholder="Describe your hotel" required></textarea>}
-                                </div>
+                            <div className="default_input">
+                                <label>Check in</label>
+                                {(type === 'edit') && 
+                                <input name="check_in" value={hotel_details.check_in} onChange={(e) => handleInputChange(e.target)} type="time" autoComplete="off" required></input>
+                                ||
+                                <input name="check_in" type="time" autoComplete="off" required></input>}
                             </div>
-                            <div className="part3 default_layout">
-                                <div className="default_input">
-                                    <label>Key Features</label>
-                                    <ul>
-                                        <li><div></div>{(type === 'edit') && <input onChange={(e) => handleInputChange(e.target)} value={hotel_details.feature1} name="feature1" type="text" placeholder="Feature 1" autoComplete="off" required></input>||<input name="feature1" type="text" placeholder="Feature 1" autoComplete="off" required></input>}</li>
-                                        <li><div></div>{(type === 'edit') && <input onChange={(e) => handleInputChange(e.target)} value={hotel_details.feature2} name="feature2" type="text" placeholder="Feature 2" autoComplete="off" required></input>||<input name="feature2" type="text" placeholder="Feature 2" autoComplete="off" required></input>}</li>
-                                        <li><div></div>{(type === 'edit') && <input onChange={(e) => handleInputChange(e.target)} value={hotel_details.feature3} name="feature3" type="text" placeholder="Feature 3" autoComplete="off" required></input>||<input name="feature3" type="text" placeholder="Feature 3" autoComplete="off" required></input>}</li>
-                                        <li><div></div>{(type === 'edit') && <input onChange={(e) => handleInputChange(e.target)} value={hotel_details.feature4} name="feature4" type="text" placeholder="Feature 4" autoComplete="off" required></input>||<input name="feature4" type="text" placeholder="Feature 4" autoComplete="off" required></input>}</li>
-                                    </ul>
-                                </div>
-                                <div className="default_input picture_link">
-                                    <label>Link for a descriptive hotel picture</label>
-                                    {(type === 'edit') && 
-                                    <input onChange={(e) => handleInputChange(e.target)} value={hotel_details.picture_url} name="picture_url" type="url" placeholder="https://" autoComplete="off" required></input>
-                                    ||
-                                    <input name="picture_url" type="url" placeholder="https://" autoComplete="off" required></input>}
-                                </div>
+                            <div className="default_input">
+                                <label>Check out</label>
+                                {(type === 'edit') && 
+                                <input name="check_out" value={hotel_details.check_out} onChange={(e) => handleInputChange(e.target)} type="time" autoComplete="off" required></input>
+                                ||
+                                <input name="check_out" type="time" autoComplete="off" required></input>}
                             </div>
-                            <div className="part4 default_layout">
-                                <h1>Room sizes</h1>
-                                <div className="default_input">
-                                    <label>Room size</label>
-                                    {editRoom.activate && <input name="room_size" defaultValue={editRoom.room.size} readOnly="readonly" type="number" placeholder="Size in ft2" autoComplete="off"></input>
-                                    || <input name="room_size" type="number" placeholder="Size in ft2" autoComplete="off"></input>}
-                                </div>
-                                <div className="default_input">
-                                    <label>Price for this room size</label>
-                                    {editRoom.activate && 
-                                    <input onChange={(e) => handleRoomEdit(e.target)} defaultValue={editRoom.room.price_per_day} name="price_per_day" type="float" placeholder="Price in $" autoComplete="off"></input>
-                                    || 
-                                    <input name="room_price" type="float" placeholder="Price in $" autoComplete="off"></input>}
-                                </div>
-                                <div className="default_input dicount_field_container">
-                                    <label>Discount(optional)</label>
-                                    <div className="dicount_field">
-                                        {editRoom.activate && 
-                                        <input onChange={(e) => handleRoomEdit(e.target)} defaultValue={editRoom.room.discount} name="discount" type="number" placeholder="%" autoComplete="off"></input>
-                                        || 
-                                        <input name="discount" type="number" placeholder="%" autoComplete="off"></input>}
-                                        {editRoom.activate && 
-                                        <div className="select_wrapper">
-                                            <select onChange={() => updateDiscountType()}>
-                                                {editRoom.room.discount_type === "always" && 
-                                                    <>
-                                                        <option>first_day</option>
-                                                        <option selected>always</option>
-                                                    </> ||
-                                                    <>
-                                                        <option selected>first_day</option>
-                                                        <option>always</option>
-                                                    </>
-                                                }
-                                            </select>
-                                        </div> ||
-                                        <div className="select_wrapper">
-                                            <select>
-                                                <option defaultValue>first_day</option>
-                                                <option>always</option>
-                                            </select>
-                                        </div>}
-                                    </div>
-                                </div>
-                                <div className="default_input">
-                                    <label>Amount of this room size</label>
-                                    {editRoom.activate && 
-                                    <input onChange={(e) => handleRoomEdit(e.target)} defaultValue={editRoom.room.amount} name="amount" type="number" placeholder="amount" autoComplete="off"></input>
-                                    || 
-                                    <input name="room_amount" type="number" placeholder="amount" autoComplete="off"></input>}
-                                </div>
-                                {(editRoom.activate) && <button className="add_room_btn" onClick={(event) => EditRoom(event) }>Edit Room</button>
-                                || <button className="add_room_btn" onClick={(event) => AddRoom(event)}>Add Room</button>}
+                            <div className="default_input">
+                                <label>Locality</label>
+                                {(type === 'edit') && 
+                                <input onChange={(e) => handleInputChange(e.target)} value={hotel_details.locality} name="locality" type="text" placeholder="Locality" autoComplete="off" required></input>
+                                ||
+                                <input name="locality" type="text" placeholder="Locality" autoComplete="off" required></input>}
                             </div>
-                            <div className="part5 default_layout">
-                                <div className="default_input">
-                                    <label>Your Rooms</label>
-                                </div>
-                                <ul className="rooms">
-                                    {rooms.length === 0 && <span className="none">None</span>}
-                                    {rooms.map(room => {
-                                        return (
-                                            <li key={crypto.randomUUID()}>
-                                                <i className="fa-solid fa-xmark cancel" onClick={() => DeleteRoom(room)}></i>
-                                                <span>{room.size} ft2</span>
-                                                {(type === "edit") && ((!editRoom.activate) && <button className="edit_room_btn" onClick={() => activateEditRoom('activate', room)}>Edit</button>) || <i className="fa-solid fa-chevron-down arrow_down"></i>}
-                                            </li>
-                                        )
-                                    })}
+                            <div className="default_input">
+                                <label>City</label>
+                                {(type === 'edit') && 
+                                <input onChange={(e) => handleInputChange(e.target)} value={hotel_details.city} name="city" type="text" placeholder="City" autoComplete="off" required></input>
+                                ||
+                                <input name="city" type="text" placeholder="City" autoComplete="off" required></input>}
+                            </div>
+                        </div>
+                        <div className="part2 default_layout">
+                            <div className="default_input">
+                                <label>Country</label>
+                                {(type === 'edit') && 
+                                <input onChange={(e) => handleInputChange(e.target)} value={hotel_details.country} name="country" type="text" placeholder="Country" autoComplete="off" required></input>
+                                ||
+                                <input name="country" type="text" placeholder="Country" autoComplete="off" required></input>}
+                            </div>
+                            <div className="default_input">
+                                <label>Link for a location on google maps</label>
+                                {(type === 'edit') && 
+                                <input onChange={(e) => handleInputChange(e.target)} value={hotel_details.location} name="loction" type="url" placeholder="https://" autoComplete="off" required></input>
+                                ||
+                                <input name="loction" type="url" placeholder="https://" autoComplete="off" required></input>}
+                            </div>
+                            <div className="default_input">
+                                <label>Link for a youtube video</label>
+                                {(type === 'edit') && 
+                                <input onChange={(e) => handleInputChange(e.target)} value={hotel_details.youtube_video} name="youtube_video" type="url" placeholder="https://" autoComplete="off" required></input>
+                                ||
+                                <input name="youtube_video" type="url" placeholder="https://" autoComplete="off" required></input>}
+                            </div>
+                            <div className="default_input description">
+                                <label>Description</label>
+                                {(type === 'edit') && 
+                                <textarea onChange={(e) => handleInputChange(e.target)} value={hotel_details.description} name="description" placeholder="Describe your hotel" autoComplete="off" required></textarea>
+                                ||
+                                <textarea name="description" placeholder="Describe your hotel" required></textarea>}
+                            </div>
+                        </div>
+                        <div className="part3 default_layout">
+                            <div className="default_input">
+                                <label>Key Features</label>
+                                <ul>
+                                    <li><div></div>{(type === 'edit') && <input onChange={(e) => handleInputChange(e.target)} value={hotel_details.feature1} name="feature1" type="text" placeholder="Feature 1" autoComplete="off" required></input>||<input name="feature1" type="text" placeholder="Feature 1" autoComplete="off" required></input>}</li>
+                                    <li><div></div>{(type === 'edit') && <input onChange={(e) => handleInputChange(e.target)} value={hotel_details.feature2} name="feature2" type="text" placeholder="Feature 2" autoComplete="off" required></input>||<input name="feature2" type="text" placeholder="Feature 2" autoComplete="off" required></input>}</li>
+                                    <li><div></div>{(type === 'edit') && <input onChange={(e) => handleInputChange(e.target)} value={hotel_details.feature3} name="feature3" type="text" placeholder="Feature 3" autoComplete="off" required></input>||<input name="feature3" type="text" placeholder="Feature 3" autoComplete="off" required></input>}</li>
+                                    <li><div></div>{(type === 'edit') && <input onChange={(e) => handleInputChange(e.target)} value={hotel_details.feature4} name="feature4" type="text" placeholder="Feature 4" autoComplete="off" required></input>||<input name="feature4" type="text" placeholder="Feature 4" autoComplete="off" required></input>}</li>
                                 </ul>
                             </div>
-                            <div className="part6 default_layout">
-                                <div className="default_input">
-                                    <label>Security deposit</label>
-                                    {(type === 'edit') && 
-                                    <input onChange={(e) => handleInputChange(e.target)} value={hotel_details.security_deposit} name="security_deposit" type="number" placeholder="Price in $" autoComplete="off" required></input>
-                                    ||
-                                    <input name="security_deposit" type="number" placeholder="Price in $" autoComplete="off" required></input>}
-                                </div>
-                                <div className="default_input">
-                                    <label>Discount for direct payment (optional)</label>
-                                    {(type === 'edit') && 
-                                    <input onChange={(e) => handleInputChange(e.target)} value={hotel_details.direct_payment_discount} name="direct_payment_discount" type="number" placeholder="%" autoComplete="off" required></input>
-                                    ||
-                                    <input name="direct_payment_discount" type="number" placeholder="%" autoComplete="off"></input>}
-                                </div>
-                                <div className="default_input">
-                                    <label>MRtravel HYPHIN</label>
-                                    <div className="coupon">
-                                        <span>40%</span>
-                                        {coupon && <i className="fa-regular fa-circle-check applied_icon"></i> || <i className="fa-solid fa-ban unpplied_icon"></i>}
-                                        <button onClick={(event) => {event.preventDefault(); setCoupon(!coupon)}}>{coupon &&  'Unapply coupon' || 'Apply coupon'}</button>
-                                    </div>
-                                    <p className="coupon_description">This coupon will be applied on all you items (rooms). You can apply or unapply this token later whenever you want.</p>
-                                </div>
-                                <p className="note">Note: All the fields you enterd in this page are editable.</p>
-                                {(type === 'edit') && <input type="submit" value="Edit Hotel" className="add_hotel_btn"></input> || <input type="submit" value="Add Hotel" className="add_hotel_btn"></input>}
+                            <div className="default_input picture_link">
+                                <label>Link for a descriptive hotel picture</label>
+                                {(type === 'edit') && 
+                                <input onChange={(e) => handleInputChange(e.target)} value={hotel_details.picture_url} name="picture_url" type="url" placeholder="https://" autoComplete="off" required></input>
+                                ||
+                                <input name="picture_url" type="url" placeholder="https://" autoComplete="off" required></input>}
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                        <div className="part4 default_layout">
+                            <h1>Room sizes</h1>
+                            <div className="default_input">
+                                <label>Room size</label>
+                                {editRoom.activate && <input name="room_size" defaultValue={editRoom.room.size} readOnly="readonly" type="number" placeholder="Size in ft2" autoComplete="off"></input>
+                                || <input name="room_size" type="number" placeholder="Size in ft2" autoComplete="off"></input>}
+                            </div>
+                            <div className="default_input">
+                                <label>Price for this room size</label>
+                                {editRoom.activate && 
+                                <input onChange={(e) => handleRoomEdit(e.target)} defaultValue={editRoom.room.price_per_day} name="price_per_day" type="float" placeholder="Price in $" autoComplete="off"></input>
+                                || 
+                                <input name="room_price" type="float" placeholder="Price in $" autoComplete="off"></input>}
+                            </div>
+                            <div className="default_input dicount_field_container">
+                                <label>Discount(optional)</label>
+                                <div className="dicount_field">
+                                    {editRoom.activate && 
+                                    <input onChange={(e) => handleRoomEdit(e.target)} defaultValue={editRoom.room.discount} name="discount" type="number" placeholder="%" autoComplete="off"></input>
+                                    || 
+                                    <input name="discount" type="number" placeholder="%" autoComplete="off"></input>}
+                                    {editRoom.activate && 
+                                    <div className="select_wrapper">
+                                        <select onChange={() => updateDiscountType()}>
+                                            {editRoom.room.discount_type === "always" && 
+                                                <>
+                                                    <option>first_day</option>
+                                                    <option selected>always</option>
+                                                </> ||
+                                                <>
+                                                    <option selected>first_day</option>
+                                                    <option>always</option>
+                                                </>
+                                            }
+                                        </select>
+                                    </div> ||
+                                    <div className="select_wrapper">
+                                        <select>
+                                            <option defaultValue>first_day</option>
+                                            <option>always</option>
+                                        </select>
+                                    </div>}
+                                </div>
+                            </div>
+                            <div className="default_input">
+                                <label>Amount of this room size</label>
+                                {editRoom.activate && 
+                                <input onChange={(e) => handleRoomEdit(e.target)} defaultValue={editRoom.room.amount} name="amount" type="number" placeholder="amount" autoComplete="off"></input>
+                                || 
+                                <input name="room_amount" type="number" placeholder="amount" autoComplete="off"></input>}
+                            </div>
+                            {(editRoom.activate) && <button className="add_room_btn" onClick={(event) => EditRoom(event) }>Edit Room</button>
+                            || <button className="add_room_btn" onClick={(event) => AddRoom(event)}>Add Room</button>}
+                        </div>
+                        <div className="part5 default_layout">
+                            <div className="default_input">
+                                <label>Your Rooms</label>
+                            </div>
+                            <ul className="rooms">
+                                {rooms.length === 0 && <span className="none">None</span>}
+                                {rooms.map(room => {
+                                    return (
+                                        <li key={crypto.randomUUID()}>
+                                            <i className="fa-solid fa-xmark cancel" onClick={() => DeleteRoom(room)}></i>
+                                            <span>{room.size} ft2</span>
+                                            {(type === "edit") && ((!editRoom.activate) && <button className="edit_room_btn" onClick={() => activateEditRoom('activate', room)}>Edit</button>) || <i className="fa-solid fa-chevron-down arrow_down"></i>}
+                                        </li>
+                                    )
+                                })}
+                            </ul>
+                        </div>
+                        <div className="part6 default_layout">
+                            <div className="default_input">
+                                <label>Security deposit</label>
+                                {(type === 'edit') && 
+                                <input onChange={(e) => handleInputChange(e.target)} value={hotel_details.security_deposit} name="security_deposit" type="number" placeholder="Price in $" autoComplete="off" required></input>
+                                ||
+                                <input name="security_deposit" type="number" placeholder="Price in $" autoComplete="off" required></input>}
+                            </div>
+                            <div className="default_input">
+                                <label>Discount for direct payment (optional)</label>
+                                {(type === 'edit') && 
+                                <input onChange={(e) => handleInputChange(e.target)} value={hotel_details.direct_payment_discount} name="direct_payment_discount" type="number" placeholder="%" autoComplete="off" required></input>
+                                ||
+                                <input name="direct_payment_discount" type="number" placeholder="%" autoComplete="off"></input>}
+                            </div>
+                            <div className="default_input">
+                                <label>MRtravel HYPHIN</label>
+                                <div className="coupon">
+                                    <span>40%</span>
+                                    {coupon && <i className="fa-regular fa-circle-check applied_icon"></i> || <i className="fa-solid fa-ban unpplied_icon"></i>}
+                                    <button onClick={(event) => {event.preventDefault(); setCoupon(!coupon)}}>{coupon &&  'Unapply coupon' || 'Apply coupon'}</button>
+                                </div>
+                                <p className="coupon_description">This coupon will be applied on all you items (rooms). You can apply or unapply this token later whenever you want.</p>
+                            </div>
+                            <p className="note">Note: All the fields you enterd in this page are editable.</p>
+                            {(type === 'edit') && <input type="submit" value="Edit Hotel" className="add_hotel_btn"></input> || <input type="submit" value="Add Hotel" className="add_hotel_btn"></input>}
+                        </div>
+                    </form>
                 </div>
-            </section>
-        );
-    }
+            </div>
+        </section>
+    );
 }

@@ -12,6 +12,7 @@ dotWave.register()
 export default function NavContent({ widthdemension, page, is_login, isloading, setIsloading }){
     const[dropdown, setDropdown] = React.useState(false);
     const[authenticated, setAuthenticated] = React.useState(false);
+    const[islogingout, setIslogingout] = React.useState(false);
 
     window.onclick = (event) => {
         if (dropdown === true){
@@ -39,12 +40,12 @@ export default function NavContent({ widthdemension, page, is_login, isloading, 
 
     // Logout user
     function logout_user(){
-        setIsloading(true)
+        setIslogingout(true)
         fetch('/logout')
         .then(response => response.json())
         .then(data => {
             console.log(data["message"])
-            setIsloading(false);
+            setIslogingout(false);
             setAuthenticated(false);
             location.href = "/";
         })
@@ -58,7 +59,7 @@ export default function NavContent({ widthdemension, page, is_login, isloading, 
         return (
             <div className="dropdown">
                 <i onClick={() => setDropdown(!(dropdown))} className={dropdown ? "fa-solid fa-bars dropbtn dropbtn-focus": "fa-solid fa-bars dropbtn"}></i>
-                <DropContent dropdown={dropdown} page={page} authenticated={authenticated} is_login={is_login} logout_user={logout_user}/>
+                <DropContent dropdown={dropdown} page={page} authenticated={authenticated} is_login={is_login} logout_user={logout_user} isloading={isloading}/>
             </div>
         );
     }
@@ -75,7 +76,7 @@ export default function NavContent({ widthdemension, page, is_login, isloading, 
                         <a href="#" className="item">Contact</a>
                     </div>
 
-                    <NavBtn page={page} authenticated={authenticated} is_login={is_login} logout_user={logout_user} isloading={isloading}/>
+                    <NavBtn page={page} authenticated={authenticated} is_login={is_login} logout_user={logout_user} isloading={isloading} islogingout={islogingout}/>
                 </SkeletonTheme>
             </>
         );
