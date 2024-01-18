@@ -9,7 +9,7 @@ import { dotWave } from 'ldrs'
 dotWave.register()
 
 // Nav Content Component
-export default function NavContent({ widthdemension, page, is_login, isloading }){
+export default function NavContent({ widthdemension, page, is_login, isloading, setIsloading }){
     const[dropdown, setDropdown] = React.useState(false);
     const[authenticated, setAuthenticated] = React.useState(false);
 
@@ -39,10 +39,12 @@ export default function NavContent({ widthdemension, page, is_login, isloading }
 
     // Logout user
     function logout_user(){
+        setIsloading(true)
         fetch('/logout')
         .then(response => response.json())
         .then(data => {
             console.log(data["message"])
+            setIsloading(false);
             setAuthenticated(false);
             location.href = "/";
         })

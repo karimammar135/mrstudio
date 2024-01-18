@@ -3,7 +3,7 @@ import './navbar.css';
 import NavContent from "./navcontent.js";
 
 // Navbar
-export default function Navbar({ page, is_login, isloading }){
+export default function Navbar({ page, is_login, isloading, setIsloading}){
     const[widthdemension, setWidthdemension] = React.useState(window.innerWidth);
 
     // Debounce functions
@@ -29,7 +29,7 @@ export default function Navbar({ page, is_login, isloading }){
         <div className="navbar" id={!(page === "login") ? "" : "login_navbar"}>
             <a href="#" className="title">MRtravel</a>
             <div className="nav-body">
-                <NavContent widthdemension={widthdemension} page={page} is_login={is_login} isloading={isloading}/>
+                <NavContent widthdemension={widthdemension} page={page} is_login={is_login} isloading={isloading} setIsloading={setIsloading}/>
             </div>
         </div>
     );

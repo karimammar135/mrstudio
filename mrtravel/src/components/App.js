@@ -61,7 +61,7 @@ export default function App(){
     return (
       <>
         <div className="intro">
-          <Navbar page="home" is_login={null} isloading={isloading} />
+          <Navbar page="home" is_login={null} isloading={isloading} setIsloading={setIsloading} />
           <WelcomingPage />
         </div>
         <div className="extra-space"></div>

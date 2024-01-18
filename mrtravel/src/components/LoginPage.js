@@ -5,12 +5,14 @@ import Navbar from './navbar.js';
 import getCookie from './getCookie.js';
 
 import UpdateURL from './UpdateURL.js';
+import TransparentLoading from './TransparentLoading.js';
 
 export default function LoginPage({ is_signup }){
     // State
     const[state, setState] = React.useState({
         login: true,
-        signup: false
+        signup: false,
+        isloading: false
     });
 
     // Funtion that Flips between forms
@@ -47,6 +49,11 @@ export default function LoginPage({ is_signup }){
     function login_user(event){
         // Prevent default submition
         event.preventDefault();
+
+        setState({
+            ...state,
+            isloading: true
+        })
         
         // If Login Form
         if (state.login) {
@@ -72,6 +79,10 @@ export default function LoginPage({ is_signup }){
                     window.location.href = "/";
                 }
                 else {
+                    setState({
+                        ...state,
+                        isloading: false
+                    })
                     alert(result.error);
                 }
             })
@@ -110,6 +121,10 @@ export default function LoginPage({ is_signup }){
                     window.location.href = "/";
                 }
                 else {
+                    setState({
+                        ...state,
+                        isloading: false
+                    })
                     alert(result.error);
                 }
             })
@@ -121,6 +136,7 @@ export default function LoginPage({ is_signup }){
 
     return (
         <div className="login_wrapper_body">
+            {state.isloading && <TransparentLoading />}
             <Navbar page="login" is_login={state.login} />
             <div className="background_triangle_1"></div>
             <div className="background_triangle_2"></div>
@@ -166,6 +182,6 @@ export default function LoginPage({ is_signup }){
                     </div>
                 </div>
             </div>
-        </div>  
+        </div>
     );
 }

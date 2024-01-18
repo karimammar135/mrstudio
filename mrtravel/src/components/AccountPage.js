@@ -6,21 +6,29 @@ import profile from './images/profile_icon.png';
 import Footer from './Footer.js';
 import classNames from 'classnames';
 import ChartBox from './ChartBox.js';
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 export default function AccountPage({setPaymentObject}){
     // State for user info
     const[userInfo, setUserInfo] = React.useState({id: null, username: null, email: null, hotelier: null, hotel: false, rooms_rented: [], hotel_rooms: []})
     const[uncompleted_payments, setUncompleted_payments] = React.useState(0);
+    const[isloading, setIsloading] = React.useState(true);
 
     // Fetch User Info
     React.useEffect(() => {
-        fetch('/user_info')
-        .then(response => response.json())
-        .then(data => {
+        fetchData();
+    }, []);
+
+    // Fetch data
+    async function fetchData(){
+        try {
+            const response = await fetch('/user_info');
+            const data = await response.json();
             if(data.error != null){
                 location.replace('/login');
             }
             else{
+                setIsloading(false);
                 setUserInfo({
                     ...data.user_info,
                     hotel: data.hotel,
@@ -34,11 +42,10 @@ export default function AccountPage({setPaymentObject}){
                     }
                 }
             }
-        })
-        .catch(error => {
-            alert(error)
-        })
-    }, []);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
     
     // Show payment details on arrow click
     function showPaymentDetails(event){
@@ -92,9 +99,11 @@ export default function AccountPage({setPaymentObject}){
             })
         }
     }
+    console.log(userInfo.username)
     
     // Return Html
     return (
+        <SkeletonTheme baseColor="#313131" highlightColor="#525252">
         <section className="account_page">
             <div className="top_section">
                 <i className="fa-solid fa-chevron-left back_icon" onClick={() => UpdateURL('')}></i>
@@ -111,8 +120,12 @@ export default function AccountPage({setPaymentObject}){
                         </li>
                         <li>
                             <div>
+                                {isloading && <>
+                                    <Skeleton className="username" style={{ width: '100px' }}/>
+                                    <Skeleton className="email" style={{ width: '130px' }}/>
+                                </>}
                                 <span className="username">{userInfo.username}</span>
-                                <span className="email">{userInfo.email}</span>
+                                <span className="email"> {userInfo.email}</span>
                             </div>
                             {(userInfo.hotelier === true) && ((userInfo.hotel === false) && <button onClick={() => UpdateURL('add_hotel')}>Add Your Hotel</button> || <button onClick={() => editHotel(userInfo.hotel.id)} >Edit Your Hotel</button>) || <></>}
                         </li>
@@ -125,12 +138,20 @@ export default function AccountPage({setPaymentObject}){
                 <div className="account_details">
                     <h1>Account Details:</h1>
                     <ul>
-                        <li>Account type: {(userInfo.hotelier === true) && 'hotelier' || 'customer'}</li>
-                        {(userInfo.hotelier === true) && <li>Hotel name: {(userInfo.hotel === false) && "Don't have an hotel yet" || userInfo.hotel.name}</li>}
-                        <li>Email: {userInfo.email}</li>
-                        <li>Username: {userInfo.username}</li>
-                        <li>Hotel rooms rented : {Object.keys(userInfo.rooms_rented).length}</li>
-                        <li>Uncompleted payments: {uncompleted_payments}</li>
+                        {isloading && <>
+                            <Skeleton style={{ width: '150px' }}/>
+                            <Skeleton style={{ width: '140px' }}/>
+                            <Skeleton style={{ width: '180px' }}/>
+                            <Skeleton style={{ width: '120px' }}/>
+                            <Skeleton style={{ width: '133px' }}/>
+                        </> || <>
+                            <li>Account type: {(userInfo.hotelier === true) && 'hotelier' || 'customer'}</li>
+                            {(userInfo.hotelier === true) && <li>Hotel name: {(userInfo.hotel === false) && "Don't have an hotel yet" || userInfo.hotel.name}</li>}
+                            <li>Email: {userInfo.email}</li>
+                            <li>Username: {userInfo.username}</li>
+                            <li>Hotel rooms rented : {Object.keys(userInfo.rooms_rented).length}</li>
+                            <li>Uncompleted payments: {uncompleted_payments}</li>
+                        </>}
                     </ul>
                 </div>
             </div>
@@ -244,5 +265,6 @@ export default function AccountPage({setPaymentObject}){
 
             <Footer />
         </section>
+        </SkeletonTheme>
     );
 }
