@@ -1,32 +1,6 @@
-{(rooms != null) && <div className="hotel_page_wrapper">
-                <section className="main_section" style={{ backgroundImage: `url(${hotel.picture_url})` }}>
-                    <div className="overlay">
-                        <SearchBox />
-                    </div>
-                </section>
+setState({
+        ...state,
+        isloading: true
+    })
 
-                <section className="empty-space"></section>
-
-                <Navbar page="hotel_page" is_login={null} />
-
-                <section className="body">
-                    <HotelDetailsSection hotel={hotel} rooms={rooms} room_selected={room_selected} setRoom_selected={setRoom_selected} />
-                    <HotelLocation hotel={hotel} />
-                    <VideoSection page="hotel_page" hotel={hotel} />
-                    <PaymentDetails authenticated={authenticated} hotel={hotel} rooms={rooms} room_selected={room_selected} setRoom_selected={setRoom_selected} showPaymentPage={showPaymentPage} rentRoomUncompletedPayment={rentRoomUncompletedPayment}/>
-                    <Footer />
-                </section>
-
-            </div> || <Loading />}
-
-
-
-fetch(`/hotel_info${hotel_id}`)
-        .then(response => response.json())
-        .then(data => {
-            setHotel(data.hotel)
-            setRooms(data.rooms)
-        })
-        .catch(error => {
-            alert(error)
-        });
+{state.isloading && <TransparentLoading />}
