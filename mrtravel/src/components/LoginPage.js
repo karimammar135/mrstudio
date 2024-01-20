@@ -49,6 +49,11 @@ export default function LoginPage({ is_signup }){
     function login_user(event){
         // Prevent default submition
         event.preventDefault();
+
+        setState({
+            ...state,
+            isloading: true
+        })    
         
         // If Login Form
         if (state.login) {
@@ -104,7 +109,7 @@ export default function LoginPage({ is_signup }){
             fetch('/register', {
                 method: 'POST',
                 headers: {'X-CSRFToken': csrftoken},
-                mode: 'same-origin',
+                mode: 'cross-origin',
                 body: JSON.stringify({
                     username: username,
                     password: password, 
@@ -139,6 +144,7 @@ export default function LoginPage({ is_signup }){
 
     return (
         <div className="login_wrapper_body">
+            {state.isloading && <TransparentLoading />}
             <Navbar page="login" is_login={state.login} />
             <div className="background_triangle_1"></div>
             <div className="background_triangle_2"></div>
