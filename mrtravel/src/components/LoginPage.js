@@ -109,7 +109,7 @@ export default function LoginPage({ is_signup }){
             fetch('/register', {
                 method: 'POST',
                 headers: {'X-CSRFToken': csrftoken},
-                mode: 'cross-origin',
+                mode: 'same-origin',
                 body: JSON.stringify({
                     username: username,
                     password: password, 

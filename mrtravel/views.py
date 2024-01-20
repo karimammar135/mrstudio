@@ -10,6 +10,8 @@ import random
 
 from .models import User, HotelInfo, RoomSize, Rent
 
+from django.views.decorators.csrf import csrf_exempt
+
 # views
 def index(request, path):
     return render(request, 'mrtravel/index.html')
@@ -48,6 +50,7 @@ def register_view(request):
         
 
 ## LOGIN USER API
+@csrf_exempt
 def login_user(request):
     # If Post request
     if request.method == "POST":
